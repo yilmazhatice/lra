@@ -10,19 +10,23 @@ from foundry_client import base_url, find_model
 from search import search
 
 TOP_K = 3
-MIN_SCORE = 0.45      # bu esigin altinda en iyi parca varsa hic cevap uretme
+MIN_SCORE = 0.42    # bu esigin altinda en iyi parca varsa hic cevap uretme
 CHAT_KEYWORD = "qwen3-4b"
 
-SYSTEM_PROMPT = """Sen bir doküman asistanısın. Kullanıcının sorusunu, \
-sana verilen BAĞLAM bölümündeki bilgilere dayanarak Türkçe cevaplarsın.
+SYSTEM_PROMPT = """Sen bir doküman asistanısın. Sana BAĞLAM olarak birkaç \
+paragraf ve bir SORU verilir.
 
-Kurallar:
-- Yalnızca BAĞLAM'daki bilgiyi kullan. Kendi genel bilgini kullanma.
-- En fazla 5 cümle yaz. Uzatma, madde madde açıklama yapma.
-- BAĞLAM soruyu cevaplamaya yetmiyorsa uydurma; şunu yaz: \
-"Bu bilgi elimdeki dokümanlarda yok."
-- Cevabını, BAĞLAM'da kullandığın parçanın köşeli parantez içindeki \
-gerçek dosya adıyla bitir. Örnek: (Kaynak: 03.md)
+ÖNCE ŞUNU KONTROL ET: BAĞLAM'daki paragraflar sorunun konusuyla ilgili mi?
+
+İlgili DEĞİLSE: açıklama yapma, özet geçme, tahmin yürütme. Sadece şu tek \
+cümleyi yaz ve dur:
+Bu bilgi elimdeki dokümanlarda yok.
+
+İlgiliyse cevabı yaz. Kurallar:
+- Yalnızca BAĞLAM'daki bilgiyi kullan. Kendi genel bilgini asla kullanma.
+- En fazla 5 cümle yaz.
+- Cevabını, kullandığın parçanın köşeli parantez içindeki gerçek dosya adıyla \
+bitir. Örnek: (Kaynak: 03.md)
 
 /no_think"""
 
@@ -64,7 +68,7 @@ def answer(question, top_k=TOP_K):
                 "content": f"BAĞLAM:\n{build_context(hits)}\n\nSORU: {question}",
             },
         ],
-        temperature=0.2,
+        temperature=0.0,
         max_tokens=400,
     )
     text = strip_thinking(resp.choices[0].message.content or "")
