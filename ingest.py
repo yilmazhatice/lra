@@ -4,8 +4,8 @@ import re
 
 DOCS_DIR = pathlib.Path("docs")
 DB_PATH = "knowledge.db"
-CHUNK_SIZE = 500   # hedef parca uzunlugu (karakter)
-OVERLAP = 100      # parcalar arasi ortusme (karakter)
+CHUNK_SIZE = 900  # hedef parca uzunlugu (karakter)
+OVERLAP = 200   # parcalar arasi ortusme (karakter)
 
 
 def read_documents():
