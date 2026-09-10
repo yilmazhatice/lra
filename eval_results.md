@@ -9,32 +9,34 @@ Eşik değeri (MIN_SCORE): 0.42
 
 | # | Soru | Beklenen kaynak | hit@3 | Reddetti | En yüksek skor | Süre (sn) | Sonuç |
 |---|------|-----------------|-------|----------|----------------|-----------|-------|
-| 1 | Orhun Yazıtları'nın alfabesini kim ve hangi yılda çözmüştür? | ilk-turk-devletleri.md | evet | hayir | 0.528 | 20.1 | OK |
-| 2 | Turan taktiği nasıl uygulanır? | turk-kulturunde-at.md | evet | hayir | 0.581 | 21.4 | OK |
-| 3 | Eski Türkçede kurdun adı neydi? | turk-kulturunde-kurt.md | evet | hayir | 0.609 | 22.3 | OK |
+| 1 | Orhun Yazıtları'nın alfabesini kim ve hangi yılda çözmüştür? | ilk-turk-devletleri.md | evet | hayir | 0.625 | 20.6 | OK |
+| 2 | Turan taktiği nasıl uygulanır? | turk-kulturunde-at.md | evet | hayir | 0.581 | 24.0 | OK |
+| 3 | Eski Türkçede kurdun adı neydi? | turk-kulturunde-kurt.md | evet | hayir | 0.609 | 22.9 | OK |
 | 4 | Anadolu Selçuklu Devleti hangi savaşta Moğollara yenilmiştir? | selcuklular-ve-malazgirt.md | evet | hayir | 0.669 | 18.6 | OK |
-| 5 | Yavuz Sultan Selim hangi savaşlarla Mısır'ı Osmanlı topraklarına katmıştır? | osmanli-padisahlari.md | evet | hayir | 0.484 | 26.6 | OK |
-| 6 | Sakarya Meydan Muharebesi kaç gün sürmüştür? | canakkale-ve-kurtulus-savasi.md | evet | hayir | 0.514 | 18.9 | OK |
-| 7 | Üç Tarz-ı Siyaset yazısı nerede ve hangi yıl yayımlanmıştır? | turk-milliyetciliginin-dogusu.md | evet | hayir | 0.503 | 19.4 | OK |
-| 8 | Milliyetçi Hareket Partisi adı hangi kongrede kabul edilmiştir? | milliyetci-hareketin-isimleri.md | evet | hayir | 0.568 | 21.9 | OK |
-| 9 | Ülkü Ocakları 12 Mart 1971'den sonra hangi adla yeniden kurulmuştur? | ulku-ocaklari.md | evet | hayir | 0.685 | 19.3 | OK |
-| 10 | Fatih Sultan Mehmed'in annesinin adı nedir? | (cevaplanamaz) | - | evet | 0.493 | 16.1 | OK |
+| 5 | Yavuz Sultan Selim hangi savaşlarla Mısır'ı Osmanlı topraklarına katmıştır? | osmanli-padisahlari.md | evet | hayir | 0.484 | 26.8 | OK |
+| 6 | Sakarya Meydan Muharebesi kaç gün sürmüştür? | canakkale-ve-kurtulus-savasi.md | evet | hayir | 0.514 | 19.0 | OK |
+| 7 | Üç Tarz-ı Siyaset yazısı nerede ve hangi yıl yayımlanmıştır? | turk-milliyetciliginin-dogusu.md | evet | hayir | 0.503 | 18.7 | OK |
+| 8 | Milliyetçi Hareket Partisi adı hangi kongrede kabul edilmiştir? | milliyetci-hareketin-isimleri.md | evet | hayir | 0.568 | 21.2 | OK |
+| 9 | Ülkü Ocakları 12 Mart 1971'den sonra hangi adla yeniden kurulmuştur? | ulku-ocaklari.md | evet | hayir | 0.685 | 18.1 | OK |
+| 10 | Fatih Sultan Mehmed'in annesinin adı nedir? | (cevaplanamaz) | - | evet | 0.493 | 14.7 | OK |
 | 11 | Bugün hava nasıl olacak? | (cevaplanamaz) | - | evet | 0.237 | 0.1 | OK |
-| 12 | asdf qwerty zxcv | (cevaplanamaz) | - | evet | 0.250 | 0.1 | OK |
+| 12 | asdf qwerty zxcv | (cevaplanamaz) | - | evet | 0.304 | 0.0 | OK |
 
 ## Cevaplar
 
 ### 1. Orhun Yazıtları'nın alfabesini kim ve hangi yılda çözmüştür?
 
-Getirilen: `ilk-turk-devletleri.md, milliyetci-hareketin-isimleri.md, milliyetci-hareketin-isimleri.md` — en yüksek skor: 0.528
+Getirilen: `turkcenin-tarihi-ve-alfabeleri.md, turkcenin-tarihi-ve-alfabeleri.md, ilk-turk-devletleri.md` — en yüksek skor: 0.625
 
-> Orhun Yazıtları'nın alfabesini Danimarkalı dilbilimci Vilhelm Thomsen 1893'te çözmüştür. (Kaynak: ilk-turk-devletleri.md)
+> Orhun Yazıtları'nın alfabesini Danimarkalı dilbilimci Vilhelm Thomsen 1893'te çözmüştür.
+
+(Kaynak: ilk-turk-devletleri.md)
 
 ### 2. Turan taktiği nasıl uygulanır?
 
-Getirilen: `turk-kulturunde-at.md, turk-kulturunde-at.md, ilk-turk-devletleri.md` — en yüksek skor: 0.581
+Getirilen: `turk-kulturunde-at.md, turk-kulturunde-at.md, turk-devlet-gelenegi.md` — en yüksek skor: 0.581
 
-> Turan taktiği, merkez birlikler sahte bir geri çekilme yaparak düşmana takibe izi sürüyor; düşman takibe geçince kanatlar hilal biçiminde kapanarak düşmana kuşatma oluşturur. Bu taktik, Malazgirt Savaşı’nda da uygulanmıştır. (Kaynak: turk-kulturunde-at.md)
+> Turan taktiği, merkez birlikler sahte bir geri çekilme yapar, düşman takibe geçince kanatlar hilal biçiminde kapanarak kuşatma tamamlanacak şekilde uygulanır. Bu taktik, Türk ordularının belirleyici özelliklerinden biridir ve Malazgirt Savaşı'nda da uygulanmıştır.
 
 ### 3. Eski Türkçede kurdun adı neydi?
 
@@ -82,7 +84,7 @@ Getirilen: `ulku-ocaklari.md, ulku-ocaklari.md, ulku-ocaklari.md` — en yüksek
 
 ### 10. Fatih Sultan Mehmed'in annesinin adı nedir?
 
-Getirilen: `osmanli-padisahlari.md, osmanli-padisahlari.md, osmanli-padisahlari.md` — en yüksek skor: 0.493
+Getirilen: `osmanli-padisahlari.md, osmanli-padisahlari.md, mustafa-kemal-ataturk.md` — en yüksek skor: 0.493
 
 > Bu bilgi elimdeki dokümanlarda yok.
 
@@ -94,6 +96,6 @@ Getirilen: `ulku-ocaklari.md, turk-kulturunde-kurt.md, turk-kulturunde-at.md` �
 
 ### 12. asdf qwerty zxcv
 
-Getirilen: `ilk-turk-devletleri.md, ilk-turk-devletleri.md, ilk-turk-devletleri.md` — en yüksek skor: 0.250
+Getirilen: `turkcenin-tarihi-ve-alfabeleri.md, turkcenin-tarihi-ve-alfabeleri.md, turkcenin-tarihi-ve-alfabeleri.md` — en yüksek skor: 0.304
 
 > Bu bilgi elimdeki dokümanlarda yok.
