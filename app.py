@@ -9,8 +9,8 @@ import streamlit as st
 from rag import answer, MIN_SCORE, TOP_K, CHAT_KEYWORD
 
 st.set_page_config(
-    page_title="Belge Asistanı",
-    page_icon="🇹🇷",
+    page_title="Börteçine",
+    page_icon="🐺",
     layout="centered",
 )
 
@@ -145,7 +145,7 @@ with st.sidebar:
 
 # --------------------------------------------------------------------- başlık
 
-st.markdown("# Belge Asistanı")
+st.markdown("# Börteçine")
 st.markdown('<div class="serit"></div>', unsafe_allow_html=True)
 st.markdown(
     '<div class="intro">Yüklediğiniz belgeler hakkında soru sorun. '
