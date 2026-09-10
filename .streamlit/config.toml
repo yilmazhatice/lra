@@ -1,0 +1,7 @@
+# Arayuz koyu bayrak temali; tema koyu olarak sabitlendi.
+[theme]
+base = "dark"
+primaryColor = "#c8101f"
+backgroundColor = "#1a1114"
+secondaryBackgroundColor = "#241619"
+textColor = "#e7dcde"

@@ -2,103 +2,98 @@
 
 Eşik değeri (MIN_SCORE): 0.42
 
-- Başarılı: **11/12**
-- Ortalama yanıt süresi: **10.1 sn**
+- Başarılı: **12/12**
+- Ortalama yanıt süresi: **17.1 sn**
 
 ## Özet tablo
 
 | # | Soru | Beklenen kaynak | hit@3 | Reddetti | En yüksek skor | Süre (sn) | Sonuç |
 |---|------|-----------------|-------|----------|----------------|-----------|-------|
-| 1 | RAG'in üç adımı nedir? | 01.md | evet | hayir | 0.715 | 21.8 | OK |
-| 2 | RAG hangi iki pratik sorunu çözer? | 01.md | evet | hayir | 0.745 | 7.9 | OK |
-| 3 | Kosinüs benzerliği hangi aralıkta değer alır? | 02.md | evet | hayir | 0.440 | 9.0 | OK |
-| 4 | Anlamsal arama anahtar kelime aramasından neden üstündür? | 02.md | evet | hayir | 0.465 | 8.9 | OK |
-| 5 | Vektörler neden JSON yerine BLOB olarak saklanır? | 03.md | evet | hayir | 0.690 | 14.9 | OK |
-| 6 | SQLite neden ayrı bir sunucu gerektirmez? | 03.md | evet | hayir | 0.669 | 8.4 | OK |
-| 7 | Foundry Local hangi API biçimini konuşur? | 04.md | evet | hayir | 0.666 | 23.0 | OK |
-| 8 | Sistem mesajı ile kullanıcı mesajı arasındaki fark nedir? | 05.md | evet | hayir | 0.457 | 10.4 | OK |
-| 9 | Türkiye'nin başkenti neresi? | (cevaplanamaz) | - | evet | 0.259 | 0.2 | OK |
-| 10 | Bugün hava nasıl olacak? | (cevaplanamaz) | - | evet | 0.287 | 0.0 | OK |
-| 11 | Python'da bir listeyi nasıl ters çeviririm? | (cevaplanamaz) | - | hayir | 0.504 | 8.6 | HATA |
-| 12 | asdf qwerty zxcv | (cevaplanamaz) | - | evet | 0.459 | 8.0 | OK |
+| 1 | Orhun Yazıtları'nın alfabesini kim ve hangi yılda çözmüştür? | ilk-turk-devletleri.md | evet | hayir | 0.528 | 20.1 | OK |
+| 2 | Turan taktiği nasıl uygulanır? | turk-kulturunde-at.md | evet | hayir | 0.581 | 21.4 | OK |
+| 3 | Eski Türkçede kurdun adı neydi? | turk-kulturunde-kurt.md | evet | hayir | 0.609 | 22.3 | OK |
+| 4 | Anadolu Selçuklu Devleti hangi savaşta Moğollara yenilmiştir? | selcuklular-ve-malazgirt.md | evet | hayir | 0.669 | 18.6 | OK |
+| 5 | Yavuz Sultan Selim hangi savaşlarla Mısır'ı Osmanlı topraklarına katmıştır? | osmanli-padisahlari.md | evet | hayir | 0.484 | 26.6 | OK |
+| 6 | Sakarya Meydan Muharebesi kaç gün sürmüştür? | canakkale-ve-kurtulus-savasi.md | evet | hayir | 0.514 | 18.9 | OK |
+| 7 | Üç Tarz-ı Siyaset yazısı nerede ve hangi yıl yayımlanmıştır? | turk-milliyetciliginin-dogusu.md | evet | hayir | 0.503 | 19.4 | OK |
+| 8 | Milliyetçi Hareket Partisi adı hangi kongrede kabul edilmiştir? | milliyetci-hareketin-isimleri.md | evet | hayir | 0.568 | 21.9 | OK |
+| 9 | Ülkü Ocakları 12 Mart 1971'den sonra hangi adla yeniden kurulmuştur? | ulku-ocaklari.md | evet | hayir | 0.685 | 19.3 | OK |
+| 10 | Fatih Sultan Mehmed'in annesinin adı nedir? | (cevaplanamaz) | - | evet | 0.493 | 16.1 | OK |
+| 11 | Bugün hava nasıl olacak? | (cevaplanamaz) | - | evet | 0.237 | 0.1 | OK |
+| 12 | asdf qwerty zxcv | (cevaplanamaz) | - | evet | 0.250 | 0.1 | OK |
 
 ## Cevaplar
 
-### 1. RAG'in üç adımı nedir?
+### 1. Orhun Yazıtları'nın alfabesini kim ve hangi yılda çözmüştür?
 
-Getirilen: `01.md, 01.md, 01.md` — en yüksek skor: 0.715
+Getirilen: `ilk-turk-devletleri.md, milliyetci-hareketin-isimleri.md, milliyetci-hareketin-isimleri.md` — en yüksek skor: 0.528
 
-> [01.md / parca 0]  
-RAG iki pratik sorunu çözer. Birincisi bayatlıktır: bir model eğitim tarihinden sonra yazılmış dokümanları bilemez, ama bir arama sistemi beş dakika önce eklenmiş bir dosyayı okuyabilir. İkincisi halüsinasyondur. Bilmediği bir şey sorulduğunda model akıcı ama yanlış bir cevap uydurma eğilimindedir. Doğru paragrafı vermek, doğru cevabı üretilmesi en kolay seçenek haline getirir ve cevabın hangi dokümandan geldiğini göstermeyi mümkün kılar.
+> Orhun Yazıtları'nın alfabesini Danimarkalı dilbilimci Vilhelm Thomsen 1893'te çözmüştür. (Kaynak: ilk-turk-devletleri.md)
 
-(RAG'in üç adımı: Getirme, Zenginleştirme ve Üretme.)
+### 2. Turan taktiği nasıl uygulanır?
 
-### 2. RAG hangi iki pratik sorunu çözer?
+Getirilen: `turk-kulturunde-at.md, turk-kulturunde-at.md, ilk-turk-devletleri.md` — en yüksek skor: 0.581
 
-Getirilen: `01.md, 01.md, 01.md` — en yüksek skor: 0.745
+> Turan taktiği, merkez birlikler sahte bir geri çekilme yaparak düşmana takibe izi sürüyor; düşman takibe geçince kanatlar hilal biçiminde kapanarak düşmana kuşatma oluşturur. Bu taktik, Malazgirt Savaşı’nda da uygulanmıştır. (Kaynak: turk-kulturunde-at.md)
 
-> [01.md / parca 1]
+### 3. Eski Türkçede kurdun adı neydi?
 
-### 3. Kosinüs benzerliği hangi aralıkta değer alır?
+Getirilen: `turk-kulturunde-kurt.md, turk-kulturunde-kurt.md, turk-kulturunde-kurt.md` — en yüksek skor: 0.609
 
-Getirilen: `02.md, 03.md, 02.md` — en yüksek skor: 0.440
+> Eski Türkçede kurdun adı "böri" idi. Bu sözcük Orhun Yazıtları'nda ve on birinci yüzyılda Kaşgarlı Mahmud'un yazdığı Dîvânu Lugâti't-Türk'te geçer. (Kaynak: turk-kulturunde-kurt.md)
 
-> [Kaynak: 02.md]
+### 4. Anadolu Selçuklu Devleti hangi savaşta Moğollara yenilmiştir?
 
-### 4. Anlamsal arama anahtar kelime aramasından neden üstündür?
+Getirilen: `selcuklular-ve-malazgirt.md, selcuklular-ve-malazgirt.md, selcuklular-ve-malazgirt.md` — en yüksek skor: 0.669
 
-Getirilen: `02.md, 02.md, 01.md` — en yüksek skor: 0.465
+> Anadolu Selçuklu Devleti 1243'teki Kösedağ Savaşı'nda Moğollara yenilmiştir. (Kaynak: selcuklular-ve-malazgirt.md / parca 2)
 
-> [02.md / parca 1]
+### 5. Yavuz Sultan Selim hangi savaşlarla Mısır'ı Osmanlı topraklarına katmıştır?
 
-### 5. Vektörler neden JSON yerine BLOB olarak saklanır?
+Getirilen: `osmanli-padisahlari.md, selcuklular-ve-malazgirt.md, selcuklular-ve-malazgirt.md` — en yüksek skor: 0.484
 
-Getirilen: `03.md, 03.md, 02.md` — en yüksek skor: 0.690
+> Yavuz Sultan Selim, Mısır'ı Osmanlı topraklarına katmak için 1514'te Çaldıran Savaşı'nda Safevîler'e, 1516'da Mercidabık Savaşı'nda ve 1517'de Ridaniye Savaşı'nda Memlükler'e yenilgiye uğrattı. Bu savaşlar sonucunda Mısır ve Hicaz Osmanlı topraklarına katılmıştır. (Kaynak: osmanli-padisahlari.md)
 
-> Vektörler JSON yerine BLOB olarak saklanır çünkü BLOB, sayısal veri olarak saklanan vektörleri daha hızlı ve daha az yer kaplayan bir veri türüdür. JSON, vektörleri saklamak için daha fazla bellek ve daha fazla işlem süresi gerektirir. BLOB, bu nedenlerden dolayı daha etkili bir veri saklama yöntemidir.
+### 6. Sakarya Meydan Muharebesi kaç gün sürmüştür?
 
-### 6. SQLite neden ayrı bir sunucu gerektirmez?
+Getirilen: `canakkale-ve-kurtulus-savasi.md, osmanli-padisahlari.md, canakkale-ve-kurtulus-savasi.md` — en yüksek skor: 0.514
 
-Getirilen: `03.md, 03.md, 03.md` — en yüksek skor: 0.669
+> Sakarya Meydan Muharebesi 23 Ağustos - 13 Eylül 1921 tarihleri arasında yirmi iki gün süren bir muharebe olmuştur.
 
-> [03.md / parca 0]
+(Kaynak: canakkale-ve-kurtulus-savasi.md)
 
-### 7. Foundry Local hangi API biçimini konuşur?
+### 7. Üç Tarz-ı Siyaset yazısı nerede ve hangi yıl yayımlanmıştır?
 
-Getirilen: `04.md, 04.md, 01.md` — en yüksek skor: 0.666
+Getirilen: `turk-milliyetciliginin-dogusu.md, turk-milliyetciliginin-dogusu.md, turk-milliyetciliginin-dogusu.md` — en yüksek skor: 0.503
 
-> [04.md / parca 0]  
-Foundry Local, Microsoft'un dil modellerini doğrudan kullanıcının kendi cihazında çalıştırmak için geliştirdiği çalışma zamanıdır. Bir model kataloğu, bir indirici ve yerel bir sunucuyu bir arada sunar. Böylece bir uygulama, hiçbir veriyi bulut servisine göndermeden çıkarım yapabilir ve model diske indikten sonra ağ bağlantısına hiç ihtiyaç duymaz.
+> Üç Tarz-ı Siyaset yazısı 1904 yılında Kahire'de Yusuf Akçura tarafından yayımlanmıştır. (Kaynak: turk-milliyetciliginin-dogusu.md)
 
-[04.md / parca 1]  
-Model yüklendikten sonra Foundry Local onu bir HTTP uç noktası üzerinden sunar ve bu uç nokta OpenAI sohbet tamamlama API'siyle aynı istek-cevap biçimini konuşur. (Kaynak: 04.md)
+### 8. Milliyetçi Hareket Partisi adı hangi kongrede kabul edilmiştir?
 
-### 8. Sistem mesajı ile kullanıcı mesajı arasındaki fark nedir?
+Getirilen: `milliyetci-hareketin-isimleri.md, milliyetci-hareketin-isimleri.md, milliyetci-hareketin-isimleri.md` — en yüksek skor: 0.568
 
-Getirilen: `05.md, 01.md, 01.md` — en yüksek skor: 0.457
+> Milliyetçi Hareket Partisi adı 8-9 Şubat 1969'daki Adana kongresinde kabul edilmiştir. (Kaynak: milliyetci-hareketin-isimleri.md / parca 5)
 
-> [01.md / parca 0]
+### 9. Ülkü Ocakları 12 Mart 1971'den sonra hangi adla yeniden kurulmuştur?
 
-### 9. Türkiye'nin başkenti neresi?
+Getirilen: `ulku-ocaklari.md, ulku-ocaklari.md, ulku-ocaklari.md` — en yüksek skor: 0.685
 
-Getirilen: `05.md, 02.md, 01.md` — en yüksek skor: 0.259
+> Ülkü Ocakları 12 Mart 1971'den sonra Ülkü Ocakları Derneği adıyla yeniden kurulmuştur. (Kaynak: ulku-ocaklari.md)
 
-> Bu bilgi elimdeki dokümanlarda yok.
+### 10. Fatih Sultan Mehmed'in annesinin adı nedir?
 
-### 10. Bugün hava nasıl olacak?
-
-Getirilen: `02.md, 01.md, 03.md` — en yüksek skor: 0.287
+Getirilen: `osmanli-padisahlari.md, osmanli-padisahlari.md, osmanli-padisahlari.md` — en yüksek skor: 0.493
 
 > Bu bilgi elimdeki dokümanlarda yok.
 
-### 11. Python'da bir listeyi nasıl ters çeviririm?
+### 11. Bugün hava nasıl olacak?
 
-Getirilen: `03.md, 03.md, 03.md` — en yüksek skor: 0.504
+Getirilen: `ulku-ocaklari.md, turk-kulturunde-kurt.md, turk-kulturunde-at.md` — en yüksek skor: 0.237
 
-> [03.md / parca 2]
+> Bu bilgi elimdeki dokümanlarda yok.
 
 ### 12. asdf qwerty zxcv
 
-Getirilen: `03.md, 01.md, 03.md` — en yüksek skor: 0.459
+Getirilen: `ilk-turk-devletleri.md, ilk-turk-devletleri.md, ilk-turk-devletleri.md` — en yüksek skor: 0.250
 
 > Bu bilgi elimdeki dokümanlarda yok.

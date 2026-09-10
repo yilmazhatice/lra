@@ -4,20 +4,18 @@ import sys
 import sqlite3
 
 import numpy as np
-from openai import OpenAI
 
-from foundry_client import base_url, find_model
+from foundry_client import client, find_model
 
 DB_PATH = "knowledge.db"
 TOP_K = 3
-
-_client = OpenAI(base_url=base_url(), api_key="not-needed")
+EMBED_MODEL = "qwen3-embedding-0.6b"
 
 
 def embed_query(question):
     """Soruyu, parcalarla ayni modelle vektore cevir."""
-    model_id = find_model("embedding")
-    resp = _client.embeddings.create(model=model_id, input=[question])
+    model_id = find_model(EMBED_MODEL)
+    resp = client().embeddings.create(model=model_id, input=[question])
     return np.asarray(resp.data[0].embedding, dtype=np.float32)
 
 
@@ -44,7 +42,7 @@ def search(question, top_k=TOP_K):
     query = embed_query(question)
 
     # Kosinus benzerligi: vektorleri normalize edip ic carpim aliyoruz.
-    # 20 parca icin kaba kuvvet fazlasiyla hizli; buyuk koleksiyonlarda
+    # Bu olcekte kaba kuvvet fazlasiyla hizli; buyuk koleksiyonlarda
     # yerine yaklasik en yakin komsu indeksi gerekirdi.
     matrix_norm = matrix / np.linalg.norm(matrix, axis=1, keepdims=True)
     query_norm = query / np.linalg.norm(query)
@@ -62,7 +60,9 @@ if __name__ == "__main__":
     question = " ".join(sys.argv[1:])
     print(f"Soru: {question}\n")
 
-    for rank, (score, _cid, doc_name, chunk_idx, text) in enumerate(search(question), 1):
+    for rank, (score, _cid, doc_name, chunk_idx, text) in enumerate(
+        search(question), 1
+    ):
         print(f"--- {rank}. {doc_name} (parca {chunk_idx})  benzerlik={score:.3f}")
         print(text[:300].replace("\n", " "))
         print()

@@ -4,38 +4,43 @@ import re
 import sys
 import time
 
-from openai import OpenAI
-
-from foundry_client import base_url, find_model
+from foundry_client import client, find_model
 from search import search
 
 TOP_K = 3
-MIN_SCORE = 0.42    # bu esigin altinda en iyi parca varsa hic cevap uretme
-CHAT_KEYWORD = "qwen3-4b"
+MIN_SCORE = 0.42      # bu esigin altinda en iyi parca varsa hic cevap uretme
+CHAT_KEYWORD = "qwen2.5-7b"
+MAX_TOKENS = 350
 
-SYSTEM_PROMPT = """Sen bir doküman asistanısın. Sana BAĞLAM olarak birkaç \
-paragraf ve bir SORU verilir.
+SYSTEM_PROMPT = """Sen bir doküman asistanısın. Sana BAĞLAM olarak birkaç
+paragraf ve bir SORU verilir. Görevin, sorunun cevabını BAĞLAM'da bulup
+Türkçe yazmaktır.
 
-ÖNCE ŞUNU KONTROL ET: BAĞLAM'daki paragraflar sorunun konusuyla ilgili mi?
-
-İlgili DEĞİLSE: açıklama yapma, özet geçme, tahmin yürütme. Sadece şu tek \
-cümleyi yaz ve dur:
+BAĞLAM soruyla ilgili bilgi içeriyorsa cevap ver. Kısmen içeriyorsa elindeki
+kadarını yaz. Hiç ilgili bilgi yoksa yalnızca şu cümleyi yaz:
 Bu bilgi elimdeki dokümanlarda yok.
 
-İlgiliyse cevabı yaz. Kurallar:
-- Yalnızca BAĞLAM'daki bilgiyi kullan. Kendi genel bilgini asla kullanma.
-- En fazla 5 cümle yaz.
-- Cevabını, kullandığın parçanın köşeli parantez içindeki gerçek dosya adıyla \
-bitir. Örnek: (Kaynak: 03.md)
+Kurallar:
+- Yalnızca BAĞLAM'daki bilgiyi kullan, kendi genel bilgini ekleme.
+- Kısa yaz: en fazla dört cümle.
+- Bağlamdaki köşeli parantezli etiketleri cevabına yazma.
+- Cevabın son satırında kaynağı belirt.
 
-/no_think"""
+Cevap biçimi şöyle olmalı:
 
-_client = OpenAI(base_url=base_url(), api_key="not-needed")
+Kurdun eski Türkçedeki adı böri idi.
+(Kaynak: turk-kulturunde-kurt.md)"""
 
 
 def strip_thinking(text):
-    """Qwen modelleri bazen <think>...</think> blogu uretir; onu ayikla."""
-    return re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL).strip()
+    """Bazi modeller <think>...</think> blogu uretebilir; guvenlik agi.
+
+    Cikti token sinirinda kesilirse kapanis etiketi hic gelmez; o durumda
+    <think>'ten sonrasinin tamami dusunme metnidir.
+    """
+    text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL)
+    text = re.sub(r"<think>.*$", "", text, flags=re.DOTALL)
+    return text.strip()
 
 
 def build_context(hits):
@@ -45,10 +50,14 @@ def build_context(hits):
     )
 
 
-def answer(question, top_k=TOP_K):
-    """(cevap, getirilen_parcalar, gecen_sure) dondur."""
+def answer(question, top_k=TOP_K, search_query=None):
+    """(cevap, getirilen_parcalar, gecen_sure) dondur.
+
+    search_query verilirse arama onunla yapilir, cevap yine question'a gore
+    uretilir. Kisa takip sorularinda onceki soruyu baglam olarak tasimak icin.
+    """
     started = time.perf_counter()
-    hits = search(question, top_k=top_k)
+    hits = search(search_query or question, top_k=top_k)
 
     # Esik korumasi: alakali hicbir sey bulunamadiysa modele hic sormuyoruz.
     # Boylece model alakasiz baglamdan cevap uydurma firsati bulamiyor.
@@ -59,19 +68,30 @@ def answer(question, top_k=TOP_K):
             time.perf_counter() - started,
         )
 
-    resp = _client.chat.completions.create(
+    resp = client().chat.completions.create(
         model=find_model(CHAT_KEYWORD),
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
             {
                 "role": "user",
-                "content": f"BAĞLAM:\n{build_context(hits)}\n\nSORU: {question}",
+                "content": (
+                    f"BAĞLAM:\n{build_context(hits)}\n\n"
+                    f"SORU: {question}\n\n"
+                    "Türkçe cevap ver."
+                ),
             },
         ],
         temperature=0.0,
-        max_tokens=400,
+        max_tokens=MAX_TOKENS,
     )
+
     text = strip_thinking(resp.choices[0].message.content or "")
+    if not text:
+        text = (
+            "Model bu soru için bir yanıt üretemedi. "
+            "Soruyu biraz daha açık yazmayı deneyin."
+        )
+
     return text, hits, time.perf_counter() - started
 
 

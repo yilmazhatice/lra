@@ -1,6 +1,8 @@
 """Yerel Belge Asistani - web arayuzu."""
 
+import base64
 import html
+from pathlib import Path
 
 import streamlit as st
 
@@ -8,34 +10,110 @@ from rag import answer, MIN_SCORE, TOP_K, CHAT_KEYWORD
 
 st.set_page_config(
     page_title="Belge Asistanı",
-    page_icon="📄",
+    page_icon="🇹🇷",
     layout="centered",
 )
 
-st.markdown(
+
+@st.cache_data
+def _bayrak_uri() -> str:
+    """Dalgalanan bayrak gorselini data-URI'ye cevirir.
+
+    Gorsel varliklar/bayrak_uret.py ile uretiliyor; degistirmek icin o
+    betigin dalga tanimlari duzenlenip yeniden calistirilmasi yeterli.
     """
-    <style>
-      .block-container { padding-top: 2.5rem; max-width: 800px; }
-      h1 { font-size: 1.9rem !important; letter-spacing: -0.02em; margin-bottom: 0.2rem; }
-      .intro { color: #6b7280; font-size: 0.95rem; line-height: 1.55;
-               margin-bottom: 1.8rem; }
-      .stats { color: #6b7280; font-size: 0.78rem; letter-spacing: 0.01em;
-               margin-top: 0.6rem; }
-      .stats b { font-weight: 600; }
-      .card { border-left: 3px solid #4b9e96; padding: 0.15rem 0 0.15rem 0.9rem;
-              margin: 0 0 1.1rem 0; }
-      .card-head { font-size: 0.82rem; font-weight: 600; margin-bottom: 0.35rem; }
-      .card-score { color: #6b7280; font-weight: 400; }
-      .card-body { font-size: 0.85rem; color: #6b7280; line-height: 1.55; }
-      .side-row { display: flex; justify-content: space-between; font-size: 0.85rem;
-                  padding: 0.4rem 0; border-bottom: 1px solid rgba(128,128,128,0.18); }
-      .side-row span:last-child { font-weight: 600; }
-      .side-note { font-size: 0.8rem; color: #6b7280; line-height: 1.5;
-                   margin-top: 1rem; }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+    yol = Path(__file__).parent / "varliklar" / "bayrak.jpg"
+    ham = base64.b64encode(yol.read_bytes()).decode("ascii")
+    return "data:image/jpeg;base64," + ham
+
+
+STIL = """
+<style>
+  /* ---------------------------------------------------- bayrak arka plani */
+  [data-testid="stAppViewContainer"] {
+    background:
+      /* bayragi koyulastiran sicak ortu; carpim oldugu icin beyaz alanlar
+         grilesmeden koyu gul rengine iniyor */
+      linear-gradient(150deg, #77404a 0%, #5a2c34 46%, #7d434c 100%),
+      /* dalgalanan bayrak (varliklar/bayrak.jpg) */
+      url("__BAYRAK__") no-repeat 50% 50% / cover;
+    background-blend-mode: multiply, normal;
+    background-attachment: fixed, fixed;
+  }
+  [data-testid="stHeader"] { background: transparent; }
+  [data-testid="stBottom"] > div { background: transparent; }
+
+  /* ------------------------------------------------------- icerik paneli */
+  .block-container {
+    max-width: 820px;
+    margin-top: 1.2rem;
+    margin-bottom: 3rem;
+    padding: 2.4rem 2.6rem 2.8rem;
+    background: rgba(26,17,20,0.90);
+    border: 1px solid rgba(227,10,23,0.28);
+    border-radius: 20px;
+    box-shadow: 0 20px 55px rgba(0,0,0,0.55);
+  }
+
+  h1 { font-size: 1.9rem !important; letter-spacing: -0.02em;
+       margin-bottom: 0.2rem; color: #f3dfe1; }
+  .intro { color: #b3a5a8; font-size: 0.95rem; line-height: 1.55;
+           margin-bottom: 1.6rem; }
+  /* baslik altindaki bayrak seridi */
+  .serit { height: 4px; border-radius: 3px; margin: 0.1rem 0 1.3rem 0;
+           background: linear-gradient(90deg, #c8101f 0%, #c8101f 62%,
+                       rgba(200,16,31,0.10) 100%); }
+
+  .stats { color: #9c8f92; font-size: 0.78rem; letter-spacing: 0.01em;
+           margin-top: 0.6rem; }
+  .stats b { font-weight: 600; color: #e8888f; }
+  .card { border-left: 3px solid #c8101f; padding: 0.15rem 0 0.15rem 0.9rem;
+          margin: 0 0 1.1rem 0; }
+  .card-head { font-size: 0.82rem; font-weight: 600; margin-bottom: 0.35rem;
+               color: #e7dcde; }
+  .card-score { color: #9c8f92; font-weight: 400; }
+  .card-body { font-size: 0.85rem; color: #b3a5a8; line-height: 1.55; }
+
+  /* ---------------------------------------------------------- kenar panel */
+  [data-testid="stSidebar"] {
+    background: rgba(21,14,16,0.94);
+    border-right: 2px solid rgba(200,16,31,0.55);
+  }
+  [data-testid="stSidebar"] h4 { color: #f3dfe1; }
+  .side-row { display: flex; justify-content: space-between; font-size: 0.85rem;
+              padding: 0.4rem 0; border-bottom: 1px solid rgba(227,10,23,0.16);
+              color: #c9bbbe; }
+  .side-row span:last-child { font-weight: 600; color: #e8888f; }
+  .side-note { font-size: 0.8rem; color: #9c8f92; line-height: 1.5;
+               margin-top: 1rem; }
+
+  /* ---------------------------------------------------------- ogeler */
+  .stButton button {
+    background: rgba(255,255,255,0.04); color: #eec2c6;
+    border: 1px solid rgba(200,16,31,0.55); font-weight: 500;
+  }
+  .stButton button:hover {
+    background: #c8101f; color: #ffffff; border-color: #c8101f;
+  }
+  [data-testid="stChatMessage"] {
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(227,10,23,0.16);
+    border-radius: 14px;
+  }
+  [data-testid="stChatInput"] {
+    border: 1px solid rgba(200,16,31,0.45);
+    background: rgba(30,20,23,0.95);
+  }
+  .stExpander details {
+    border: 1px solid rgba(227,10,23,0.22) !important;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.03);
+  }
+  .stSpinner > div { border-top-color: #c8101f !important; }
+</style>
+"""
+
+st.markdown(STIL.replace("__BAYRAK__", _bayrak_uri()), unsafe_allow_html=True)
 
 # ---------------------------------------------------------------- kenar panel
 
@@ -54,9 +132,9 @@ with st.sidebar:
         )
 
     st.markdown(
-        '<div class="side-note">Bir soru, belgelerle yeterince eşleşmezse '
-        'dil modeline hiç gönderilmez. Sistem bu durumda tahmin yürütmek '
-        'yerine bilgisi olmadığını söyler.</div>',
+        '<div class="side-note">Bir soru, belgelerle yeterince eşleşmezse dil '
+        'modeline hiç gönderilmez. Sistem bu durumda tahmin yürütmek yerine '
+        'bilgisi olmadığını söyler.</div>',
         unsafe_allow_html=True,
     )
 
@@ -68,6 +146,7 @@ with st.sidebar:
 # --------------------------------------------------------------------- başlık
 
 st.markdown("# Belge Asistanı")
+st.markdown('<div class="serit"></div>', unsafe_allow_html=True)
 st.markdown(
     '<div class="intro">Yüklediğiniz belgeler hakkında soru sorun. '
     'Asistan yanıtını yalnızca bu belgelerden üretir ve hangi belgeden '
@@ -82,9 +161,9 @@ if "gecmis" not in st.session_state:
 # ------------------------------------------------------------- örnek sorular
 
 ORNEKLER = [
-    "RAG'in üç adımı nedir?",
-    "Vektörler neden BLOB olarak saklanır?",
-    "Türkiye'nin başkenti neresi?",
+    "Eski Türkçede kurdun adı neydi?",
+    "Dokuz Işık ilkeleri nelerdir?",
+    "Bugün hava nasıl olacak?",
 ]
 
 secilen = None
@@ -145,7 +224,15 @@ if soru:
 
     with st.chat_message("assistant"):
         with st.spinner("Belgeler taranıyor ve yanıt hazırlanıyor…"):
-            metin, hits, sure = answer(soru)
+            # Kisa takip sorulari ("bunun sebebi ne?") tek baslarina aranamaz;
+            # arama icin bir onceki soruyu da ekliyoruz. Cevap yine yalnizca
+            # yeni soruya gore uretiliyor.
+            arama = soru
+            if st.session_state.gecmis and len(soru.split()) <= 8:
+                arama = st.session_state.gecmis[-1]["soru"] + " " + soru
+
+            metin, hits, sure = answer(soru, search_query=arama)
+
         kayit = {"soru": soru, "metin": metin, "hits": hits, "sure": sure}
         yaniti_ciz(kayit)
 
