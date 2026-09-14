@@ -1,0 +1,218 @@
+{
+ "T1": [
+  {
+   "onceki": "Malazgirt Savaşı ne zaman yapıldı?",
+   "soru": "sonucu ne oldu?",
+   "beklenen": "takip: onceki soru kullanilmali",
+   "tek": "selcuklular-ve-malazgirt.md#2 0.353",
+   "birlesik": "selcuklular-ve-malazgirt.md#0 0.591",
+   "secilen": "selcuklular-ve-malazgirt.md#0 0.591",
+   "esik_gecti": true,
+   "cevap": "Sonucu, Selçukluların Malazgirt Savaşı'nda zafer kazandığı ve Bizans İmparatoru esir düşmesi oldu. Bu savaş, Selçukluların Anadolu'da daha geniş bir etki alanına sahip olmalarına ve Bizans İmparatorluğu'nun Anadolu'daki güçlerinin azalmasına yol açmıştır. (Kaynak: selcuklular-ve-malazgirt.md)",
+   "sure": 3.18
+  },
+  {
+   "onceki": "Sakarya Meydan Muharebesi kaç gün sürmüştür?",
+   "soru": "bunun sebebi ne?",
+   "beklenen": "takip: onceki soru kullanilmali",
+   "tek": "turk-kulturunde-kurt.md#3 0.267",
+   "birlesik": "canakkale-ve-kurtulus-savasi.md#2 0.527",
+   "secilen": "canakkale-ve-kurtulus-savasi.md#2 0.527",
+   "esik_gecti": true,
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "sure": 1.74
+  },
+  {
+   "onceki": "Orhun Yazıtları'nın alfabesini kim çözmüştür?",
+   "soru": "hangi yılda?",
+   "beklenen": "takip: onceki soru kullanilmali",
+   "tek": "osmanli-padisahlari.md#2 0.329",
+   "birlesik": "turkcenin-tarihi-ve-alfabeleri.md#0 0.669",
+   "secilen": "turkcenin-tarihi-ve-alfabeleri.md#0 0.669",
+   "esik_gecti": true,
+   "cevap": "1 Kasım 1928'de kabul edilen Harf Devrimi ile Latin alfabesine dayalı yeni Türk alfabesine geçilmiştir. (Kaynak: turkcenin-tarihi-ve-alfabeleri.md)",
+   "sure": 2.58
+  },
+  {
+   "onceki": "Osman Gazi kimdir",
+   "soru": "Bugün hava nasıl olacak?",
+   "beklenen": "konu disi: reddedilmeli",
+   "tek": "turk-kulturunde-at.md#0 0.227",
+   "birlesik": "osmanli-padisahlari.md#0 0.434",
+   "secilen": "osmanli-padisahlari.md#0 0.434",
+   "esik_gecti": true,
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "sure": 1.79
+  },
+  {
+   "onceki": "Eski Türkçede kurdun adı neydi?",
+   "soru": "asdf qwerty zxcv",
+   "beklenen": "anlamsiz: reddedilmeli",
+   "tek": "turkcenin-tarihi-ve-alfabeleri.md#0 0.304",
+   "birlesik": "turk-kulturunde-kurt.md#2 0.595",
+   "secilen": "turk-kulturunde-kurt.md#2 0.595",
+   "esik_gecti": true,
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.\n\n(Kaynak: turk-kulturunde-kurt.md)",
+   "sure": 2.09
+  },
+  {
+   "onceki": "Osman Gazi kimdir",
+   "soru": "Python listesi nasıl sıralanır?",
+   "beklenen": "konu disi: reddedilmeli",
+   "tek": "turkcenin-tarihi-ve-alfabeleri.md#0 0.323",
+   "birlesik": "osmanli-padisahlari.md#0 0.485",
+   "secilen": "osmanli-padisahlari.md#0 0.485",
+   "esik_gecti": true,
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "sure": 1.9
+  }
+ ],
+ "T2": [
+  {
+   "soru": "Orhun Yazıtları'nın alfabesini kim ve hangi yılda çözmüştür?",
+   "beklenen": "ilk-turk-devletleri.md",
+   "basarili": true,
+   "reddetti": false,
+   "kaynak": true,
+   "skor": 0.636,
+   "sure": 2.4,
+   "cevap": "Orhun Yazıtları'nın alfabesini Danimarkalı dilbilimci Vilhelm Thomsen 1893'te çözmüştür.\n\n(Kaynak: turkcenin-tarihi-ve-alfabeleri.md)"
+  },
+  {
+   "soru": "Turan taktiği nasıl uygulanır?",
+   "beklenen": "turk-kulturunde-at.md",
+   "basarili": true,
+   "reddetti": false,
+   "kaynak": true,
+   "skor": 0.554,
+   "sure": 3.23,
+   "cevap": "Turan taktiği, merkez birlikler sahte bir geri çekilme yapar, düşman takibe geçince kanatlar hilal biçiminde kapanarak kuşatma tamamlanacak şekilde uygulanır. Bu taktik, Türk ordularının bozkır coğrafyasında daha etkili bir şekilde hareket etmelerine olanak sağlar. Malazgirt Savaşı'nda da bu taktik uygulanmış ve başarılı sonuçlar vermiştir. (Kaynak: turk-kulturunde-at.md)"
+  },
+  {
+   "soru": "Eski Türkçede kurdun adı neydi?",
+   "beklenen": "turk-kulturunde-kurt.md",
+   "basarili": true,
+   "reddetti": false,
+   "kaynak": true,
+   "skor": 0.58,
+   "sure": 2.55,
+   "cevap": "Eski Türkçede kurdun adı \"böri\" idi. Bu sözcük Orhun Yazıtları'nda ve on birinci yüzyılda Kaşgarlı Mahmud'un yazdığı Dîvânu Lugâti't-Türk'te geçer. (Kaynak: turk-kulturunde-kurt.md)"
+  },
+  {
+   "soru": "Anadolu Selçuklu Devleti hangi savaşta Moğollara yenilmiştir?",
+   "beklenen": "selcuklular-ve-malazgirt.md",
+   "basarili": true,
+   "reddetti": false,
+   "kaynak": true,
+   "skor": 0.64,
+   "sure": 2.15,
+   "cevap": "Anadolu Selçuklu Devleti 1243'teki Kösedağ Savaşı'nda Moğollara yenilmiştir. (Kaynak: selcuklular-ve-malazgirt.md / parca 2)"
+  },
+  {
+   "soru": "Yavuz Sultan Selim hangi savaşlarla Mısır'ı Osmanlı topraklarına katmıştır?",
+   "beklenen": "osmanli-padisahlari.md",
+   "basarili": true,
+   "reddetti": false,
+   "kaynak": true,
+   "skor": 0.477,
+   "sure": 2.63,
+   "cevap": "Yavuz Sultan Selim, Mısır'ı Osmanlı topraklarına katmak için 1517'de Ridaniye Savaşı'nda Memlükler'e yenilgiye uğrattı. Bu savaşla Mısır ve Hicaz Osmanlı topraklarına katılmıştır. (Kaynak: osmanli-padisahlari.md)"
+  },
+  {
+   "soru": "Sakarya Meydan Muharebesi kaç gün sürmüştür?",
+   "beklenen": "canakkale-ve-kurtulus-savasi.md",
+   "basarili": true,
+   "reddetti": false,
+   "kaynak": true,
+   "skor": 0.511,
+   "sure": 2.14,
+   "cevap": "Sakarya Meydan Muharebesi 23 Ağustos - 13 Eylül 1921 tarihleri arasında yirmi iki gün süren bir muharebe olmuştur.\n\n(Kaynak: canakkale-ve-kurtulus-savasi.md)"
+  },
+  {
+   "soru": "Üç Tarz-ı Siyaset yazısı nerede ve hangi yıl yayımlanmıştır?",
+   "beklenen": "turk-milliyetciliginin-dogusu.md",
+   "basarili": true,
+   "reddetti": false,
+   "kaynak": true,
+   "skor": 0.466,
+   "sure": 2.09,
+   "cevap": "Üç Tarz-ı Siyaset yazısı 1904 yılında Kahire'de Yusuf Akçura tarafından yayımlanmıştır. (Kaynak: turk-milliyetciliginin-dogusu.md)"
+  },
+  {
+   "soru": "Milliyetçi Hareket Partisi adı hangi kongrede kabul edilmiştir?",
+   "beklenen": "milliyetci-hareketin-isimleri.md",
+   "basarili": true,
+   "reddetti": false,
+   "kaynak": true,
+   "skor": 0.58,
+   "sure": 2.41,
+   "cevap": "Milliyetçi Hareket Partisi adı 8-9 Şubat 1969'daki Adana kongresinde kabul edilmiştir. (Kaynak: milliyetci-hareketin-isimleri.md / parca 5)"
+  },
+  {
+   "soru": "Ülkü Ocakları 12 Mart 1971'den sonra hangi adla yeniden kurulmuştur?",
+   "beklenen": "ulku-ocaklari.md",
+   "basarili": true,
+   "reddetti": false,
+   "kaynak": true,
+   "skor": 0.669,
+   "sure": 2.0,
+   "cevap": "Ülkü Ocakları 12 Mart 1971'den sonra Ülkü Ocakları Derneği adıyla yeniden kurulmuştur. (Kaynak: ulku-ocaklari.md)"
+  },
+  {
+   "soru": "Fatih Sultan Mehmed'in annesinin adı nedir?",
+   "beklenen": null,
+   "basarili": true,
+   "reddetti": true,
+   "kaynak": false,
+   "skor": 0.494,
+   "sure": 1.66,
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok."
+  },
+  {
+   "soru": "Bugün hava nasıl olacak?",
+   "beklenen": null,
+   "basarili": true,
+   "reddetti": true,
+   "kaynak": false,
+   "skor": 0.227,
+   "sure": 0.24,
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok."
+  },
+  {
+   "soru": "asdf qwerty zxcv",
+   "beklenen": null,
+   "basarili": true,
+   "reddetti": true,
+   "kaynak": false,
+   "skor": 0.304,
+   "sure": 0.2,
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok."
+  }
+ ],
+ "T3": [
+  {
+   "soru": "böri nedir",
+   "cevap": "Böri, eski Türkçede kurtun gerçek adıydı. Bu ad, kurtçuk ve böcek larvasının anısına geldi. (Kaynak: turk-kulturunde-kurt.md)",
+   "sure": 2.2,
+   "gecmis_uzunlugu": 1
+  },
+  {
+   "soru": "fatih kimdir",
+   "cevap": "Fatih Sultan Mehmed, 29 Mayıs 1453'te İstanbul'u fethettiğinde yirmi bir yaşındaydı. Bu yeniliğle Osmanlı Devleti imparatorluğuna dönüştürülmüş, Doğu Roma İmparatorluğu ise sona ermiştir. (Kaynak: osmanli-padisahlari.md)",
+   "sure": 2.48,
+   "gecmis_uzunlugu": 2
+  },
+  {
+   "soru": "Osman Gazi kimdir",
+   "cevap": "Osman Gazi, Osmanlı Devleti'nin kurucusudur. (Kaynak: osmanli-padisahlari.md)",
+   "sure": 1.72,
+   "gecmis_uzunlugu": 3
+  },
+  {
+   "soru": "Dokuz Işık ilkeleri nelerdir?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "sure": 1.92,
+   "gecmis_uzunlugu": 4
+  }
+ ]
+}
