@@ -95,7 +95,8 @@ Kendi belgelerinizi kullanmak için `docs/` klasörünün içeriğini değiştir
 | `embed.py` | Her bölüm için gömme vektörü üretir, BLOB olarak saklar |
 | `search.py` | Soruyu gömer, kosinüs benzerliğiyle en yakın bölümleri bulur |
 | `rag.py` | Eşik kontrolü, istem oluşturma, dil modeli çağrısı |
-| `evaluate.py` | 12 soruluk değerlendirme setini çalıştırır, rapor üretir |
+| `evaluate.py` | `eval_set.py`'deki soruları çalıştırır, sonuçları `degerlendirmeler/` klasörüne tarihli rapor olarak yazar |
+| `eval_set.py` | Değerlendirme soru seti: beklenen belge, kanıt ifadesi, anahtar ifadeler, senaryolar |
 | `app.py` | Streamlit web arayüzü |
 | `masaustu.py` | Tkinter masaüstü arayüzü |
 | `foundry_client.py` | Foundry Local uç noktasını ve model adlarını bulur |
@@ -113,6 +114,11 @@ doğrulanamayan anlatılar, olgu olarak değil, doğrulanmamış oldukları beli
 aktarılmıştır.
 
 ## Değerlendirme
+
+> **Güncel değil.** Bu bölüm eski 12 soruluk setin sonucudur. Değerlendirme
+> seti 14 Eylül 2026'da 105 soruya genişletildi. Güncel sonuçlar için
+> `degerlendirmeler/` klasörüne bakın. Çalıştırmak için:
+> `python evaluate.py --etiket <ad> [--karsilastir degerlendirmeler/<onceki>.json]`
 
 12 soruluk bir set kullanıldı: 9'u belgelerden cevaplanabilir, 3'ü
 cevaplanamaz (biri anlamsız girdi). Ölçümler `temperature=0` ile yapıldığından
