@@ -1411,8 +1411,8 @@ Aşağıdaki plan uygulama öncesinde yazıldı ve olduğu gibi bırakıldı:
 
 ### Faz 6: Belgeleme ve kapanış
 
-- [ ] README'yi kodla eşitlemek: model, ayarlar, belge sayısı, Windows kurulumu, **bellek yükleme sırası ve açılıştaki ısıtma** (ilk sorunun neden ~15 sn sürdüğü).
-- [ ] Nihai ölçüm raporunu hazırlamak: başlangıç ile son durumun karşılaştırması.
+- [x] README'yi kodla eşitlemek: model, ayarlar, belge sayısı, Windows kurulumu, **bellek yükleme sırası ve açılıştaki ısıtma** (ilk sorunun neden ~15 sn sürdüğü). (15.09.2026; mimari şeması, kurulumda tam model varyant adları, değerlendirme ve deney tabloları, tasarım kararları ve bilinen sınırlar güncellendi. Kodda olmayan "üç kademeli eşik" anlatımı düzeltildi.)
+- [x] Nihai ölçüm raporunu hazırlamak: başlangıç ile son durumun karşılaştırması. ([nihai_olcum_raporu.md](nihai_olcum_raporu.md); son kodla yeniden ölçüldü: [ana](../degerlendirmeler/2026-09-15_0119_nihai.md) %95.6, [kontrol](../degerlendirmeler/2026-09-15_0124_kontrol_nihai.md) %88.4. Bağımsız testten sonra güncellenmeli.)
 - [ ] [proje_uygunluk_raporu.md](proje_uygunluk_raporu.md) içindeki açık maddelerin durumunu güncellemek.
 
 ### Özet takvim
