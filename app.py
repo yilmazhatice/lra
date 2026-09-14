@@ -197,7 +197,8 @@ def kaynaklari_goster(hits):
 def yaniti_ciz(kayit):
     st.markdown(kayit["metin"])
     hits = kayit["hits"]
-    en_iyi = hits[0][0] if hits else 0.0
+    # Hibrit aramada ilk parca en yuksek vektor skorlu parca olmayabilir
+    en_iyi = max((h[0] for h in hits), default=0.0)
     st.markdown(
         f'<div class="stats">Yanıt süresi <b>{kayit["sure"]:.1f} sn</b> &nbsp;·&nbsp; '
         f'En yüksek eşleşme <b>{en_iyi:.3f}</b> &nbsp;·&nbsp; '
@@ -224,14 +225,11 @@ if soru:
 
     with st.chat_message("assistant"):
         with st.spinner("Belgeler taranıyor ve yanıt hazırlanıyor…"):
-            # Kisa takip sorulari ("bunun sebebi ne?") tek baslarina aranamaz;
-            # arama icin bir onceki soruyu da ekliyoruz. Cevap yine yalnizca
-            # yeni soruya gore uretiliyor.
-            arama = soru
-            if st.session_state.gecmis and len(soru.split()) <= 8:
-                arama = st.session_state.gecmis[-1]["soru"] + " " + soru
+            # Kisa takip sorulari icin onceki soru aramada ve gerekirse
+            # modelde kullaniliyor (rag.follow_up_query, rag.retrieve_details).
+            onceki = st.session_state.gecmis[-1]["soru"] if st.session_state.gecmis else None
 
-            metin, hits, sure = answer(soru, search_query=arama)
+            metin, hits, sure = answer(soru, previous_question=onceki)
 
         kayit = {"soru": soru, "metin": metin, "hits": hits, "sure": sure}
         yaniti_ciz(kayit)

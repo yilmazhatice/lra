@@ -27,11 +27,9 @@ def sor():
     if not soru or not buton["state"] == tk.NORMAL:
         return
 
-    # Kisa takip sorulari ("bunun sebebi ne?") tek baslarina aranamaz;
-    # arama icin bir onceki soruyu da ekliyoruz.
-    arama = soru
-    if gecmis and len(soru.split()) <= 8:
-        arama = gecmis[-1] + " " + soru
+    # Kisa takip sorulari icin onceki soru aramada ve gerekirse modelde
+    # kullaniliyor (rag.follow_up_query, rag.retrieve_details).
+    onceki = gecmis[-1] if gecmis else None
 
     buton.config(state=tk.DISABLED)
     giris.config(state=tk.DISABLED)
@@ -40,14 +38,14 @@ def sor():
     yaz(kaynak_kutusu, "")
 
     threading.Thread(
-        target=isle, args=(soru, arama), daemon=True
+        target=isle, args=(soru, onceki), daemon=True
     ).start()
 
 
-def isle(soru, arama):
+def isle(soru, onceki):
     """Arka plan is parcacigi: modeli cagirir, sonucu ana dongude gosterir."""
     try:
-        metin, hits, sure = answer(soru, search_query=arama)
+        metin, hits, sure = answer(soru, previous_question=onceki)
     except Exception as hata:  # baglanti kopmasi vb.
         metin, hits, sure = f"Hata: {hata}", [], 0.0
     pencere.after(0, bitti, soru, metin, hits, sure)
@@ -57,7 +55,8 @@ def bitti(soru, metin, hits, sure):
     """Sonucu ekrana bas ve arayuzu tekrar kullanilabilir yap."""
     yaz(cevap_kutusu, metin)
 
-    en_iyi = hits[0][0] if hits else 0.0
+    # Hibrit aramada ilk parca en yuksek vektor skorlu parca olmayabilir
+    en_iyi = max((h[0] for h in hits), default=0.0)
     durum.config(
         text=f"Yanıt süresi {sure:.1f} sn     "
              f"En yüksek eşleşme {en_iyi:.3f}     "
