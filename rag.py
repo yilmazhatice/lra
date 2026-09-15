@@ -1,6 +1,7 @@
 """Soruyu al, ilgili parcalari getir, yerel LLM ile cevap uret."""
 
 import difflib
+import math
 import re
 import sys
 import time
@@ -9,12 +10,18 @@ from foundry_client import client, find_model
 from search import search, kokler
 
 TOP_K = 8             # aramada getirilen aday parca sayisi
-MIN_SCORE = 0.42      # bu esigin altinda en iyi parca varsa hic cevap uretme
+# Bu esigin altinda en iyi parca varsa modele hic sorulmaz. Olcum (18 soru):
+# belgelerden cevaplanabilen sorular 0.479-0.791, cevaplanamayanlar
+# 0.179-0.577 araliginda skor aliyor. Iki kume ust uste biniyor, yani hicbir
+# esik ikisini temiz ayirmiyor: esigi yukseltmek cevaplanabilir sorulari
+# reddettirmeye basliyor. Ustteki bindirmeyi (ornegin "Fatih Sultan
+# Mehmed'in annesi", 0.577) modelin kendi reddetmesi karsiliyor.
+MIN_SCORE = 0.42
 RED_IFADESI = "elimdeki dokümanlarda yok"   # reddetme yanitinin sabit ifadesi
 CHAT_KEYWORD = "qwen2.5-7b"
 MAX_TOKENS = 600      # liste soran sorularda 350 token cevabi ortadan kesiyordu
 GECMIS_TUR = 2        # modele tasinan onceki soru-cevap sayisi
-GECMIS_CEVAP_SINIRI = 300   # gecmisteki cevaplar bu uzunluga kirpilir
+GECMIS_CEVAP_SINIRI = 180   # gecmisteki cevaplar bu uzunluga kirpilir
 
 YAKIN_ESIK = 0.30     # esigi gecemeyen ama "az kalsin" eslesen sorular
 
@@ -29,35 +36,22 @@ BAGLAM_EN_COK = 5
 BAGLAM_BUTCE = 2800   # karakter; en kotu durumdaki bekleyisi sinirlar
 BELGE_SINIRI = 2      # ayni belgeden en fazla kac parca alinir
 
-SYSTEM_PROMPT = """Sen Türkçe konuşan bir doküman asistanısın. Sana BAĞLAM
-olarak birkaç belge parçası ve bir SORU verilir. Görevin, sorunun cevabını
-BAĞLAM'da bulup akıcı bir Türkçeyle yazmaktır.
-
-BAĞLAM soruyla ilgili bilgi içeriyorsa cevap ver. Kısmen içeriyorsa elindeki
-kadarını yaz. Hiç ilgili bilgi yoksa yalnızca şu cümleyi yaz:
+# Istem uzunlugu dogrudan bekleme suresidir: sunucu prefix onbellegi
+# tutmuyor, her soruda istemin tamami bastan okunuyor ve okuma karakter
+# basina ~4.2 ms suruyor. Onceki 1332 karakterlik surum her soruya ~5.5 sn
+# ekliyordu; asagidaki surum ayni kurallari tasiyor, dortte bir uzunlukta.
+SYSTEM_PROMPT = """Türkçe doküman asistanısın. Yalnızca BAĞLAM'daki bilgiyle
+cevap ver, kendi bilgini ekleme. BAĞLAM'da ilgili bilgi yoksa tek satır yaz:
 Bu bilgi elimdeki dokümanlarda yok.
 
-Kurallar:
-- Yalnızca BAĞLAM'daki bilgiyi kullan, kendi genel bilgini ekleme.
-- Doğrudan cevapla: soruyu tekrar etme, "bağlamda", "verilen metne göre"
-  gibi ifadeler kullanma.
-- Kullanıcıya dosya okumasını önerme, "inceleyebilirsiniz" gibi yönlendirme
-  yazma; bildiğini doğrudan aktar.
-- Aynı bilgiyi iki kez yazma.
-- Birbirine bağlı, tam cümleler kur; normalde üç dört cümle yeter.
-- Soru bir liste istiyorsa (ilkeler, maddeler, adlar) hepsini kısa
-  maddeler halinde say, yarıda bırakma.
-- Kişi, yer ve kurum adlarını BAĞLAM'daki yazımıyla birebir kopyala; adı
-  kendin çekimleme, BAĞLAM'da hangi biçimde geçiyorsa öyle yaz. BAĞLAM'da
-  geçmeyen bir ad yazma.
-- Terimleri de birebir kopyala; kelime uydurma, kısaltma, birleştirme.
-- Bağlamdaki köşeli parantezli etiketleri cevabına yazma.
-- Cevabın son satırında kaynağı yalnızca dosya adıyla belirt.
-
-Cevap biçimi şöyle olmalı:
-
-Kurdun eski Türkçedeki adı böri idi.
-(Kaynak: turk-kulturunde-kurt.md)"""
+- Doğrudan cevapla; soruyu tekrarlama, "bağlamda/metne göre" deme, dosya
+  okumayı önerme, aynı bilgiyi iki kez yazma.
+- Tam cümleler kur, üç dört cümle yeter; liste isteniyorsa hepsini kısa
+  maddeler hâlinde, eksiksiz say.
+- Ad ve terimleri BAĞLAM'daki yazımıyla birebir kopyala, çekimleme;
+  BAĞLAM'da geçmeyen adı yazma.
+- Köşeli parantezli etiketleri cevaba yazma.
+- Son satır: (Kaynak: dosya.md)"""
 
 
 def strip_thinking(text):
@@ -96,6 +90,77 @@ def baglam_parcalari(hits):
         sayac[h[2]] = sayac.get(h[2], 0) + 1
         toplam += len(h[4])
     return secili
+
+
+# Parcalarin tamami degil, soruyla ilgili cumle penceresi gonderiliyor.
+# Cevabin dayanagi cogunlukla bir iki cumle; parcanin kalani yalnizca
+# okuma suresi olarak geri donuyor. Ilk siradaki parca daha genis
+# birakiliyor: cevap genellikle orada.
+PENCERE_ILK = 620      # en iyi parcadan alinacak en fazla karakter
+PENCERE_DESTEK = 380   # destekleyici parcalardan alinacak en fazla karakter
+
+_CUMLE_SINIRI = re.compile(r"(?<=[.!?:])\s+|\n+")
+
+
+def _cumlelere_ayir(metin):
+    return [c.strip() for c in _CUMLE_SINIRI.split(metin) if c.strip()]
+
+
+def _kok_agirliklari(soru_kok, cumle_kokleri):
+    """Soru koklerini seyrekligine gore agirliklandirir.
+
+    Duz sayim ayirt edici kokleri siradan olanlarin altinda birakiyordu:
+    "Orhun Yazitlari'nin alfabesini kim ve hangi yilda cozmustur?" sorusunda
+    'orhun' ve 'yazit' baglamin yarisinda geciyor, oysa cevabi tasiyan tek
+    kok 'cozmu'. Seyrek kok agir basinca dogru cumle one geliyor.
+    """
+    n = max(1, len(cumle_kokleri))
+    return {
+        kok: math.log(1 + n / (1 + sum(1 for k in cumle_kokleri if kok in k)))
+        for kok in soru_kok
+    }
+
+
+def ilgili_pencere(cumleler, cumle_kokleri, agirlik, sinir):
+    """Parcanin soruyla en cok ortusen, bitisik cumlelerden olusan bolumu.
+
+    En yuksek puanli cumleden baslanip iki yana, puani yuksek komsu once
+    olmak uzere sinira kadar genisletiliyor. Bitisiklik onemli: cevap
+    cogu zaman eslesen cumlenin hemen yanindaki cumlede tamamlaniyor.
+    """
+    if len(cumleler) < 2:
+        return " ".join(cumleler)[:sinir]
+
+    puanlar = [sum(agirlik.get(k, 0.0) for k in kok)
+               for kok in cumle_kokleri]
+    sol = sag = max(range(len(cumleler)), key=puanlar.__getitem__)
+    uzunluk = len(cumleler[sol])
+
+    while True:
+        adaylar = []
+        if sol > 0:
+            adaylar.append((puanlar[sol - 1], sol - 1, "sol"))
+        if sag < len(cumleler) - 1:
+            adaylar.append((puanlar[sag + 1], sag + 1, "sag"))
+        adaylar.sort(reverse=True)
+
+        for _puan, sira, yon in adaylar:
+            if uzunluk + len(cumleler[sira]) + 1 <= sinir:
+                uzunluk += len(cumleler[sira]) + 1
+                if yon == "sol":
+                    sol = sira
+                else:
+                    sag = sira
+                break
+        else:
+            break            # iki komsu da sigmiyor
+
+    metin = " ".join(cumleler[sol:sag + 1])
+    if sol > 0:
+        metin = "… " + metin
+    if sag < len(cumleler) - 1:
+        metin += " …"
+    return metin
 
 
 def _dayanak_belgesi(text, hits):
@@ -228,11 +293,40 @@ def _reddet(hits):
     )
 
 
-def build_context(hits):
-    return "\n\n".join(
-        f"[{doc_name} / parca {chunk_idx}]\n{text}"
-        for _score, _cid, doc_name, chunk_idx, text in hits
+def build_context(hits, question=None):
+    """Modele gidecek BAGLAM metni.
+
+    question verilirse her parca o soruyla ilgili penceresine kirpilir;
+    verilmezse (degerlendirme, hata ayiklama) parcalar oldugu gibi gecer.
+    Takip sorularinda buraya birlesik sorgu (onceki soru + soru) gelir:
+    "neden degistirdiler" tek basina hangi cumlenin ilgili oldugunu
+    soylemeye yetmiyor. Guncel soruyu agir bastirmayi denedim; yazim
+    hatasi ya da cok kisa sorularda guncel sorunun kokleri hic
+    tutmadigi icin pencere daha da kotulesiyor, esit agirlik daha
+    saglam.
+    """
+    if not question:
+        return "\n\n".join(
+            f"[{doc_name} / parca {chunk_idx}]\n{text}"
+            for _score, _cid, doc_name, chunk_idx, text in hits
+        )
+
+    # Agirliklar butun baglamdaki cumleler uzerinden hesaplaniyor: bir kok
+    # yalnizca kendi parcasinda degil, baglamin tamaminda seyrekse degerli.
+    cumleler = [_cumlelere_ayir(h[4]) for h in hits]
+    kokleri = [[kokler(c) for c in grup] for grup in cumleler]
+
+    agirlik = _kok_agirliklari(
+        kokler(question), [k for grup in kokleri for k in grup]
     )
+
+    bolumler = []
+    for sira, (_score, _cid, doc_name, chunk_idx, text) in enumerate(hits):
+        sinir = PENCERE_ILK if sira == 0 else PENCERE_DESTEK
+        if len(text) > sinir:
+            text = ilgili_pencere(cumleler[sira], kokleri[sira], agirlik, sinir)
+        bolumler.append(f"[{doc_name} / parca {chunk_idx}]\n{text}")
+    return "\n\n".join(bolumler)
 
 
 # Bir onceki soruya isaret eden kaliplar. Bu sozcukler geciyorsa soru tek
@@ -268,17 +362,26 @@ def answer(question, top_k=TOP_K, search_query=None, history=None,
     # her kisa soruda yapiliyordu ve ilgisiz sorularda skoru dusuruyordu.)
     onceki = history[-1]["soru"] if history else None
     aranan = search_query or question
+    takip = False          # soru onceki tura mi dayaniyor
     if search_query is None and onceki and _isaret_ediyor(question):
         aranan = onceki + " " + question
+        takip = True
 
     hits = search(aranan, top_k=top_k)
 
-    if (search_query is None and onceki and aranan == question
-            and len(question.split()) <= 8
-            and (not hits or hits[0][0] < MIN_SCORE)):
-        alternatif = search(onceki + " " + question, top_k=top_k)
+    # Isaret sozcugu tasimayan kisa sorular da onceki tura dayanabiliyor:
+    # "neden degistirdiler", "hangi yil", "amaci neydi". Bunlarda birlesik
+    # sorgu da deneniyor ve daha iyi eslesen kazaniyor. Onceki surumde
+    # birlesik sorgu yalnizca kendi basina arama esigin ALTINDA kalirsa
+    # deneniyordu; esigi geciyor ama yanlis belgeye giden takip sorulari
+    # (0.42-0.60 bandi) boylece elden kaciyordu. Gercekten yeni bir soruda
+    # birlesik sorgu seyreldigi icin kendi basina arama zaten one cikiyor.
+    if (search_query is None and onceki and not takip
+            and len(question.split()) <= 8):
+        birlesik = onceki + " " + question
+        alternatif = search(birlesik, top_k=top_k)
         if alternatif and (not hits or alternatif[0][0] > hits[0][0]):
-            hits = alternatif
+            hits, aranan, takip = alternatif, birlesik, True
 
     # Esik korumasi: alakali hicbir sey bulunamadiysa modele hic sormuyoruz.
     # Boylece model alakasiz baglamdan cevap uydurma firsati bulamiyor.
@@ -299,11 +402,30 @@ def answer(question, top_k=TOP_K, search_query=None, history=None,
             ozet = ozet[:GECMIS_CEVAP_SINIRI].rsplit(" ", 1)[0] + "…"
         messages.append({"role": "user", "content": tur["soru"]})
         messages.append({"role": "assistant", "content": ozet})
+    # Takip sorusu tek basina anlasilmiyor: "neden degistirdiler" sorusunda
+    # model dogru baglami almasina ragmen "bu bilgi dokumanlarda yok"
+    # diyordu. Sorunun neyin devami oldugunu acikca yaziyoruz; gecmis
+    # turlarin mesaj olarak tasinmasi tek basina yetmiyor.
+    # Takip sorusu tek basina anlasilmiyor: "neden degistirdiler" sorusunda
+    # model dogru baglami almasina ragmen "bu bilgi dokumanlarda yok"
+    # diyordu; gecmis turlarin mesaj olarak tasinmasi tek basina yetmedi.
+    # Onceki soru BAGLAM/SORU gibi etiketli bir alan olarak veriliyor:
+    # cumle icine gomulu yonergeyi model cevabina kopyaliyordu.
+    onceki_alan = (f"ÖNCEKİ SORU: {onceki}\n" if takip and onceki else "")
+    kapsam = ("Yalnızca SORU'da sorulanı yanıtla; ÖNCEKİ SORU, SORU'nun "
+              "neyi kastettiğini anlaman için var, onu yeniden cevaplama.\n"
+              if takip and onceki else "")
+
     messages.append({
         "role": "user",
         "content": (
-            f"BAĞLAM:\n{build_context(hits)}\n\n"
+            # Pencereler, aramada kullanilan sorguyla seciliyor: takip
+            # sorusu tek basina ("peki bu partinin genel baskani kimdi")
+            # hangi cumlenin ilgili oldugunu soylemeye yetmiyor.
+            f"BAĞLAM:\n{build_context(hits, aranan)}\n\n"
+            f"{onceki_alan}"
             f"SORU: {question}\n\n"
+            f"{kapsam}"
             "Türkçe cevap ver."
         ),
     })

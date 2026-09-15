@@ -44,6 +44,15 @@ MINI_FONT = ("Helvetica Neue", 10)
 KART_EN = 820              # icerik panelinin ust siniri (app.py ile ayni)
 YAN_EN = 268
 
+# Kaydirma, Tk'nin "unit" birimi yerine piksel uzerinden yurutuluyor: tuvalin
+# yscrollincrement'i 1 piksele cekildigi icin bir birim = bir piksel.
+TEKER_ADIM = 13            # tekerlek biriminin piksel karsiligi (macOS: |delta|=1)
+TEKER_TIK = 52             # bir tam tik (Windows/Tk9 tarzi delta=120) kac piksel
+KAYDIRMA_KARE = 12         # animasyon kare araligi (ms) ~ 80 fps
+KAYDIRMA_ORAN = 0.34       # her karede hedefe yaklasma orani
+KAYDIRMA_ESIK = 1.0        # bu kadar kalinca son adim atilir ve durulur
+SATIR_ADIM = 58            # ok tuslariyla kaydirma
+
 BAYRAK_YOLU = Path(__file__).parent / "varliklar" / "bayrak.jpg"
 
 ORNEKLER = [
@@ -58,6 +67,9 @@ mesgul = False         # bir yanit uretiliyorken yeni soru alinmaz
 yanit_ic = None        # uretilmekte olan yanit balonunun cercevesi
 yanit_etiket = None    # canli yazilan metin etiketi
 son_ciz = 0.0          # son ekran guncellemesinin zamani
+kaydirma_hedef = None  # yumusatilmis kaydirmanin hedefledigi ust kenar (px)
+kaydirma_isi = None    # calisan animasyon adiminin after kimligi
+takip = True           # akis en alttayken yeni icerigi kendiliginden izler
 
 
 # -------------------------------------------------------------------- zemin
@@ -181,10 +193,12 @@ class Kaydirici(tk.Canvas):
         self.create_rectangle(2, ust, 6, alt, fill="#6d2830", width=0)
 
     def bastir(self, olay):
+        kaydirmayi_durdur()          # elle surukleme yumusatmayi devralir
         boy = max(1, self.winfo_height())
         yeni = olay.y / boy - (self.son - self.bas) / 2
         self.tuval.yview_moveto(max(0.0, min(1.0, yeni)))
         self.tutma = olay.y
+        takibi_tazele()
 
     def surukle(self, olay):
         if self.tutma is None:
@@ -194,6 +208,7 @@ class Kaydirici(tk.Canvas):
             max(0.0, min(1.0, self.bas + (olay.y - self.tutma) / boy))
         )
         self.tutma = olay.y
+        takibi_tazele()
 
 
 # -------------------------------------------------------------- sohbet akisi
@@ -225,7 +240,7 @@ def soruyu_ciz(soru):
         ic, text=soru, font=METIN_FONT, bg=BALON, fg=METIN,
         anchor="w", justify="left",
     )).pack(fill=tk.X)
-    asagi_kaydir()
+    asagi_kaydir(zorla=True)
 
 
 def olcumleri_ciz(ana, sure, en_iyi, sayi):
@@ -305,12 +320,112 @@ def yaniti_tamamla(ic, etiket, metin, hits, sure):
     asagi_kaydir()
 
 
-def asagi_kaydir():
-    """Paneli yeni icerige gore uzat ve akisi en alta getir."""
+# -------------------------------------------------------- yumusak kaydirma
+# Tuval piksel adimiyla kaydirildigi icin tekerlek olaylari dogrudan
+# uygulanmak yerine bir hedefe yaziliyor; her karede hedefe bir miktar
+# yaklasilarak hareket suruklenmeden akitiliyor.
+
+def kaydirma_araligi():
+    """Gorunen ust kenarin alabilecegi (en kucuk, en buyuk) piksel degeri."""
+    bolge = sohbet_tuval.tk.splitlist(sohbet_tuval.cget("scrollregion"))
+    if len(bolge) != 4:
+        return 0.0, 0.0
+    ust, alt = float(bolge[1]), float(bolge[3])
+    return ust, max(ust, alt - sohbet_tuval.winfo_height())
+
+
+def _uste_koy(y):
+    """Gorunen ust kenari verilen piksele tasir."""
+    bolge = sohbet_tuval.tk.splitlist(sohbet_tuval.cget("scrollregion"))
+    if len(bolge) != 4:
+        return
+    ust, alt = float(bolge[1]), float(bolge[3])
+    sohbet_tuval.yview_moveto((y - ust) / max(1.0, alt - ust))
+
+
+def kaydirmayi_durdur():
+    """Suren animasyonu iptal eder (elle surukleme ya da sifirlama icin)."""
+    global kaydirma_hedef, kaydirma_isi
+    if kaydirma_isi is not None:
+        pencere.after_cancel(kaydirma_isi)
+    kaydirma_isi = None
+    kaydirma_hedef = None
+
+
+def takibi_tazele():
+    """Kullanici en alttaysa akis yeni icerigi izlemeye devam eder."""
+    global takip
+    _ust, en_alt = kaydirma_araligi()
+    takip = sohbet_tuval.canvasy(0) >= en_alt - 6
+
+
+def kaydir(piksel):
+    """Akisi verilen kadar kaydirmayi hedefler; hareketi yumusatarak isler."""
+    global kaydirma_hedef, takip
+    en_ust, en_alt = kaydirma_araligi()
+    if en_alt <= en_ust:
+        return                      # her sey ekrana sigiyor
+    simdi = kaydirma_hedef if kaydirma_hedef is not None \
+        else sohbet_tuval.canvasy(0)
+    kaydirma_hedef = min(en_alt, max(en_ust, simdi + piksel))
+    takip = kaydirma_hedef >= en_alt - 6
+    _animasyonu_surdur()
+
+
+def _animasyonu_surdur():
+    global kaydirma_isi
+    if kaydirma_isi is None:
+        kaydirma_isi = pencere.after(KAYDIRMA_KARE, _kaydirma_adimi)
+
+
+def _kaydirma_adimi():
+    """Bir kare: hedefle aradaki farkin bir bolumu kadar ilerler."""
+    global kaydirma_isi, kaydirma_hedef
+    kaydirma_isi = None
+    if kaydirma_hedef is None:
+        return
+
+    en_ust, en_alt = kaydirma_araligi()
+    hedef = min(en_alt, max(en_ust, kaydirma_hedef))   # icerik degismis olabilir
+    kaydirma_hedef = hedef
+    fark = hedef - sohbet_tuval.canvasy(0)
+
+    if abs(fark) <= KAYDIRMA_ESIK:
+        _uste_koy(hedef)
+        kaydirma_hedef = None
+        return
+
+    _uste_koy(sohbet_tuval.canvasy(0) + fark * KAYDIRMA_ORAN)
+    kaydirma_isi = pencere.after(KAYDIRMA_KARE, _kaydirma_adimi)
+
+
+def en_alta(ani=False):
+    """Akisi en alta getirir; `ani` ise beklemeden, degilse kayarak."""
+    global kaydirma_hedef, takip
+    takip = True
+    _ust, en_alt = kaydirma_araligi()
+    if ani:
+        kaydirmayi_durdur()
+        _uste_koy(en_alt)
+        return
+    kaydirma_hedef = en_alt
+    _animasyonu_surdur()
+
+
+def asagi_kaydir(zorla=False):
+    """Paneli yeni icerige gore uzatir; kullanici en alttaysa akisi izler.
+
+    Yukari kaydirilmissa yerinde birakilir — yanit yazilirken okunan yer
+    artik elden kacmiyor. `zorla` yalnizca yeni soru/temizleme gibi
+    kullanicinin kendi baslattigi anlarda kullaniliyor.
+    """
     sohbet_tuval.update_idletasks()
     yerlestir()
     sohbet_tuval.configure(scrollregion=sohbet_tuval.bbox("all"))
-    sohbet_tuval.yview_moveto(1.0)
+    if zorla:
+        en_alta(ani=True)
+    elif takip:
+        en_alta()
 
 
 # ------------------------------------------------------------------- akis
@@ -342,7 +457,7 @@ def sor(soru=None):
     ))
     yanit_etiket.pack(fill=tk.X)
     son_ciz = 0.0
-    asagi_kaydir()
+    asagi_kaydir(zorla=True)
 
     # Sohbet gecmisi rag.answer'a veriliyor: takip sorularinin aranmasinda ve
     # modele baglam olarak kullaniliyor.
@@ -402,7 +517,7 @@ def temizle():
     ornek_cerceve.pack(fill=tk.X, pady=(0, 12))
     giris.delete(0, tk.END)
     giris.focus_set()
-    asagi_kaydir()
+    asagi_kaydir(zorla=True)
 
 
 # ----------------------------------------------------------------- pencere
@@ -508,7 +623,9 @@ gonder.pack(side=tk.LEFT)
 akis = tk.Frame(kart_ic, bg=PANEL)
 akis.pack(fill=tk.X)
 
-sohbet_tuval = tk.Canvas(akis, bg=PANEL, height=1, highlightthickness=0)
+# yscrollincrement=1: kaydirma birimi gorunen alanin %10'u degil, 1 piksel
+sohbet_tuval = tk.Canvas(akis, bg=PANEL, height=1, highlightthickness=0,
+                         yscrollincrement=1)
 sohbet_tuval.pack(side=tk.LEFT, fill=tk.X, expand=True)
 
 kaydirici = Kaydirici(akis, sohbet_tuval)
@@ -540,20 +657,31 @@ for _sira, _ornek in enumerate(ORNEKLER):
 # --------------------------------------------------------------- yerlesim
 
 def serit_ciz(_e=None):
-    """Seridi ciz: %62'ye kadar tam kirmizi, sonra panele soluklasiyor."""
+    """Seridi ciz: %62'ye kadar tam kirmizi, sonra panele soluklasiyor.
+
+    Yerlesim her tazelendiginde degil, yalnizca genislik degisince ve
+    piksel piksel degil 48 basamakta ciziliyor; yanit akarken yuzlerce
+    tuval ogesinin bosuna yeniden kurulmasi boylece kalkiyor.
+    """
+    global serit_son_en
     en = serit.winfo_width()
-    if en < 2:
+    if en < 2 or en == serit_son_en:
         return
+    serit_son_en = en
     serit.delete("all")
     kirilma = int(en * 0.62)
     serit.create_rectangle(0, 0, kirilma, 4, fill=KIRMIZI, width=0)
-    for x in range(kirilma, en):
-        oran = (x - kirilma) / max(1, en - kirilma)
+
+    basamak = 48
+    for adim in range(basamak):
+        sol = kirilma + round((en - kirilma) * adim / basamak)
+        sag = kirilma + round((en - kirilma) * (adim + 1) / basamak)
+        oran = adim / (basamak - 1)
         renk = "#%02x%02x%02x" % tuple(
             round(a + (b - a) * oran) for a, b in
             zip((0xC8, 0x10, 0x1F), (0x1D, 0x14, 0x17))
         )
-        serit.create_line(x, 0, x, 4, fill=renk)
+        serit.create_rectangle(sol, 0, sag + 1, 4, fill=renk, width=0)
 
 
 def akisi_boyutlandir(pencere_boyu):
@@ -578,12 +706,16 @@ def yerlestir(olay=None):
     if olay is not None and olay.widget is not pencere:
         return
 
+    global son_kart
     en, boy = pencere.winfo_width(), pencere.winfo_height()
     bos = en - YAN_EN
     kart_en = max(420, min(KART_EN, bos - 72))
     kart_boy = min(boy - 44, akisi_boyutlandir(boy))
-    kart.place(x=YAN_EN + (bos - kart_en) // 2, y=22,
-               width=kart_en, height=kart_boy)
+    yeni_kart = (YAN_EN + (bos - kart_en) // 2, 22, kart_en, kart_boy)
+    if yeni_kart != son_kart:          # yanit akarken bos yerlesim yapilmasin
+        son_kart = yeni_kart
+        kart.place(x=yeni_kart[0], y=yeni_kart[1],
+                   width=yeni_kart[2], height=yeni_kart[3])
 
     if (en, boy) != son_boyut:
         son_boyut = (en, boy)
@@ -598,6 +730,7 @@ def akis_genisligi(olay):
     if olay.width != son_akis_en:
         son_akis_en = olay.width
         # silinmis balonlarin (ornegin bekleme balonu) etiketleri listede kalir
+        kaydirmayi_durdur()   # eski hedef yeni sarmada anlamini yitirir
         sarilanlar[:] = [e for e in sarilanlar if e.winfo_exists()]
         for etiket in sarilanlar:
             etiket.config(wraplength=max(240, olay.width - 56))
@@ -620,11 +753,37 @@ def _yerlesimi_calistir():
 
 
 def tekerlek(olay):
-    sohbet_tuval.yview_scroll(-1 * int(olay.delta), "units")
+    """Tekerlek/izleme yuzeyi: delta'yi piksele cevirip hedefe ekler.
+
+    macOS'ta Tk her kucuk hareket icin delta=+-1 uretir (izleme yuzeyinde
+    saniyede onlarca olay); Windows ve Tk 9'da bir tik 120'nin katidir.
+    Ikisi de ayni piksel olcegine indiriliyor.
+    """
+    delta = olay.delta
+    if not delta:
+        return
+    if abs(delta) >= 120:
+        kaydir(-delta / 120.0 * TEKER_TIK)
+    else:
+        kaydir(-delta * TEKER_ADIM)
+
+
+def tus_kaydir(olay):
+    """Ok tuslari ve Page Up/Down ile kaydirma (giris tek satirlik oldugu
+    icin bu tuslar orada zaten bir ise yaramiyor)."""
+    sayfa = max(80, sohbet_tuval.winfo_height() - 48)
+    adim = {"Up": -SATIR_ADIM, "Down": SATIR_ADIM,
+            "Prior": -sayfa, "Next": sayfa}.get(olay.keysym)
+    if adim is None:
+        return None
+    kaydir(adim)
+    return "break"
 
 
 son_boyut = (0, 0)
 son_akis_en = 0
+son_kart = None
+serit_son_en = 0
 bekleyen_yerlesim = False
 
 pencere.bind("<Configure>", yerlestir)
@@ -636,6 +795,8 @@ def akis_icerigi(_olay):
 
 sohbet_ic.bind("<Configure>", akis_icerigi)
 sohbet_tuval.bind_all("<MouseWheel>", tekerlek)
+for _tus in ("<Up>", "<Down>", "<Prior>", "<Next>"):
+    pencere.bind(_tus, tus_kaydir)
 
 pencere.update_idletasks()
 yerlestir()
