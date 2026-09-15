@@ -1,208 +1,643 @@
-"""Yerel Belge Asistani - masaustu arayuzu (Tkinter)."""
+"""Yerel Belge Asistani - masaustu arayuzu (Tkinter).
+
+Gorunum app.py'deki web arayuzunun (Borteçine) masaustu karsiligi:
+dalgalanan bayrak zemini, koyu icerik paneli, kirmizi vurgular,
+sohbet akisi ve acilir kaynak kartlari.
+"""
 
 import threading
+import time
 import tkinter as tk
-from tkinter import ttk
+from pathlib import Path
 
-from rag import answer, MIN_SCORE, TOP_K, CHAT_KEYWORD
+import numpy as np
+from PIL import Image, ImageChops, ImageTk
 
-BG = "#f4f6f7"
-CARD = "#ffffff"
-INK = "#14191e"
-MUTED = "#5b6d76"
-ACCENT = "#0d6f68"
-LINE = "#d5dcdf"
+from rag import (answer, MIN_SCORE, TOP_K, CHAT_KEYWORD,
+                 BAGLAM_EN_AZ, BAGLAM_EN_COK)
 
-BASLIK_FONT = ("Helvetica Neue", 22, "bold")
+# ------------------------------------------------------------------ renkler
+# app.py'deki CSS renkleri saydamsiz karsiliklariyla (Tk saydamlik bilmez).
+
+ZEMIN = "#1a1114"          # en koyu taban
+PANEL = "#1d1417"          # icerik paneli   (rgba(26,17,20,.90))
+PANEL_CIZGI = "#5c2028"    # panel kenarligi (rgba(227,10,23,.28))
+YAN_PANEL = "#150e10"
+BALON = "#241c1f"          # sohbet balonu   (rgba(255,255,255,.045))
+BALON_CIZGI = "#42191f"
+GIRIS_ZEMIN = "#1e1417"
+KIRMIZI = "#c8101f"
+KIRMIZI_KOYU = "#8d0b16"
+KIRMIZI_SOLUK = "#e8888f"
+BASLIK_RENK = "#f3dfe1"
+METIN = "#e7dcde"
+SOLUK = "#b3a5a8"
+COK_SOLUK = "#9c8f92"
+
+BASLIK_FONT = ("Helvetica Neue", 26, "bold")
+ROL_FONT = ("Helvetica Neue", 10, "bold")
 ALT_FONT = ("Helvetica Neue", 12)
-METIN_FONT = ("Helvetica Neue", 14)
+METIN_FONT = ("Helvetica Neue", 13)
 KUCUK_FONT = ("Helvetica Neue", 11)
+MINI_FONT = ("Helvetica Neue", 10)
 
-gecmis = []
+KART_EN = 820              # icerik panelinin ust siniri (app.py ile ayni)
+YAN_EN = 268
+
+BAYRAK_YOLU = Path(__file__).parent / "varliklar" / "bayrak.jpg"
+
+ORNEKLER = [
+    "Eski Türkçede kurdun adı neydi?",
+    "Dokuz Işık ilkeleri nelerdir?",
+    "Bugün hava nasıl olacak?",
+]
+
+gecmis = []            # [{"soru", "cevap"}] — modele tasinan sohbet gecmisi
+sarilanlar = []        # genislikle birlikte yeniden sarilacak etiketler
+mesgul = False         # bir yanit uretiliyorken yeni soru alinmaz
+yanit_ic = None        # uretilmekte olan yanit balonunun cercevesi
+yanit_etiket = None    # canli yazilan metin etiketi
+son_ciz = 0.0          # son ekran guncellemesinin zamani
 
 
-def sor():
-    """Giris kutusundaki soruyu al ve arka planda isle."""
-    soru = giris.get().strip()
-    if not soru or not buton["state"] == tk.NORMAL:
+# -------------------------------------------------------------------- zemin
+
+def _ortu(en, boy):
+    """app.py'deki linear-gradient(150deg, ...) ortusunu uretir."""
+    duraklar = [0.0, 0.46, 1.0]
+    renkler = [(0x77, 0x40, 0x4A), (0x5A, 0x2C, 0x34), (0x7D, 0x43, 0x4C)]
+
+    # 150 derece: saat yonunde yukaridan; yon vektoru saga ve asagi bakar.
+    x = np.linspace(0.0, 1.0, en)[None, :] * 0.5
+    y = np.linspace(0.0, 1.0, boy)[:, None] * 0.866
+    t = (x + y) / (0.5 + 0.866)
+
+    kanallar = [
+        np.interp(t, duraklar, [r[k] for r in renkler]) for k in range(3)
+    ]
+    dizi = np.stack(kanallar, axis=-1).astype("uint8")
+    return Image.fromarray(dizi, "RGB")
+
+
+def _bayrak(en, boy):
+    """Bayragi pencereyi ortecek sekilde kirpar ve ortuyle karartir.
+
+    CSS'teki `background-size: cover` ile `background-blend-mode: multiply`
+    davranisinin Pillow karsiligi.
+    """
+    ham = Image.open(BAYRAK_YOLU).convert("RGB")
+    olcek = max(en / ham.width, boy / ham.height)
+    yeni = (max(1, round(ham.width * olcek)), max(1, round(ham.height * olcek)))
+    buyuk = ham.resize(yeni, Image.LANCZOS)
+
+    sol = (buyuk.width - en) // 2
+    ust = (buyuk.height - boy) // 2
+    kirpik = buyuk.crop((sol, ust, sol + en, ust + boy))
+    return ImageChops.multiply(kirpik, _ortu(en, boy))
+
+
+def zemini_ciz(en, boy):
+    """Zemin tuvaline yeni boyuttaki bayragi basar."""
+    global zemin_foto
+    if en < 2 or boy < 2:
+        return
+    zemin_foto = ImageTk.PhotoImage(_bayrak(en, boy))
+    zemin.delete("bayrak")
+    zemin.create_image(0, 0, image=zemin_foto, anchor="nw", tags="bayrak")
+
+
+# ------------------------------------------------------- cerceve ve dugmeler
+# macOS'ta Tk'nin kendi kenarliklari (highlightbackground) ve kaydirma cubugu
+# aqua renginde ciziliyor; koyu temayi bozmamak icin ikisi de elle kuruluyor.
+
+def cerceveli(ana, ic_renk, cizgi_renk, **kwargs):
+    """1 piksel kenarlikli bir kutu kurar; (dis, ic) cerceveyi verir."""
+    dis = tk.Frame(ana, bg=cizgi_renk)
+    ic = tk.Frame(dis, bg=ic_renk, **kwargs)
+    ic.pack(fill=tk.BOTH, expand=True, padx=1, pady=1)
+    return dis, ic
+
+
+def dugme(ana, metin, islev, birincil=False, font=KUCUK_FONT, dolgu=(14, 7)):
+    """Kirmizi cerceveli, uzerine gelince dolan dugme."""
+    durgun_zemin = KIRMIZI if birincil else BALON
+    durgun_yazi = "#ffffff" if birincil else "#eec2c6"
+
+    cerceve = tk.Frame(ana, bg=KIRMIZI if birincil else KIRMIZI_KOYU)
+    et = tk.Label(
+        cerceve, text=metin, font=font, bg=durgun_zemin, fg=durgun_yazi,
+        padx=dolgu[0], pady=dolgu[1], cursor="pointinghand",
+        disabledforeground="#c9a7ab",
+    )
+    et.pack(fill=tk.BOTH, expand=True, padx=1, pady=1)
+
+    def gir(_e):
+        if str(et.cget("state")) != tk.DISABLED:
+            et.config(bg=KIRMIZI, fg="#ffffff")
+            cerceve.config(bg=KIRMIZI)
+
+    def cik(_e):
+        et.config(bg=durgun_zemin, fg=durgun_yazi)
+        cerceve.config(bg=KIRMIZI if birincil else KIRMIZI_KOYU)
+
+    def tik(_e):
+        if str(et.cget("state")) != tk.DISABLED:
+            islev()
+
+    et.bind("<Enter>", gir)
+    et.bind("<Leave>", cik)
+    et.bind("<Button-1>", tik)
+
+    cerceve.et = et
+    return cerceve
+
+
+class Kaydirici(tk.Canvas):
+    """Koyu temaya uygun ince kaydirma cubugu."""
+
+    def __init__(self, ana, tuval):
+        super().__init__(ana, width=8, height=1, bg=PANEL,
+                         highlightthickness=0)
+        self.tuval = tuval
+        self.bas, self.son = 0.0, 1.0
+        self.tutma = None
+        self.bind("<Configure>", lambda _e: self.ciz())
+        self.bind("<Button-1>", self.bastir)
+        self.bind("<B1-Motion>", self.surukle)
+        self.bind("<ButtonRelease-1>", lambda _e: setattr(self, "tutma", None))
+
+    def ayarla(self, bas, son):
+        """Tuvalin yscrollcommand'i buraya baglanir."""
+        self.bas, self.son = float(bas), float(son)
+        self.ciz()
+
+    def ciz(self):
+        self.delete("all")
+        boy = self.winfo_height()
+        if boy < 2 or self.son - self.bas >= 0.999:
+            return          # her sey ekrana sigiyorsa cubuk gosterilmez
+        ust = round(self.bas * boy)
+        alt = max(ust + 24, round(self.son * boy))
+        self.create_rectangle(2, ust, 6, alt, fill="#6d2830", width=0)
+
+    def bastir(self, olay):
+        boy = max(1, self.winfo_height())
+        yeni = olay.y / boy - (self.son - self.bas) / 2
+        self.tuval.yview_moveto(max(0.0, min(1.0, yeni)))
+        self.tutma = olay.y
+
+    def surukle(self, olay):
+        if self.tutma is None:
+            return
+        boy = max(1, self.winfo_height())
+        self.tuval.yview_moveto(
+            max(0.0, min(1.0, self.bas + (olay.y - self.tutma) / boy))
+        )
+        self.tutma = olay.y
+
+
+# -------------------------------------------------------------- sohbet akisi
+
+def sarmali(etiket):
+    """Etiketi, panel genisligine gore yeniden sarilacaklar listesine alir."""
+    sarilanlar.append(etiket)
+    etiket.config(wraplength=max(240, sohbet_tuval.winfo_width() - 56))
+    return etiket
+
+
+def balon(rol):
+    """Sohbet akisina bos bir mesaj balonu ekler ve icerik cercevesini verir."""
+    dis = tk.Frame(sohbet_ic, bg=PANEL)
+    dis.pack(fill=tk.X, pady=(0, 12))
+
+    cerceve, ic = cerceveli(dis, BALON, BALON_CIZGI, padx=16, pady=12)
+    cerceve.pack(fill=tk.X)
+
+    tk.Label(
+        ic, text=rol, font=ROL_FONT, bg=BALON, fg=KIRMIZI_SOLUK, anchor="w",
+    ).pack(fill=tk.X, pady=(0, 6))
+    return dis, ic
+
+
+def soruyu_ciz(soru):
+    _dis, ic = balon("SİZ")
+    sarmali(tk.Label(
+        ic, text=soru, font=METIN_FONT, bg=BALON, fg=METIN,
+        anchor="w", justify="left",
+    )).pack(fill=tk.X)
+    asagi_kaydir()
+
+
+def olcumleri_ciz(ana, sure, en_iyi, sayi):
+    """Yanit altindaki olcum satiri: etiketler soluk, degerler kirmizi."""
+    satir = tk.Frame(ana, bg=BALON)
+    satir.pack(fill=tk.X, pady=(10, 0))
+
+    parcalar = [
+        ("Yanıt süresi", f"{sure:.1f} sn"),
+        ("En yüksek eşleşme", f"{en_iyi:.3f}"),
+        ("Taranan bölüm", str(sayi)),
+    ]
+    for sira, (etiket, deger) in enumerate(parcalar):
+        if sira:
+            tk.Label(satir, text="·", font=MINI_FONT, bg=BALON,
+                     fg="#6d5f62", padx=8).pack(side=tk.LEFT)
+        tk.Label(satir, text=etiket, font=MINI_FONT, bg=BALON,
+                 fg=COK_SOLUK).pack(side=tk.LEFT)
+        tk.Label(satir, text=deger, font=("Helvetica Neue", 10, "bold"),
+                 bg=BALON, fg=KIRMIZI_SOLUK, padx=4).pack(side=tk.LEFT)
+
+
+def kaynaklari_ciz(ana, hits):
+    """Web arayuzundeki acilir kaynak listesinin karsiligi."""
+    baslik_metni = f"Yanıtın dayandığı bölümler ({len(hits)})"
+
+    baslik = tk.Label(
+        ana, text="▸  " + baslik_metni, font=KUCUK_FONT, bg=BALON,
+        fg=KIRMIZI_SOLUK, anchor="w", cursor="pointinghand", pady=6,
+    )
+    baslik.pack(fill=tk.X, pady=(12, 0))
+
+    govde = tk.Frame(ana, bg=BALON)
+
+    for skor, _cid, dosya, sira, parca in hits:
+        kart = tk.Frame(govde, bg=BALON)
+        kart.pack(fill=tk.X, pady=(0, 12))
+
+        # karta soldan kirmizi serit (CSS'teki border-left)
+        tk.Frame(kart, bg=KIRMIZI, width=3).pack(side=tk.LEFT, fill=tk.Y)
+
+        yazi = tk.Frame(kart, bg=BALON, padx=10)
+        yazi.pack(side=tk.LEFT, fill=tk.X, expand=True)
+
+        ust = tk.Frame(yazi, bg=BALON)
+        ust.pack(fill=tk.X)
+        tk.Label(ust, text=dosya, font=("Helvetica Neue", 11, "bold"),
+                 bg=BALON, fg="#e7dcde").pack(side=tk.LEFT)
+        tk.Label(ust, text=f"· bölüm {sira} · eşleşme {skor:.3f}",
+                 font=MINI_FONT, bg=BALON, fg=COK_SOLUK,
+                 padx=6).pack(side=tk.LEFT)
+
+        onizleme = parca[:420] + ("…" if len(parca) > 420 else "")
+        sarmali(tk.Label(
+            yazi, text=onizleme.replace("\n", " "), font=KUCUK_FONT,
+            bg=BALON, fg=SOLUK, anchor="w", justify="left",
+        )).pack(fill=tk.X, pady=(3, 0))
+
+    def gecis(_e):
+        if govde.winfo_ismapped():
+            govde.pack_forget()
+            baslik.config(text="▸  " + baslik_metni)
+        else:
+            govde.pack(fill=tk.X, pady=(8, 0))
+            baslik.config(text="▾  " + baslik_metni)
+        asagi_kaydir()
+
+    baslik.bind("<Button-1>", gecis)
+
+
+def yaniti_tamamla(ic, etiket, metin, hits, sure):
+    """Canli yazilan balonu son metin, olcumler ve kaynaklarla kapatir."""
+    etiket.config(text=metin, fg=METIN)
+    olcumleri_ciz(ic, sure, hits[0][0] if hits else 0.0, len(hits))
+    if hits:
+        kaynaklari_ciz(ic, hits)
+    asagi_kaydir()
+
+
+def asagi_kaydir():
+    """Paneli yeni icerige gore uzat ve akisi en alta getir."""
+    sohbet_tuval.update_idletasks()
+    yerlestir()
+    sohbet_tuval.configure(scrollregion=sohbet_tuval.bbox("all"))
+    sohbet_tuval.yview_moveto(1.0)
+
+
+# ------------------------------------------------------------------- akis
+
+def sor(soru=None):
+    """Girisdeki soruyu al ve arka planda isle."""
+    global mesgul, yanit_ic, yanit_etiket, son_ciz
+    if mesgul:
         return
 
-    # Kisa takip sorulari ("bunun sebebi ne?") tek baslarina aranamaz;
-    # arama icin bir onceki soruyu da ekliyoruz.
-    arama = soru
-    if gecmis and len(soru.split()) <= 8:
-        arama = gecmis[-1] + " " + soru
+    soru = (soru or giris.get()).strip()
+    if not soru:
+        return
 
-    buton.config(state=tk.DISABLED)
+    if ornek_cerceve.winfo_ismapped():
+        ornek_cerceve.pack_forget()
+
+    giris.delete(0, tk.END)
+    soruyu_ciz(soru)
+
+    mesgul = True
+    gonder.et.config(state=tk.DISABLED, bg="#7c2029", fg="#c9a7ab")
     giris.config(state=tk.DISABLED)
-    yaz(cevap_kutusu, "Belgeler taranıyor ve yanıt hazırlanıyor…")
-    durum.config(text="")
-    yaz(kaynak_kutusu, "")
 
-    threading.Thread(
-        target=isle, args=(soru, arama), daemon=True
-    ).start()
+    _dis, yanit_ic = balon("BÖRTEÇİNE")
+    yanit_etiket = sarmali(tk.Label(
+        yanit_ic, text="Belgeler taranıyor ve yanıt hazırlanıyor…",
+        font=METIN_FONT, bg=BALON, fg=COK_SOLUK, anchor="w", justify="left",
+    ))
+    yanit_etiket.pack(fill=tk.X)
+    son_ciz = 0.0
+    asagi_kaydir()
+
+    # Sohbet gecmisi rag.answer'a veriliyor: takip sorularinin aranmasinda ve
+    # modele baglam olarak kullaniliyor.
+    threading.Thread(target=isle, args=(soru, list(gecmis)), daemon=True).start()
 
 
-def isle(soru, arama):
+def isle(soru, oncekiler):
     """Arka plan is parcacigi: modeli cagirir, sonucu ana dongude gosterir."""
     try:
-        metin, hits, sure = answer(soru, search_query=arama)
+        metin, hits, sure = answer(soru, history=oncekiler, stream_cb=akit)
     except Exception as hata:  # baglanti kopmasi vb.
         metin, hits, sure = f"Hata: {hata}", [], 0.0
     pencere.after(0, bitti, soru, metin, hits, sure)
 
 
+def akit(simdiye_kadar):
+    """Model uretirken cagrilir (arka plan is parcacigindan).
+
+    Tk yalnizca ana dongude guvenli oldugu icin guncelleme after ile
+    siraya aliniyor; her token yerine saniyede ~8 kez ciziliyor.
+    """
+    global son_ciz
+    simdi = time.monotonic()
+    if simdi - son_ciz < 0.12:
+        return
+    son_ciz = simdi
+    pencere.after(0, yaziyi_guncelle, simdiye_kadar)
+
+
+def yaziyi_guncelle(metin):
+    if yanit_etiket is not None and yanit_etiket.winfo_exists():
+        yanit_etiket.config(text=metin, fg=METIN)
+        asagi_kaydir()
+
+
 def bitti(soru, metin, hits, sure):
     """Sonucu ekrana bas ve arayuzu tekrar kullanilabilir yap."""
-    yaz(cevap_kutusu, metin)
+    global mesgul
+    yaniti_tamamla(yanit_ic, yanit_etiket, metin, hits, sure)
 
-    en_iyi = hits[0][0] if hits else 0.0
-    durum.config(
-        text=f"Yanıt süresi {sure:.1f} sn     "
-             f"En yüksek eşleşme {en_iyi:.3f}     "
-             f"Taranan bölüm {len(hits)}"
-    )
-
-    kaynak_kutusu.config(state=tk.NORMAL)
-    kaynak_kutusu.delete("1.0", tk.END)
-    if hits:
-        for skor, _cid, dosya, sira, parca in hits:
-            kaynak_kutusu.insert(
-                tk.END, f"{dosya}  ·  bölüm {sira}  ·  eşleşme {skor:.3f}\n", "bas"
-            )
-            onizleme = parca[:400] + ("…" if len(parca) > 400 else "")
-            kaynak_kutusu.insert(tk.END, onizleme.replace("\n", " ") + "\n\n", "govde")
-    else:
-        kaynak_kutusu.insert(tk.END, "Getirilen bölüm yok.\n", "govde")
-    kaynak_kutusu.config(state=tk.DISABLED)
-
-    gecmis.append(soru)
+    gecmis.append({"soru": soru, "cevap": metin})
+    mesgul = False
     giris.config(state=tk.NORMAL)
-    buton.config(state=tk.NORMAL)
-    giris.delete(0, tk.END)
+    gonder.et.config(state=tk.NORMAL, bg=KIRMIZI, fg="#ffffff")
     giris.focus_set()
 
 
 def temizle():
+    """Konusmayi ve akistaki tum balonlari sifirlar."""
+    if mesgul:
+        return
     gecmis.clear()
-    yaz(cevap_kutusu, "")
-    yaz(kaynak_kutusu, "")
-    durum.config(text="")
+    sarilanlar.clear()
+    for cocuk in sohbet_ic.winfo_children():
+        if cocuk is not ornek_cerceve:
+            cocuk.destroy()
+    ornek_cerceve.pack(fill=tk.X, pady=(0, 12))
     giris.delete(0, tk.END)
     giris.focus_set()
-
-
-def yaz(kutu, metin):
-    """Salt okunur bir Text bilesenine icerik yaz."""
-    kutu.config(state=tk.NORMAL)
-    kutu.delete("1.0", tk.END)
-    if metin:
-        kutu.insert(tk.END, metin)
-    kutu.config(state=tk.DISABLED)
+    asagi_kaydir()
 
 
 # ----------------------------------------------------------------- pencere
 
 pencere = tk.Tk()
-pencere.title("Belge Asistanı")
-pencere.geometry("880x760")
-pencere.configure(bg=BG)
-pencere.minsize(700, 600)
+pencere.title("Börteçine")
+pencere.geometry("1120x820")
+pencere.minsize(900, 660)
+pencere.configure(bg=ZEMIN)
 
-dis = tk.Frame(pencere, bg=BG, padx=28, pady=24)
-dis.pack(fill=tk.BOTH, expand=True)
+zemin = tk.Canvas(pencere, bg=ZEMIN, highlightthickness=0)
+zemin.place(x=0, y=0, relwidth=1, relheight=1)
+zemin_foto = None
+
+# ---------------------------------------------------------------- yan panel
+
+yan = tk.Frame(pencere, bg=YAN_PANEL)
+yan.place(x=0, y=0, relheight=1, width=YAN_EN)
+
+# sag kenardaki kirmizi cizgi (CSS'teki border-right)
+tk.Frame(yan, bg="#8e0b16", width=2).pack(side=tk.RIGHT, fill=tk.Y)
+
+yan_ic = tk.Frame(yan, bg=YAN_PANEL, padx=22, pady=26)
+yan_ic.pack(fill=tk.BOTH, expand=True)
 
 tk.Label(
-    dis, text="Belge Asistanı", font=BASLIK_FONT, bg=BG, fg=INK, anchor="w"
+    yan_ic, text="Sistem yapılandırması", font=("Helvetica Neue", 14, "bold"),
+    bg=YAN_PANEL, fg=BASLIK_RENK, anchor="w",
+).pack(fill=tk.X, pady=(0, 12))
+
+for _etiket, _deger in [
+    ("Dil modeli", CHAT_KEYWORD),
+    ("Aday bölüm sayısı", str(TOP_K)),
+    ("Yanıta giren bölüm", f"{BAGLAM_EN_AZ}–{BAGLAM_EN_COK}"),
+    ("Eşleşme alt sınırı", f"{MIN_SCORE:.2f}"),
+    ("Çalışma yeri", "Bu bilgisayar"),
+]:
+    _satir = tk.Frame(yan_ic, bg=YAN_PANEL)
+    _satir.pack(fill=tk.X)
+    tk.Label(_satir, text=_etiket, font=KUCUK_FONT, bg=YAN_PANEL,
+             fg="#c9bbbe", anchor="w").pack(side=tk.LEFT, pady=6)
+    tk.Label(_satir, text=_deger, font=("Helvetica Neue", 11, "bold"),
+             bg=YAN_PANEL, fg=KIRMIZI_SOLUK, anchor="e").pack(side=tk.RIGHT,
+                                                              pady=6)
+    tk.Frame(yan_ic, bg="#33161b", height=1).pack(fill=tk.X)
+
+tk.Label(
+    yan_ic,
+    text="Bir soru, belgelerle yeterince eşleşmezse dil modeline hiç "
+         "gönderilmez. Sistem bu durumda tahmin yürütmek yerine bilgisi "
+         "olmadığını söyler.",
+    font=MINI_FONT, bg=YAN_PANEL, fg=COK_SOLUK, anchor="w", justify="left",
+    wraplength=YAN_EN - 52,
+).pack(fill=tk.X, pady=(16, 18))
+
+dugme(yan_ic, "Konuşmayı temizle", temizle).pack(fill=tk.X)
+
+# ------------------------------------------------------------ icerik paneli
+
+kart, kart_ic = cerceveli(pencere, PANEL, PANEL_CIZGI, padx=30, pady=28)
+
+tk.Label(
+    kart_ic, text="Börteçine", font=BASLIK_FONT, bg=PANEL, fg=BASLIK_RENK,
+    anchor="w",
 ).pack(fill=tk.X)
 
-tk.Label(
-    dis,
-    text="Belgeleriniz hakkında soru sorun. Yanıtlar yalnızca bu belgelerden "
-         "üretilir ve kaynak gösterilir.\nTüm işlem bu bilgisayarda çalışır; "
-         "internet bağlantısı kullanılmaz.",
-    font=ALT_FONT, bg=BG, fg=MUTED, anchor="w", justify="left",
-).pack(fill=tk.X, pady=(4, 14))
+# baslik altindaki bayrak seridi: kirmiziden panele soluklasan cizgi
+serit = tk.Canvas(kart_ic, height=4, bg=PANEL, highlightthickness=0)
+serit.pack(fill=tk.X, pady=(6, 14))
 
 tk.Label(
-    dis,
-    text=f"Dil modeli: {CHAT_KEYWORD}     "
-         f"Getirilen bölüm: {TOP_K}     "
-         f"Eşleşme alt sınırı: {MIN_SCORE:.2f}",
-    font=KUCUK_FONT, bg=BG, fg=MUTED, anchor="w",
-).pack(fill=tk.X, pady=(0, 16))
+    kart_ic,
+    text="Yüklediğiniz belgeler hakkında soru sorun. Asistan yanıtını "
+         "yalnızca bu belgelerden üretir ve hangi belgeden yararlandığını "
+         "her yanıtın sonunda belirtir. İnternet bağlantısı kullanılmaz; "
+         "tüm işlem bu bilgisayarda gerçekleşir.",
+    font=ALT_FONT, bg=PANEL, fg=SOLUK, anchor="w", justify="left",
+    wraplength=KART_EN - 80,
+).pack(fill=tk.X, pady=(0, 18))
 
 # --------------------------------------------------------------- soru satiri
 
-satir = tk.Frame(dis, bg=BG)
-satir.pack(fill=tk.X)
+satir = tk.Frame(kart_ic, bg=PANEL)
+satir.pack(side=tk.BOTTOM, fill=tk.X, pady=(18, 0))
 
 giris = tk.Entry(
-    satir, font=METIN_FONT, bg=CARD, fg=INK, relief=tk.FLAT,
-    highlightthickness=1, highlightbackground=LINE, highlightcolor=ACCENT,
-    insertbackground=INK,
+    satir, font=METIN_FONT, bg=GIRIS_ZEMIN, fg=METIN, relief=tk.FLAT,
+    highlightthickness=1, highlightbackground="#6f1f28", highlightcolor=KIRMIZI,
+    insertbackground=KIRMIZI_SOLUK, disabledbackground=GIRIS_ZEMIN,
+    disabledforeground=COK_SOLUK,
 )
-giris.pack(side=tk.LEFT, fill=tk.X, expand=True, ipady=8, padx=(0, 10))
+giris.pack(side=tk.LEFT, fill=tk.X, expand=True, ipady=9, padx=(0, 10))
 giris.bind("<Return>", lambda _e: sor())
 
-buton = tk.Button(
-    satir, text="Sor", command=sor, font=("Helvetica Neue", 13, "bold"),
-    bg=ACCENT, fg="white", relief=tk.FLAT, padx=22, pady=6,
-    activebackground="#0a5a55", activeforeground="white",
-    highlightbackground=BG,
-)
-buton.pack(side=tk.LEFT)
+gonder = dugme(satir, "Sor", sor, birincil=True,
+               font=("Helvetica Neue", 12, "bold"), dolgu=(22, 8))
+gonder.pack(side=tk.LEFT)
 
-tk.Button(
-    satir, text="Temizle", command=temizle, font=KUCUK_FONT,
-    bg=BG, fg=MUTED, relief=tk.FLAT, padx=12, highlightbackground=BG,
-).pack(side=tk.LEFT, padx=(8, 0))
+# --------------------------------------------------------------- sohbet akisi
 
-# ------------------------------------------------------------------- cevap
+# Akis, tum paneli kaplamak yerine icerigi kadar yer tutar; yeni sorularla
+# birlikte asagi dogru uzar, pencereye sigmayinca kaydirmaya gecer.
+akis = tk.Frame(kart_ic, bg=PANEL)
+akis.pack(fill=tk.X)
 
-tk.Label(
-    dis, text="YANIT", font=("Helvetica Neue", 10, "bold"),
-    bg=BG, fg=MUTED, anchor="w",
-).pack(fill=tk.X, pady=(20, 6))
+sohbet_tuval = tk.Canvas(akis, bg=PANEL, height=1, highlightthickness=0)
+sohbet_tuval.pack(side=tk.LEFT, fill=tk.X, expand=True)
 
-cevap_kutusu = tk.Text(
-    dis, height=7, wrap=tk.WORD, font=METIN_FONT, bg=CARD, fg=INK,
-    relief=tk.FLAT, padx=16, pady=14, highlightthickness=1,
-    highlightbackground=LINE, state=tk.DISABLED,
-)
-cevap_kutusu.pack(fill=tk.X)
+kaydirici = Kaydirici(akis, sohbet_tuval)
+kaydirici.pack(side=tk.RIGHT, fill=tk.Y, padx=(6, 0))
+sohbet_tuval.configure(yscrollcommand=kaydirici.ayarla)
 
-durum = tk.Label(dis, text="", font=KUCUK_FONT, bg=BG, fg=MUTED, anchor="w")
-durum.pack(fill=tk.X, pady=(8, 0))
+sohbet_ic = tk.Frame(sohbet_tuval, bg=PANEL)
+akis_id = sohbet_tuval.create_window((0, 0), window=sohbet_ic, anchor="nw")
 
-# ----------------------------------------------------------------- kaynaklar
+# ------------------------------------------------------------ ornek sorular
+
+ornek_cerceve = tk.Frame(sohbet_ic, bg=PANEL)
+ornek_cerceve.pack(fill=tk.X, pady=(0, 12))
 
 tk.Label(
-    dis, text="YANITIN DAYANDIĞI BÖLÜMLER", font=("Helvetica Neue", 10, "bold"),
-    bg=BG, fg=MUTED, anchor="w",
-).pack(fill=tk.X, pady=(20, 6))
+    ornek_cerceve, text="Başlamak için bir örnek seçin",
+    font=("Helvetica Neue", 12, "bold"), bg=PANEL, fg=METIN, anchor="w",
+).pack(fill=tk.X, pady=(0, 10))
 
-kaynak_cerceve = tk.Frame(dis, bg=CARD, highlightthickness=1,
-                          highlightbackground=LINE)
-kaynak_cerceve.pack(fill=tk.BOTH, expand=True)
+ornek_satir = tk.Frame(ornek_cerceve, bg=PANEL)
+ornek_satir.pack(fill=tk.X)
+for _sira, _ornek in enumerate(ORNEKLER):
+    dugme(ornek_satir, _ornek, lambda s=_ornek: sor(s)).pack(
+        side=tk.LEFT, fill=tk.X, expand=True,
+        padx=(0 if _sira == 0 else 8, 0),
+    )
 
-kaydirma = ttk.Scrollbar(kaynak_cerceve)
-kaydirma.pack(side=tk.RIGHT, fill=tk.Y)
 
-kaynak_kutusu = tk.Text(
-    kaynak_cerceve, wrap=tk.WORD, font=KUCUK_FONT, bg=CARD, fg=MUTED,
-    relief=tk.FLAT, padx=16, pady=14, state=tk.DISABLED,
-    yscrollcommand=kaydirma.set,
-)
-kaynak_kutusu.pack(fill=tk.BOTH, expand=True)
-kaydirma.config(command=kaynak_kutusu.yview)
+# --------------------------------------------------------------- yerlesim
 
-kaynak_kutusu.tag_configure(
-    "bas", foreground=ACCENT, font=("Helvetica Neue", 11, "bold"),
-    spacing1=6, spacing3=4,
-)
-kaynak_kutusu.tag_configure("govde", foreground=MUTED, spacing3=8, lmargin1=2)
+def serit_ciz(_e=None):
+    """Seridi ciz: %62'ye kadar tam kirmizi, sonra panele soluklasiyor."""
+    en = serit.winfo_width()
+    if en < 2:
+        return
+    serit.delete("all")
+    kirilma = int(en * 0.62)
+    serit.create_rectangle(0, 0, kirilma, 4, fill=KIRMIZI, width=0)
+    for x in range(kirilma, en):
+        oran = (x - kirilma) / max(1, en - kirilma)
+        renk = "#%02x%02x%02x" % tuple(
+            round(a + (b - a) * oran) for a, b in
+            zip((0xC8, 0x10, 0x1F), (0x1D, 0x14, 0x17))
+        )
+        serit.create_line(x, 0, x, 4, fill=renk)
 
+
+def akisi_boyutlandir(pencere_boyu):
+    """Akisi icerigi kadar yap; panelin olmasi gereken yuksekligini dondurur.
+
+    Icerik pencereye sigmadiginda akis o sinirda kalir ve kaydirilir.
+    """
+    icerik = sohbet_ic.winfo_reqheight()
+    # akis disindaki her sey: baslik, serit, tanitim, soru satiri, dolgular
+    sabit = kart_ic.winfo_reqheight() - sohbet_tuval.winfo_reqheight()
+    azami = max(120, pencere_boyu - 44 - 2 - sabit)
+
+    yeni = max(40, min(icerik, azami))
+    if yeni != int(sohbet_tuval.cget("height")):
+        sohbet_tuval.config(height=yeni)
+    return sabit + yeni + 2
+
+
+def yerlestir(olay=None):
+    """Paneli ortala, zemini ve sarilan metinleri yeni boyuta uydur."""
+    global son_boyut
+    if olay is not None and olay.widget is not pencere:
+        return
+
+    en, boy = pencere.winfo_width(), pencere.winfo_height()
+    bos = en - YAN_EN
+    kart_en = max(420, min(KART_EN, bos - 72))
+    kart_boy = min(boy - 44, akisi_boyutlandir(boy))
+    kart.place(x=YAN_EN + (bos - kart_en) // 2, y=22,
+               width=kart_en, height=kart_boy)
+
+    if (en, boy) != son_boyut:
+        son_boyut = (en, boy)
+        zemini_ciz(en, boy)
+    serit_ciz()
+
+
+def akis_genisligi(olay):
+    """Akis icerigini tuval genisligine yay ve metinleri yeniden sar."""
+    global son_akis_en
+    sohbet_tuval.itemconfigure(akis_id, width=olay.width)
+    if olay.width != son_akis_en:
+        son_akis_en = olay.width
+        # silinmis balonlarin (ornegin bekleme balonu) etiketleri listede kalir
+        sarilanlar[:] = [e for e in sarilanlar if e.winfo_exists()]
+        for etiket in sarilanlar:
+            etiket.config(wraplength=max(240, olay.width - 56))
+        yerlesim_iste()       # sarma degisti, icerik yuksekligi yeniden olculur
+    sohbet_tuval.configure(scrollregion=sohbet_tuval.bbox("all"))
+
+
+def yerlesim_iste():
+    """Yerlesimi bir sonraki bos anda, en fazla bir kez tazeler."""
+    global bekleyen_yerlesim
+    if not bekleyen_yerlesim:
+        bekleyen_yerlesim = True
+        pencere.after_idle(_yerlesimi_calistir)
+
+
+def _yerlesimi_calistir():
+    global bekleyen_yerlesim
+    bekleyen_yerlesim = False
+    yerlestir()
+
+
+def tekerlek(olay):
+    sohbet_tuval.yview_scroll(-1 * int(olay.delta), "units")
+
+
+son_boyut = (0, 0)
+son_akis_en = 0
+bekleyen_yerlesim = False
+
+pencere.bind("<Configure>", yerlestir)
+sohbet_tuval.bind("<Configure>", akis_genisligi)
+def akis_icerigi(_olay):
+    sohbet_tuval.configure(scrollregion=sohbet_tuval.bbox("all"))
+    yerlesim_iste()
+
+
+sohbet_ic.bind("<Configure>", akis_icerigi)
+sohbet_tuval.bind_all("<MouseWheel>", tekerlek)
+
+pencere.update_idletasks()
+yerlestir()
 giris.focus_set()
 pencere.mainloop()

@@ -6,7 +6,8 @@ from pathlib import Path
 
 import streamlit as st
 
-from rag import answer, MIN_SCORE, TOP_K, CHAT_KEYWORD
+from rag import (answer, MIN_SCORE, TOP_K, CHAT_KEYWORD,
+                 BAGLAM_EN_AZ, BAGLAM_EN_COK)
 
 st.set_page_config(
     page_title="Börteçine",
@@ -121,7 +122,8 @@ with st.sidebar:
     st.markdown("#### Sistem yapılandırması")
     rows = [
         ("Dil modeli", CHAT_KEYWORD),
-        ("Getirilen bölüm sayısı", str(TOP_K)),
+        ("Aday bölüm sayısı", str(TOP_K)),
+        ("Yanıta giren bölüm", f"{BAGLAM_EN_AZ}–{BAGLAM_EN_COK}"),
         ("Eşleşme alt sınırı", f"{MIN_SCORE:.2f}"),
         ("Çalışma yeri", "Bu bilgisayar"),
     ]
@@ -224,14 +226,12 @@ if soru:
 
     with st.chat_message("assistant"):
         with st.spinner("Belgeler taranıyor ve yanıt hazırlanıyor…"):
-            # Kisa takip sorulari ("bunun sebebi ne?") tek baslarina aranamaz;
-            # arama icin bir onceki soruyu da ekliyoruz. Cevap yine yalnizca
-            # yeni soruya gore uretiliyor.
-            arama = soru
-            if st.session_state.gecmis and len(soru.split()) <= 8:
-                arama = st.session_state.gecmis[-1]["soru"] + " " + soru
-
-            metin, hits, sure = answer(soru, search_query=arama)
+            # Takip sorusu ve sohbet gecmisi yonetimi rag.answer icinde.
+            gecmis = [
+                {"soru": k["soru"], "cevap": k["metin"]}
+                for k in st.session_state.gecmis
+            ]
+            metin, hits, sure = answer(soru, history=gecmis)
 
         kayit = {"soru": soru, "metin": metin, "hits": hits, "sure": sure}
         yaniti_ciz(kayit)

@@ -121,15 +121,32 @@ tekrarlanabilir.
 | Ölçüt | Sonuç |
 |---|---|
 | Genel başarı | **12 / 12** |
-| Retrieval (hit@3) | **9 / 9** — doğru belge her seferinde ilk üçte |
+| Retrieval (doğru belge bağlamda) | **9 / 9** |
 | Doğru reddetme | 3 / 3 |
-| Ortalama yanıt süresi | 19.4 sn |
-| Modele giden soruların ortalaması | 23.3 sn |
+| Ortalama yanıt süresi | 17.7 sn |
+| Modele giden soruların ortalaması | 21.2 sn |
 | Eşikte reddedilen soruların süresi | < 0.2 sn |
 
 Ayrıntılı tablo ve tüm yanıtlar: [`eval_results.md`](eval_results.md)
 
 Belge havuzu 40 bölümden 53 bölüme çıkarıldığında da aynı sonuç alındı.
+
+### Geniş ölçüm seti (40 soru)
+
+12 soruluk set, getirme katmanını ayırt etmek için dar kalıyordu. 13 belgenin
+tamamını kapsayan 32 cevaplanabilir + 8 cevaplanamaz soruluk ikinci bir set
+kuruldu. Getirme ölçümleri (recall) dil modeli çağrılmadan, yalnızca gömme
+katmanı üzerinde yapıldığı için saniyeler içinde tekrarlanabilir.
+
+| Ölçüt | Önce | Sonra |
+|---|---|---|
+| recall@1 (doğru belge ilk sırada) | %81 | **%91** |
+| recall@3 | %91 | **%97** |
+| Doğru belge modele giden bağlamda | 28 / 32 | **32 / 32** |
+| Kaynak satırı doğru belgeyi gösteriyor | ölçülmemişti | **32 / 32** |
+| Cevabı olduğu hâlde reddedilen soru | 4 / 32 | **0 / 32** |
+| Cevaplanamaz soruyu doğru reddetme | 8 / 8 | **8 / 8** |
+| Ortalama bağlam uzunluğu | 2124 karakter | **1938 karakter** |
 
 ## Yapılan deneyler
 
@@ -142,10 +159,19 @@ Her satır bir hipotez, bir müdahale ve bir ölçüm içerir.
 | Eşik 0.45 → 0.42 | Cevabı belgelerde olan bir soru (skor 0.440) yanlışlıkla reddediliyordu | Yanlış reddetme ortadan kalktı |
 | `temperature` 0.2 → 0.0 | Aynı girdi iki farklı sonuç veriyordu; ölçüm güvenilir değildi | Sonuçlar tekrarlanabilir hale geldi |
 | Reddetme kuralı istemin başına alındı | Kural listenin ortasındayken model onu atlıyordu | 10/12 → 11/12 |
-| `TOP_K` 3 → 5 | Büyük bir belgede doğru bölüm ilk üçe giremiyordu | 11/12 → 8/12, süre 4 katına çıktı; **geri alındı** |
+| `TOP_K` 3 → 5 (sabit) | Büyük bir belgede doğru bölüm ilk üçe giremiyordu | 11/12 → 8/12, süre 4 katına çıktı; **geri alındı** |
+| Sorguya gömme modelinin yönerge öneki eklendi | qwen3-embedding sorgu tarafında `Instruct: … Query: …` biçimi bekliyor; öneksiz sorguda skorlar düşük kalıyordu | 32 soruluk sette recall@3 %91 → **%97**, ortalama skor +0.09 |
+| Skora %15 sözcüksel örtüşme karıştırıldı | "Dokuz Işık", "Dandanakan" gibi özel adlarda gömme vektörü zayıf kalıyordu | recall@1 %84 → **%91**; eşiği geçen doğru soru 28/32 → **32/32** |
+| Sabit `TOP_K` yerine uyarlanabilir bağlam (oran 0.70, 2–5 bölüm, 2800 karakter bütçe, belge başına 2 bölüm) | Süre neredeyse tamamen bağlam uzunluğuna bağlı (~7.7 sn / 1000 karakter); sabit 5 bölüm her soruya +10 sn ekliyordu | Doğru belge kapsaması 32/32 korunurken ortalama bağlam 3501 → **1938 karakter** |
+| Kaynak satırı üretim sonrası doğrulanıyor | Model kaynağı ya hiç yazmıyor ya da cevabı bir belgeden alıp listenin ilk sırasındaki başka belgeyi gösteriyordu ("Kut nedir?") | Kaynak, cevabın sözcük olarak en çok örtüştüğü belgeye düzeltiliyor |
+| Özel adlar üretim sonrası denetleniyor ve onarılıyor | Model adları Türkçe ekle çekimlerken bozuyordu ("Türkeş'in" → "Türkş'in", hatta "Türkşeddin Esat Paşa"); modele yeniden ürettirmek aynı hatayı tekrarladı | Bağlamda karşılığı olmayan ad, en yakın gerçek yazımıyla değiştiriliyor; 32 doğru yanıtın hiçbiri değişmedi |
+| Kök çıkarma Türkçe küçültmeye geçirildi | Python'da `"İ".lower()` iki karakterli `i̇` üretiyor; "İlimcilik" ile "ilimcilik" ayrı kelime sayılıyordu | Sözcüksel eşleşmedeki yanlış alarmlar sıfırlandı |
+| Yanıt akışlı (streaming) üretiliyor | Yanıtın tamamı 20–30 sn sürüyor, ekran o süre boyunca boş kalıyordu | İlk kelimeler ~15 sn'de görünüyor; bekleyiş görünür hale geldi |
 | Dil modeli qwen3-4b → qwen2.5-7b | qwen3'ün düşünme modu kapatılamıyordu; token bütçesi düşünmeye gidip boş yanıt dönüyordu | 11/12 → **12/12**, boş yanıtlar bitti; süre 10 sn → 23 sn |
 | Üç kademeli eşik (0.30 / 0.42) | Eşik altındaki her soru aynı sert yanıtı alıyordu | Sınıra yakın sorularda kullanıcıya hangi belgelerin ilgili olduğu söyleniyor |
 | Takip sorularında arama sorgusuna önceki soru eklendi | "Neden değiştirdiler?" gibi kısa sorular tek başına aranamıyordu | Çok turlu konuşma çalışır hale geldi |
+| Birleştirme her kısa soru yerine yalnızca işaret eden sorularda ("bu hayvan", "peki", "onun") | Her kısa soruda birleştirmek ilgisiz sorularda skoru düşürüyordu (0.324 → 0.281) | Konu değiştiren sorular bozulmadan takip soruları doğru çözülüyor |
+| Önceki soru-cevap turları modele bağlam olarak veriliyor | Model her soruyu sıfırdan görüyordu; sohbet bütünlüğü yoktu | "Bu hayvan destanlarda hangi rollerde görülür?" doğru şekilde kurda bağlanıyor |
 | Bağlantı dayanıklılığı | Foundry Local her başlatıldığında farklı port kullanıyor, CLI bazen çalışmayan sunucuyu çalışıyor bildiriyor | Adres doğrulanıyor, gerekirse servis yeniden başlatılıyor, model otomatik yükleniyor |
 
 ## Tasarım kararları
