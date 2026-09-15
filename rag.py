@@ -356,10 +356,10 @@ def answer(question, top_k=TOP_K, search_query=None, history=None,
     """
     started = time.perf_counter()
 
-    # Takip sorusu tek basina aranamaz. Isaret eden bir soruda dogrudan
-    # onceki soruyla birlestiriyoruz; kisa ama isaretsiz bir soru zayif
-    # kalirsa birlesigi yedek olarak deniyoruz. (Onceki surumde birlestirme
-    # her kisa soruda yapiliyordu ve ilgisiz sorularda skoru dusuruyordu.)
+    # Takip sorusu tek basina aranamaz: "bu hayvan destanlarda hangi
+    # rollerde gecer?" tek basina arandiginda at belgesini getiriyor.
+    # Isaret eden soruda dogrudan onceki soruyla birlestiriyoruz; kisa ama
+    # isaretsiz sorularda ise iki sorgu da denenip iyi eslesen kazaniyor.
     onceki = history[-1]["soru"] if history else None
     aranan = search_query or question
     takip = False          # soru onceki tura mi dayaniyor
@@ -402,10 +402,6 @@ def answer(question, top_k=TOP_K, search_query=None, history=None,
             ozet = ozet[:GECMIS_CEVAP_SINIRI].rsplit(" ", 1)[0] + "…"
         messages.append({"role": "user", "content": tur["soru"]})
         messages.append({"role": "assistant", "content": ozet})
-    # Takip sorusu tek basina anlasilmiyor: "neden degistirdiler" sorusunda
-    # model dogru baglami almasina ragmen "bu bilgi dokumanlarda yok"
-    # diyordu. Sorunun neyin devami oldugunu acikca yaziyoruz; gecmis
-    # turlarin mesaj olarak tasinmasi tek basina yetmiyor.
     # Takip sorusu tek basina anlasilmiyor: "neden degistirdiler" sorusunda
     # model dogru baglami almasina ragmen "bu bilgi dokumanlarda yok"
     # diyordu; gecmis turlarin mesaj olarak tasinmasi tek basina yetmedi.

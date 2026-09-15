@@ -3,22 +3,22 @@
 Eşik değeri (MIN_SCORE): 0.42
 
 - Başarılı: **12/12**
-- Ortalama yanıt süresi: **12.6 sn**
+- Ortalama yanıt süresi: **13.0 sn**
 
 ## Özet tablo
 
 | # | Soru | Beklenen kaynak | hit@3 | Reddetti | En yüksek skor | Süre (sn) | Sonuç |
 |---|------|-----------------|-------|----------|----------------|-----------|-------|
-| 1 | Orhun Yazıtları'nın alfabesini kim ve hangi yılda çözmüştür? | ilk-turk-devletleri.md | evet | hayir | 0.669 | 16.8 | OK |
-| 2 | Turan taktiği nasıl uygulanır? | turk-kulturunde-at.md | evet | hayir | 0.637 | 17.4 | OK |
-| 3 | Eski Türkçede kurdun adı neydi? | turk-kulturunde-kurt.md | evet | hayir | 0.702 | 16.3 | OK |
-| 4 | Anadolu Selçuklu Devleti hangi savaşta Moğollara yenilmiştir? | selcuklular-ve-malazgirt.md | evet | hayir | 0.733 | 15.3 | OK |
-| 5 | Yavuz Sultan Selim hangi savaşlarla Mısır'ı Osmanlı topraklarına katmıştır? | osmanli-padisahlari.md | evet | hayir | 0.615 | 19.6 | OK |
-| 6 | Sakarya Meydan Muharebesi kaç gün sürmüştür? | canakkale-ve-kurtulus-savasi.md | evet | hayir | 0.653 | 14.3 | OK |
-| 7 | Üç Tarz-ı Siyaset yazısı nerede ve hangi yıl yayımlanmıştır? | turk-milliyetciliginin-dogusu.md | evet | hayir | 0.581 | 13.1 | OK |
-| 8 | Milliyetçi Hareket Partisi adı hangi kongrede kabul edilmiştir? | milliyetci-hareketin-isimleri.md | evet | hayir | 0.694 | 14.4 | OK |
-| 9 | Ülkü Ocakları 12 Mart 1971'den sonra hangi adla yeniden kurulmuştur? | ulku-ocaklari.md | evet | hayir | 0.691 | 12.9 | OK |
-| 10 | Fatih Sultan Mehmed'in annesinin adı nedir? | (cevaplanamaz) | - | evet | 0.577 | 11.6 | OK |
+| 1 | Orhun Yazıtları'nın alfabesini kim ve hangi yılda çözmüştür? | ilk-turk-devletleri.md | evet | hayir | 0.669 | 17.1 | OK |
+| 2 | Turan taktiği nasıl uygulanır? | turk-kulturunde-at.md | evet | hayir | 0.637 | 17.8 | OK |
+| 3 | Eski Türkçede kurdun adı neydi? | turk-kulturunde-kurt.md | evet | hayir | 0.702 | 16.6 | OK |
+| 4 | Anadolu Selçuklu Devleti hangi savaşta Moğollara yenilmiştir? | selcuklular-ve-malazgirt.md | evet | hayir | 0.733 | 16.2 | OK |
+| 5 | Yavuz Sultan Selim hangi savaşlarla Mısır'ı Osmanlı topraklarına katmıştır? | osmanli-padisahlari.md | evet | hayir | 0.615 | 20.1 | OK |
+| 6 | Sakarya Meydan Muharebesi kaç gün sürmüştür? | canakkale-ve-kurtulus-savasi.md | evet | hayir | 0.653 | 14.6 | OK |
+| 7 | Üç Tarz-ı Siyaset yazısı nerede ve hangi yıl yayımlanmıştır? | turk-milliyetciliginin-dogusu.md | evet | hayir | 0.581 | 13.3 | OK |
+| 8 | Milliyetçi Hareket Partisi adı hangi kongrede kabul edilmiştir? | milliyetci-hareketin-isimleri.md | evet | hayir | 0.694 | 14.8 | OK |
+| 9 | Ülkü Ocakları 12 Mart 1971'den sonra hangi adla yeniden kurulmuştur? | ulku-ocaklari.md | evet | hayir | 0.691 | 13.2 | OK |
+| 10 | Fatih Sultan Mehmed'in annesinin adı nedir? | (cevaplanamaz) | - | evet | 0.577 | 12.5 | OK |
 | 11 | Bugün hava nasıl olacak? | (cevaplanamaz) | - | evet | 0.241 | 0.1 | OK |
 | 12 | asdf qwerty zxcv | (cevaplanamaz) | - | evet | 0.269 | 0.1 | OK |
 
