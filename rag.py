@@ -83,6 +83,29 @@ BELGE_SINIRI = 2      # ayni belgeden en fazla kac parca alinir
 # tutmuyor, her soruda istemin tamami bastan okunuyor ve okuma karakter
 # basina ~4.2 ms suruyor. Onceki 1332 karakterlik surum her soruya ~5.5 sn
 # ekliyordu; asagidaki surum ayni kurallari tasiyor, dortte bir uzunlukta.
+#
+# Isteme reddetme yonergesi EKLEMEK DENENDI VE REDDEDILDI (2026-09-18).
+# Cevaplanamaz sorularda model, baglam konuyla ilgili gorundugu icin cevap
+# uydurmaya yatkin. Betik: muhammet_ws/olcum_betikleri/red_istemi_deneyi.py
+# (32 cevaplanamaz soru; her olcum iki kez tekrarlandi, sonuclar ayni).
+#
+#   mevcut istem                                       25/32
+#   "ilgili bilgi yok" -> "cevabi acikca yazmiyorsa"   24/32
+#   + "tahmin etme, reddet"                            26/32
+#   + "baska konuyu anlatma, reddet"                   29/32
+#
+# Son satir tam olcumde uygulandi ve GERI ALINDI: cevaplanamaz reddetme
+# %75.0 -> %93.8 cikarken ana set %96.2 -> %93.1'e dustu; sekiz cevaplanabilir
+# soru bozuldu ("Çanakkale Deniz Zaferi hangi tarihte kazanılmıştır?" artik
+# reddediliyordu). Yalnizca "baska konuyu anlatma" satirini eklemek bile
+# dokuz kanarya sorusunun ucunu bozdu. Modeli reddetmeye iten her yonerge
+# cevaplanabilir sorulari da kaybettiriyor: 7B modelde reddetme ve cevaplama
+# ayni karar, biri sikilastirilmadan digeri gevsetilemiyor.
+#
+# Ayni deneyde olculen diger kaldiraclar da kotu: baglami daraltmak
+# (BAGLAM_ORANI 0.85) 22/32, onceki soruyu modele gostermek 20/32. Takip
+# sorusunda cevabin kaynak belgesi degisince reddetme kurali da olculdu
+# (takip_kaynak_kaymasi.py): iki uydurma yakaliyor, iki dogru cevabi bozuyor.
 SYSTEM_PROMPT = """Türkçe doküman asistanısın. Yalnızca BAĞLAM'daki bilgiyle
 cevap ver, kendi bilgini ekleme. BAĞLAM'da ilgili bilgi yoksa tek satır yaz:
 Bu bilgi elimdeki dokümanlarda yok.
