@@ -145,7 +145,7 @@ Kendi belgelerinizi kullanmak için `docs/` klasörünün içeriğini değiştir
 |---|---|
 | `ingest.py` | Belgeleri paragraf başına bir bölüme ayırır, başına başlık yolunu ekler, SQLite'a yazar; anahtar kelime indeksini kurar |
 | `embed.py` | Her bölüm için gömme vektörü üretir, BLOB olarak saklar |
-| `search.py` | Soruyu talimatla gömer, kosinüs benzerliğiyle en yakın bölümleri bulur |
+| `search.py` | Soruyu talimatla gömer, kosinüs benzerliğiyle en yakın bölümleri bulur; tek kavramlı kısa sorularda anahtar kelime aramasıyla birleştirir |
 | `rag.py` | Takip sorusu kuralı, eşik, istem, dil modeli çağrısı, kaynak seçimi, yanıt korumaları |
 | `foundry_client.py` | Foundry Local uç noktasını bulur, modelleri doğru sırada yükler ve ısıtır |
 | `app.py` | Streamlit web arayüzü |
@@ -217,13 +217,13 @@ python evaluate.py --etiket deneme --karsilastir degerlendirmeler/<onceki>.json
 ```
 
 **Son ölçüm** (qwen2.5-7b, RTX 5070 8 GB, 27 belge / 212 bölüm; raporlar:
-[`2026-09-18_2208_belge-siniri-080.md`](degerlendirmeler/2026-09-18_2208_belge-siniri-080.md),
-[`2026-09-18_2220_kontrol_belge-siniri-080.md`](degerlendirmeler/2026-09-18_2220_kontrol_belge-siniri-080.md)):
+[`2026-09-19_0049_hibrit-kapi1.md`](degerlendirmeler/2026-09-19_0049_hibrit-kapi1.md),
+[`2026-09-19_0057_kontrol_hibrit-kapi1.md`](degerlendirmeler/2026-09-19_0057_kontrol_hibrit-kapi1.md)):
 
 | Ölçüt | Ana set | Kontrol seti | Önceki (13 belge / 86 bölüm) |
 |---|---|---|---|
 | Tam başarı (otomatik) | **%96.9** | **%82.9** | %95.6 / %86.0 |
-| Doğru bölüm ilk sırada / ilk üçte | %86.1 / %96.5 | %80.0 / %92.0 | %87.8 / %95.9 |
+| Doğru bölüm ilk sırada / ilk üçte | %86.8 / %97.2 | %84.0 / %96.0 | %87.8 / %95.9 |
 | Cevaplanabilir sorularda başarı | %99.3 | %84.0 | %95.9 / %92.6 |
 | Yanlış red (cevap belgede varken) | **%0.0** | %4.0 | %0.0 / %3.7 |
 | Doğru kaynak | %99.3 | %87.5 | %98.6 / %100 |

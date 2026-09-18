@@ -45,6 +45,26 @@ KOK_UZUNLUK = 5          # Turkce ekleri kabaca atmak icin kelime koku uzunlugu
 # %100) ama gozle kontrolde yanlis bilgi iceren cevap 3'ten 5'e cikti ve bir
 # cevaplanamaz takip sorusuna uydurma geldi (rag_iyilestirme_plani.md 2.12).
 HYBRID_SEARCH = os.environ.get("LRA_HYBRID", "0") == "1"   # ortam degiskeni yalnizca deneyler icin
+# Hibrit arama kisa sorgularda ayrica devreye girer. Iki-uc kelimelik bir
+# soruda ("Kut nedir?", "Tugrul Bey kimdir?") gomme vektorunun dayanacagi
+# cok az sey var ve yakin yazilan kelimeler karisiyor: "kut" sorusunda ilk uc
+# sira turk-kulturunde-kurt.md ile, "Tugrul Bey" sorusunda ilk sira Ulug Bey
+# ile doluyordu. Anahtar kelime eslesmesi bu kelimeleri tam olarak ayirir.
+# Uzun sorgularda gomme zaten guclu; orada hibrit hem kazandirmiyor hem
+# bozuyor. Uc surum uctan uca olculdu (2026-09-19, ana + kontrol seti):
+#
+#                        ana basari  ana hit@3  kontrol basari  kontrol hit@3  kontrol red
+#   hibrit kapali          %96.9       %96.5       %82.9          %92.0         %81.2
+#   hibrit hep acik        %96.9       %99.3       %80.5          %96.0         %68.8
+#   kisa sinir 2           %96.9       %97.2       %82.9          %96.0         %75.0
+#   kisa sinir 1 (bu)      %96.9       %97.2       %82.9          %96.0         %81.2
+#
+# Hep acik reddedildi: kontrol seti dusuyor ve cevaplanamaz sorularda uydurma
+# artiyor (Faz 4'teki kapatma gerekcesinin tekrari). Sinir 2 de reddedildi:
+# "baskenti neresiydi?" iki icerik kelimesi oldugu icin kapiya giriyor ve o
+# takip sorusu uydurmaya donuyordu. Sinir 1'de iki sette de sonucu degisen
+# soru yok, arama iki sette de iyilesiyor.
+HYBRID_KISA_SINIR = int(os.environ.get("LRA_HYBRID_KISA", "1"))
 RRF_K = 60
 KEYWORD_PREFIX = 5
 # Anahtar kelime aramasinda kullanilmayan soru kelimeleri
@@ -140,6 +160,19 @@ def keyword_ranks(question):
     return {chunk_id: rank for rank, (chunk_id,) in enumerate(rows, 1)}
 
 
+def kisa_sorgu(question):
+    """Soru kelimeleri atildiktan sonra HYBRID_KISA_SINIR'i asmayan sorgu mu?
+
+    Takip sorularinda aramaya birlesik metin geldigi icin bu sinir kendiliginden
+    asilir; kapi yalnizca gercekten kisa, tek kavramli sorularda aciliyor.
+    """
+    if not HYBRID_KISA_SINIR:
+        return False
+    icerik = [w for w in re.findall(r"\w+", fold(question))
+              if len(w) >= 3 and w not in QUESTION_WORDS]
+    return len(icerik) <= HYBRID_KISA_SINIR
+
+
 def search_details(question, top_k=TOP_K):
     """(parcalar, en_iyi_skor) dondur.
 
@@ -166,7 +199,7 @@ def search_details(question, top_k=TOP_K):
     order = [int(i) for i in np.argsort(scores)[::-1]]
     best = float(scores[order[0]])
 
-    if HYBRID_SEARCH:
+    if HYBRID_SEARCH or kisa_sorgu(question):
         kw = keyword_ranks(question)
         if kw:
             fused = {}
