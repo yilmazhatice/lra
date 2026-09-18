@@ -6,7 +6,9 @@ Türk topluluklarında Nevruz, Ergenekon Destanı'ndaki kurtuluş günüyle eşl
 
 Bayramın adı ve kutlanış biçimi topluluktan topluluğa değişir. Kazakistan'da Nauryz, Kırgızistan'da Nooruz, Azerbaycan'da Novruz adını alır. Anadolu'da Sultan Nevruz, Mart Dokuzu ve Yeni Gün gibi adlandırmalar kullanılır; eski Rumî takvime göre 9 Mart'a denk gelmesi Mart Dokuzu adının kaynağıdır. Kazakistan'da bayrama özel pişirilen ve yedi malzemeden yapılan Nauryz köje çorbası, Orta Asya kutlamalarının en bilinen unsurlarındandır.
 
-Kutlama gelenekleri büyük ölçüde ortaktır. Bayramdan önce ev temizlenir, borçlar ödenir ve dargınlar barıştırılır. Ateş yakılıp üzerinden atlanması, geçmiş yılın sıkıntılarından arınmayı simgeler. Birbirine su serpme, boyanmış yumurta tokuşturma, buğdayın filizlendirilmesiyle hazırlanan semeni ya da sümelek, mezar ziyareti ve toplu yemekler yaygın uygulamalardır.
+Kutlama gelenekleri büyük ölçüde ortaktır. Bayramdan önce ev temizlenir, borçlar ödenir ve dargınlar barıştırılır. Ateş yakılıp üzerinden atlanması, geçmiş yılın sıkıntılarından arınmayı simgeler. Birbirine su serpme, boyanmış yumurta tokuşturma, mezar ziyareti ve toplu yemekler de yaygın uygulamalardır.
+
+Bayram sofrasının en bilinen öğesi, buğdayın filizlendirilmesiyle hazırlanan semeni ya da sümelek adlı tatlıdır. Buğday tanelerinin suda çimlendirilmesiyle başlayan hazırlık günler sürer; filizlenen buğday yeniden dirilişi ve bereketi simgelediği için sofranın ortasına konur. Birçok toplulukta bu tatlının yapımı, kadınların bir araya gelip türkü söylediği ortak bir tören biçimini almıştır.
 
 Nevruz uluslararası düzeyde de tanınmıştır. 2009'da UNESCO İnsanlığın Somut Olmayan Kültürel Mirası Temsilî Listesi'ne alınmış, Birleşmiş Milletler Genel Kurulu 2010'da 21 Mart'ı Dünya Nevruz Günü ilan etmiştir. Türkiye'de 1991'den sonra resmî törenlerle kutlanmaya başlanmış ve 1995'te resmî bayram olarak kabul edilmiştir.
 

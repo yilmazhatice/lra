@@ -157,7 +157,7 @@ Kendi belgelerinizi kullanmak için `docs/` klasörünün içeriğini değiştir
 
 ## Belge koleksiyonu
 
-`docs/` klasöründe Türk tarihi ve kültürü üzerine 27 belge, toplam 209 paragraf
+`docs/` klasöründe Türk tarihi ve kültürü üzerine 27 belge, toplam 212 paragraf
 bölümü bulunuyor.
 
 - **Siyasi tarih:** ilk Türk devletleri, Türklerin İslamiyet'i kabulü ve ilk
@@ -176,6 +176,22 @@ bölümü bulunuyor.
 Belgeler yayımlanmış kaynaklardan derlenerek yazılmıştır. Kaynağı
 doğrulanamayan anlatılar, olgu olarak değil, doğrulanmamış oldukları belirtilerek
 aktarılmıştır.
+
+**Belge yazarken uyulan kural.** Her paragraf tek bir konuyu baştan sona
+anlatmalı ve kendi kendine yeterli olmalıdır, çünkü arama birimi paragraftır.
+Bir belgenin sahiplendiği terim, baskın konusu başka bir şey olan paragrafın
+kuyruğuna eklenmemelidir: parçanın gömme vektörü o zaman terimi değil
+paragrafın baskın konusunu anlatır ve terim aranınca bulunamaz. Aynı nedenle
+bir konu birden fazla belgede anlatılmamalı; başka belgenin konusuna yalnızca
+atıf yapılmalı, içeriği tekrar edilmemelidir. Yüzeysel bir değinme, konuyu asıl
+anlatan paragrafı arama sırasında geçebilir.
+
+Bu kuralın etkisi ölçüldü. "Ülüş" hükümdarlık sembollerini anlatan bir
+paragrafın sonundayken arama sırası 7, kendi paragrafına alınınca 3 oldu;
+"semeni" bir gelenek sıralamasının içindeyken 9, kendi paragrafında 1 oldu.
+"Kımız" kendi paragrafına alındığında önce yetmedi, çünkü yeni paragrafa atı
+anlatan bir cümle girmişti; paragraf baştan sona kımızı anlatır hâle
+getirilince skor 0.346'dan 0.475'e çıktı ve sıra 1 oldu.
 
 ## Değerlendirme
 
@@ -200,36 +216,38 @@ python evaluate.py --set kontrol --etiket deneme      # kontrol seti
 python evaluate.py --etiket deneme --karsilastir degerlendirmeler/<onceki>.json
 ```
 
-**Son ölçüm** (qwen2.5-7b, RTX 5070 8 GB, 27 belge / 209 bölüm; raporlar:
-[`2026-09-18_0716_kapsam-nihai.md`](degerlendirmeler/2026-09-18_0716_kapsam-nihai.md),
-[`2026-09-18_0855_kontrol_kontrol-209parca.md`](degerlendirmeler/2026-09-18_0855_kontrol_kontrol-209parca.md)):
+**Son ölçüm** (qwen2.5-7b, RTX 5070 8 GB, 27 belge / 212 bölüm; raporlar:
+[`2026-09-18_1950_terim-paragraflari-son.md`](degerlendirmeler/2026-09-18_1950_terim-paragraflari-son.md),
+[`2026-09-18_1958_kontrol_terim-paragraflari-son.md`](degerlendirmeler/2026-09-18_1958_kontrol_terim-paragraflari-son.md)):
 
 | Ölçüt | Ana set | Kontrol seti | Önceki (13 belge / 86 bölüm) |
 |---|---|---|---|
-| Tam başarı (otomatik) | **%94.4** | **%78.0** | %95.6 / %86.0 |
-| Doğru bölüm ilk sırada / ilk üçte | %84.0 / %95.1 | %80.0 / %88.0 | %87.8 / %95.9 |
-| Cevaplanabilir sorularda başarı | %96.5 | %76.0 | %95.9 / %92.6 |
-| Yanlış red (cevap belgede varken) | %0.7 | %4.0 | %0.0 / %3.7 |
-| Doğru kaynak | %98.6 | %79.2 | %98.6 / %100 |
+| Tam başarı (otomatik) | **%96.2** | **%82.9** | %95.6 / %86.0 |
+| Doğru bölüm ilk sırada / ilk üçte | %86.1 / %96.5 | %80.0 / %92.0 | %87.8 / %95.9 |
+| Cevaplanabilir sorularda başarı | %98.6 | %84.0 | %95.9 / %92.6 |
+| Yanlış red (cevap belgede varken) | **%0.0** | %4.0 | %0.0 / %3.7 |
+| Doğru kaynak | %98.6 | %87.5 | %98.6 / %100 |
 | Cevaplanamaz soruları reddetme | %75.0 | %81.2 | %93.8 / %75.0 |
-| Ortalama yanıt süresi | 2.3 sn | 2.9 sn | 2.5 sn |
+| Ortalama yanıt süresi | 2.3 sn | 2.6 sn | 2.5 sn |
 
 Ana settekilerin 80'i yeni 16 belge için yazılmış sorulardır; bu grupta başarı
-%98.8 (60 "normal" sorunun tamamı doğru), eski sorularda %90.0.
+**%100**, eski sorularda %92.5. Süre ölçümü yalnızca Foundry sunucusu yeni
+başlatıldığında geçerlidir.
 
-Süre ölçümü yalnızca Foundry sunucusu yeni başlatıldığında geçerlidir; ana
-setin süresi bu koşula uyan
-[`2026-09-18_0707`](degerlendirmeler/2026-09-18_0707_kapsam-16-yeni-belge.md)
-koşumundan alınmıştır.
+**Kontrol setindeki fark.** Kontrol seti dondurulmuş olduğu için belge
+koleksiyonu büyürken güncellenmedi. Kalan hataların ikisi ölçüm artefaktıdır:
+"Manasçı kimdir?" ve "Otağ nedir?" sorularında sistem, kavramı asıl tanımlayan
+yeni belgeyi kaynak gösteriyor, set ise kavramın yalnızca anıldığı eski belgeyi
+bekliyor. Bu iki soruyu geçirmek için eski belgelere tanım eklemek, teste göre
+içerik yazmak olurdu; yapılmadı. Geri kalan hataların çoğu cevaplanamaz soruları
+reddetme sorunudur.
 
-**Kontrol setindeki düşüş.** Kontrol seti dondurulmuş olduğu için belge
-koleksiyonu büyürken güncellenmedi ve düşüşün bir bölümü ölçüm artefaktıdır:
-"Manasçı kimdir?" ile "Otağ nedir?" sorularında sistem, kavramı asıl tanımlayan
-yeni belgeyi kaynak gösterdiği hâlde set eski belgeyi beklediği için yanlış
-sayıldı. Geri kalan düşüş gerçektir: yeni belgelerdeki yüzeysel değinmeler
-birkaç soruda asıl paragrafı alt sıralara itiyor. Set bilerek değiştirilmemiştir;
-ayar yapılmamış sorular üzerindeki bu ölçüm, ana setin iyimser olduğunu
-gösterdiği için değerlidir.
+Kontrol setinin bağımsızlığı bu turda kısmen yitirildi: "Ülüş nedir?" ve
+Dede Korkut sorularındaki başarısızlıklar incelenip belgeler buna göre
+düzeltildi. Düzeltmeler genel bir kurala dayanıyor (aşağıya bakınız) ve
+kontrol setinde geçmeyen terimler için de aynı kazancı verdi; yine de bundan
+sonraki kontrol skoru eskisi kadar bağımsız sayılmamalıdır. Yeni bir kontrol
+seti yazılması gerekir.
 
 Otomatik puanlama anahtar ifadelere ve kaynağa bakar; yanıtın geri kalanındaki
 yanlışları kaçırabildiği için yanıtların ayrıca gözle kontrol edilmesi gerekir.

@@ -8,4 +8,6 @@ Kurultay ya da toy, devletin önemli kararlarının alındığı meclisti. Sava�
 
 İkili teşkilat, ülkenin doğu ve batı olmak üzere iki idari kanada ayrılmasıdır. Doğu kanadı daha üstün sayılır ve büyük kağan orada bulunurdu; batı kanadını genellikle hanedandan bir başka üye yönetirdi. Bu düzen geniş bozkır coğrafyasının tek merkezden yönetilmesinin zorluğuna verilmiş pratik bir cevaptır.
 
-Hükümdarlık sembolleri arasında tuğ, otağ, taht ve davul sayılır. Tuğ, at kılından yapılan ve sırık üzerinde taşınan bayrak niteliğindeki semboldür; sayısı hükümdarın rütbesine göre değişirdi. Ülüş ise ganimetin ve gelirin boylar arasında paylaştırılması geleneğidir ve hükümdarın cömertliği yöneticilik erdemlerinden biri sayılmıştır.
+Hükümdarlık sembolleri arasında tuğ, otağ, taht ve davul sayılır. Tuğ, at kılından yapılan ve sırık üzerinde taşınan bayrak niteliğindeki semboldür; sayısı hükümdarın rütbesine göre değişirdi.
+
+Ülüş ise ganimetin ve gelirin boylar arasında paylaştırılması geleneğidir. Savaştan ya da vergiden elde edilenin boylar arasında töreye uygun biçimde bölüştürülmesi beklenirdi; pay dağıtımındaki sıra, boyların devlet içindeki yerini de gösterirdi. Hükümdarın cömertliği yöneticilik erdemlerinden biri sayılmış, paylaşımda haksızlık yapan hükümdarın meşruiyetini yitireceğine inanılmıştır.

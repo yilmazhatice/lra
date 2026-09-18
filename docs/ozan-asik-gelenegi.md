@@ -2,7 +2,7 @@
 
 Türk sözlü edebiyatının taşıyıcısı, elindeki çalgıyla şiir söyleyen ve anlatı aktaran kişidir. İslamiyet öncesi dönemde bu kişiye ozan denirdi; ozan destan anlatır, kahramanlık söyler, yas törenlerinde ağıt yakar ve topluluğun belleğini kuşaktan kuşağa taşırdı. Farklı Türk topluluklarında bu kişiye baksı, bahşı, jırav ve akın gibi adlar verilmiştir. Anadolu'da on beşinci ve on altıncı yüzyıllardan itibaren âşık adı yaygınlaşmıştır.
 
-Dede Korkut, ozanlık geleneğinin en bilinen simgesidir. Dede Korkut Kitabı'ndaki hikâyelerde elinde kopuzuyla boydan boya dolaşır, gençlere ad koyar, anlaşmazlıkları çözer ve her hikâyenin sonunda dua eder. Bu işlevler, ozanın yalnızca bir sanatçı değil, aynı zamanda topluluğun bilgesi ve hafızası olduğunu gösterir.
+Ozanın işlevi tek başına sanatçılık değildir. Boydan boya dolaşarak söz söyleyen ozan, törenlerde dua eder, anlaşmazlıklarda arabuluculuk yapar ve topluluğun geçmişini ezberinde taşır. Bu yönüyle ozan yalnızca eğlendiren biri değil, aynı zamanda topluluğun bilgesi ve hafızasıdır. Oğuz anlatı geleneğinde bu rolün en bilinen temsilcisi Dede Korkut'tur.
 
 Kırgızlarda destan anlatıcısına manasçı denir. Manasçılar, yarım milyon dizeye yaklaşan Manas Destanı'nı yazıya bakmadan, ezberden ve doğaçlama eklemelerle anlatır. Anlatım sırasında sesin ve bedenin kullanıldığı özel bir biçim gelişmiştir; usta-çırak ilişkisiyle aktarılan bu gelenek 2013'te UNESCO listesine alınmıştır.
 
