@@ -8,7 +8,7 @@ Bozkır konutu, sökülüp taşınabilen keçe çadırdır. Türk toplulukların
 
 Ekonominin temeli hayvancılıktır. At, koyun, sığır, keçi ve deve başlıca hayvanlardır; bunlardan at ve koyun ayrı bir yer tutar. Hayvan yalnızca et kaynağı değil, aynı zamanda süt, yün, deri, kıl ve gübre kaynağıdır. Zenginlik toprakla değil hayvan sayısıyla ölçülürdü. Tarım tümüyle bilinmiyor değildi; sulanabilir vadilerde darı, arpa ve buğday ekilirdi, ancak geçimin ana kolu hayvancılık olarak kalmıştır.
 
-Beslenme düzeni de hayvancılığa dayanır. Kısrak sütünün mayalanmasıyla elde edilen kımız en bilinen içecektir. Sütten yapılan ve uzun süre bozulmadan saklanabilen kurut, yolculuk için elverişli bir gıdadır. Etin tuzlanıp kurutularak saklanması ve un ile hamur işlerinin yaygınlığı da bu düzenin parçasıdır. Yiyeceğin taşınabilir ve dayanıklı olması, sürekli yer değiştiren bir topluluk için zorunluluktu.
+Beslenme düzeni de hayvancılığa dayanır. Sütten yapılan ve uzun süre bozulmadan saklanabilen kurut, yolculuk için elverişli bir gıdadır. Etin tuzlanıp kurutularak saklanması, tahılın kavrulup öğütülmesi ve un ile hamur işlerinin yaygınlığı da bu düzenin parçasıdır. Yiyeceğin taşınabilir ve dayanıklı olması, sürekli yer değiştiren bir topluluk için zorunluluktu.
 
 El sanatları günlük ihtiyaca göre gelişmiştir. Yünün dövülüp sıkıştırılmasıyla yapılan keçe; çadır örtüsünde, giyimde ve yaygıda kullanılırdı. Düğümlü halı dokumacılığı bozkır kökenlidir ve Türk düğümü ya da Gördes düğümü adıyla bilinen teknik bu geleneğe bağlanır. Altay Dağları'ndaki Pazırık kurganında bulunan ve bugün bilinen en eski düğümlü halı sayılan örnek, bu sanatın ne kadar eskiye gittiğini gösterir. Halı ve kilim motifleri yalnızca süs değildir; bereket, koruma ve aidiyet anlatan işaretler taşır.
 

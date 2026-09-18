@@ -2,7 +2,7 @@
 
 Nevruz, 21 Mart'ta, gece ile gündüzün eşitlendiği ilkbahar gündönümünde kutlanan bahar bayramıdır. Adı Farsça "yeni gün" anlamına gelir. Bayram, doğanın uyanışını ve yeni yılın başlangıcını simgeler; bu nedenle kutlamaların merkezinde temizlik, yenilenme ve barışma vardır. İran, Afganistan, Azerbaycan, Orta Asya cumhuriyetleri, Anadolu ve Balkanlar dahil geniş bir coğrafyada kutlanır.
 
-Türk topluluklarında Nevruz, Ergenekon Destanı'yla birlikte anılır. Anlatıya göre dağlarla çevrili vadiye sığınan topluluk, demir bir dağı eriterek dışarı çıkmıştır ve bu çıkış günü yeni bir başlangıç olarak kutlanmıştır. Bu bağ nedeniyle bayram bazı topluluklarda Ergenekon Bayramı ya da Bozkurt Bayramı adıyla da anılır. Kutlamalarda demir dövme, örs üzerine çekiçle vurma ve ateş yakma gibi uygulamalar destandaki çıkış anlatısına gönderme yapar.
+Türk topluluklarında Nevruz, Ergenekon Destanı'ndaki kurtuluş günüyle eşleştirilmiştir. Bu bağ nedeniyle bayram bazı topluluklarda Ergenekon Bayramı ya da Bozkurt Bayramı adıyla da anılır. Kutlamalarda demir dövme ve örs üzerine çekiçle vurma gibi uygulamalar bu eşleştirmenin göstergesidir.
 
 Bayramın adı ve kutlanış biçimi topluluktan topluluğa değişir. Kazakistan'da Nauryz, Kırgızistan'da Nooruz, Azerbaycan'da Novruz adını alır. Anadolu'da Sultan Nevruz, Mart Dokuzu ve Yeni Gün gibi adlandırmalar kullanılır; eski Rumî takvime göre 9 Mart'a denk gelmesi Mart Dokuzu adının kaynağıdır. Kazakistan'da bayrama özel pişirilen ve yedi malzemeden yapılan Nauryz köje çorbası, Orta Asya kutlamalarının en bilinen unsurlarındandır.
 

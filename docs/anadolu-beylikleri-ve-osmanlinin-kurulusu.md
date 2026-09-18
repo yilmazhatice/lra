@@ -1,6 +1,6 @@
 # Anadolu Beylikleri ve Osmanlı'nın Kuruluşu
 
-Anadolu Selçuklu Devleti'nin 1243'teki Kösedağ Savaşı'nda Moğollara yenilmesi, Anadolu'daki merkezî otoriteyi çökertmiştir. Bu tarihten sonra Selçuklu sultanları İlhanlı Devleti'ne bağlı hükümdarlar durumuna düşmüş, devlet 1308'de tümüyle sona ermiştir. Merkezin zayıflaması, uç bölgelerdeki Türkmen beylerinin bağımsız hareket etmesine ve Anadolu'nun çok sayıda beyliğe bölünmesine yol açmıştır.
+Kösedağ yenilgisi Anadolu'daki merkezî otoriteyi çökertmiştir. Bu yenilginin ardından Selçuklu sultanları İlhanlı Devleti'ne bağlı hükümdarlar durumuna düşmüş, devlet 1308'de tümüyle sona ermiştir. Merkezin zayıflaması, uç bölgelerdeki Türkmen beylerinin bağımsız hareket etmesine ve Anadolu'nun çok sayıda beyliğe bölünmesine yol açmıştır.
 
 Beylikler dönemi aslında iki ayrı aşamada yaşanmıştır. Birinci dönem beylikleri, 1071'deki Malazgirt Zaferi'nin ardından Anadolu'nun fethi sırasında kurulmuştur: Sivas ve Tokat çevresinde Danişmendliler, Erzurum'da Saltuklular, Erzincan ve Divriği'de Mengücekliler, Diyarbakır ve Mardin çevresinde Artuklular bunların başlıcalarıdır. İzmir merkezli Çaka Beyliği ise donanma kurup denizde Bizans'a karşı mücadele etmesiyle ayrılır. Bu beyliklerin çoğu zamanla Anadolu Selçuklu Devleti'ne katılmıştır.
 

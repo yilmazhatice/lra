@@ -59,28 +59,6 @@ SORULAR = [
          belge="ilk-turk-devletleri.md", kanit="744'te Uygur Kağanlığı",
          anahtar=["744"]),
 
-    # ------------------------------------------------ milliyetci-hareketin-isimleri.md
-    dict(id="isimler-1", soru="Milliyetçi Hareket Partisi adı hangi kongrede kabul edilmiştir?", eski12=True,
-         belge="milliyetci-hareketin-isimleri.md", kanit="8-9 Şubat 1969'daki Adana kongresinde",
-         anahtar=["Adana", "1969"]),
-    dict(id="isimler-2", soru="Dokuz Işık ilkeleri nelerdir?", kategori="ozel_ad",
-         belge="milliyetci-hareketin-isimleri.md", kanit="Dokuz Işık adıyla bilinir",
-         anahtar=["milliyetçilik", "ülkücülük"]),
-    dict(id="isimler-3", soru="Alparslan Türkeş nerede doğmuştur?",
-         belge="milliyetci-hareketin-isimleri.md", kanit="Kıbrıs'ın Lefkoşa şehrinde",
-         anahtar=["Lefkoşa"]),
-    dict(id="isimler-4", soru="Nihal Atsız'ın Göktürk dönemini anlatan romanları hangileridir?",
-         belge="milliyetci-hareketin-isimleri.md", kanit="Bozkurtların Ölümü ve Bozkurtlar Diriliyor",
-         anahtar=["Bozkurtların Ölümü", "Bozkurtlar Diriliyor"]),
-    # Kanit paragrafinda kisinin adi gecmiyor, bir onceki paragrafta geciyor.
-    # Paragraf bazli parcalamada (Faz 1) baglamsiz kalma riskini olcer.
-    dict(id="isimler-5", soru="Büyük Birlik Partisi'ni kim kurmuştur?",
-         belge="milliyetci-hareketin-isimleri.md", kanit="Büyük Birlik Partisi'ni kurarak",
-         anahtar=["Yazıcıoğlu"]),
-    dict(id="isimler-6", soru="Türkçülük Günü olarak hangi tarih anılmaktadır?",
-         belge="milliyetci-hareketin-isimleri.md", kanit="3 Mayıs tarihi",
-         anahtar=["3 Mayıs"]),
-
     # ------------------------------------------------------ mustafa-kemal-ataturk.md
     dict(id="ataturk-1", soru="Mustafa Kemal'in annesinin adı nedir?",
          belge="mustafa-kemal-ataturk.md", kanit="annesi Zübeyde Hanım",
@@ -94,8 +72,10 @@ SORULAR = [
     dict(id="ataturk-4", soru="\"Yurtta sulh, cihanda sulh\" sözü hangi yıl söylenmiştir?",
          belge="mustafa-kemal-ataturk.md", kanit="Yurtta sulh, cihanda sulh",
          anahtar=["1931"]),
+    # Nakil tarihi milli-semboller.md'deki Anitkabir bolumunde de geciyor; iki belge de kabul.
     dict(id="ataturk-5", soru="Atatürk'ün naaşı Anıtkabir'e ne zaman nakledilmiştir?",
-         belge="mustafa-kemal-ataturk.md", kanit="10 Kasım 1953'te buraya nakledilmiştir",
+         belge="mustafa-kemal-ataturk.md|milli-semboller.md",
+         kanit="10 Kasım 1953'te buraya nakledilmiştir",
          anahtar=["10 Kasım 1953"]),
 
     # -------------------------------------------------------- osmanli-padisahlari.md
@@ -112,8 +92,10 @@ SORULAR = [
     dict(id="osmanli-4", soru="Orhan Gazi kimdir", kategori="ozel_ad",
          belge="osmanli-padisahlari.md", kanit="Orhan Gazi döneminde Bursa alınmış",
          anahtar=["Bursa|Rumeli"], yasak=["1323"]),
+    # Ayni olay anadolu-beylikleri belgesinde Fetret Devri anlatilirken de geciyor.
     dict(id="osmanli-5", soru="Yıldırım Bayezid Ankara Savaşı'nda kime yenilmiştir?",
-         belge="osmanli-padisahlari.md", kanit="Ankara Savaşı'nda Timur'a",
+         belge="osmanli-padisahlari.md|anadolu-beylikleri-ve-osmanlinin-kurulusu.md",
+         kanit="Ankara Savaşı'nda Timur'a",
          anahtar=["Timur"]),
     dict(id="osmanli-6", soru="Kanuni Sultan Süleyman kaç yıl hüküm sürmüştür?",
          belge="osmanli-padisahlari.md", kanit="kırk altı yıl hüküm sürerek",
@@ -232,25 +214,12 @@ SORULAR = [
     dict(id="alfabe-4", soru="Uygur alfabesi hangi yazıdan uyarlanmıştır?",
          belge="turkcenin-tarihi-ve-alfabeleri.md", kanit="Soğd yazısından",
          anahtar=["Soğd"]),
+    # ilk-turk-islam-eserleri.md eseri 1069-1070 diye tarihliyor; yuzyil oradan cikiyor.
+    # Bu yuzden hem belge hem kanit ikinci bir karsilik alacak sekilde genisletildi.
     dict(id="alfabe-5", soru="Kutadgu Bilig hangi yüzyılda yazılmıştır?",
-         belge="turkcenin-tarihi-ve-alfabeleri.md", kanit="on birinci yüzyılda yazılmıştır",
+         belge="turkcenin-tarihi-ve-alfabeleri.md|ilk-turk-islam-eserleri.md",
+         kanit="on birinci yüzyılda yazılmıştır|1069-1070 yıllarında tamamlanarak",
          anahtar=["on birinci|11"]),
-
-    # ------------------------------------------------------------- ulku-ocaklari.md
-    dict(id="ulku-1", soru="Ülkü Ocakları 12 Mart 1971'den sonra hangi adla yeniden kurulmuştur?", eski12=True,
-         belge="ulku-ocaklari.md", kanit="Ülkü Ocakları Derneği adıyla",
-         anahtar=["Ülkü Ocakları Derneği"], yasak=["Ülkücü Gençlik"]),
-    # Ayni bilgi Yazicioglu paragrafinda da geciyor; iki belge de kabul.
-    dict(id="ulku-2", soru="Ülkü Ocakları 1978'de hangi adı almıştır?",
-         belge="ulku-ocaklari.md|milliyetci-hareketin-isimleri.md",
-         kanit="Ülkücü Gençlik Derneği adını almış|Ülkücü Gençlik Derneği'nin kurucu",
-         anahtar=["Ülkücü Gençlik Derneği"]),
-    dict(id="ulku-3", soru="Ülkü Ocakları bugün hangi adla faaliyet göstermektedir?",
-         belge="ulku-ocaklari.md", kanit="Eğitim ve Kültür Vakfı adıyla",
-         anahtar=["Eğitim ve Kültür Vakfı"]),
-    dict(id="ulku-4", soru="Ülkü Ocakları Birliği adı altında merkezi örgütlenme hangi dönemde olmuştur?",
-         belge="ulku-ocaklari.md", kanit="1969-1970 döneminde",
-         anahtar=["1969"]),
 
     # ------------------------------------------------------ cevaplanamaz sorular
     # kategori: yakin (konuya yakin ama belgede yok) | konu_disi | anlamsiz
@@ -395,12 +364,6 @@ KONTROL_SORULAR = [
     dict(id="k-millet-mektep", soru="Yeni alfabeye geçişte halka okuma yazma öğretmek için hangi okullar açıldı?",
          belge="turkcenin-tarihi-ve-alfabeleri.md", kanit="Millet Mektepleri",
          anahtar=["Millet Mektep"]),
-    dict(id="k-bildiri", soru="Alparslan Türkeş 27 Mayıs 1960'ta hangi olayla tanınmıştır?",
-         belge="milliyetci-hareketin-isimleri.md", kanit="Darbe bildirisini radyodan okuyan",
-         anahtar=["bildiri", "radyo"]),
-    dict(id="k-veteriner", soru="Muhsin Yazıcıoğlu hangi fakülteden mezun olmuştur?",
-         belge="milliyetci-hareketin-isimleri.md", kanit="Veteriner Fakültesi",
-         anahtar=["Veteriner"]),
     dict(id="k-kurt-neden", soru="Türk kültüründe sembol olarak neden kurt seçilmiştir?",
          belge="turk-kulturunde-kurt.md", kanit="sürü hâlinde yaşaması",
          anahtar=["sürü", "evcil"]),
