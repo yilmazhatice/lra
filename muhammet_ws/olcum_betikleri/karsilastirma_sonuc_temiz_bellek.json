@@ -1,0 +1,330 @@
+{
+ "esik_alti": [],
+ "qwen2.5-7b": {
+  "model": "qwen2.5-7b-instruct-cuda-gpu",
+  "bellek": {
+   "dedicated_usage": "7236",
+   "shared_usage": "7"
+  },
+  "sonuclar": [
+   {
+    "ham": "Fatih Sultan Mehmed, 29 Mayıs 1453'te İstanbul'u fethettiğinde yirmi bir yaşındaydı. Bu yeniliğle Osmanlı Devleti imparatorluğuna dönüştürülmüş, Doğu Roma İmparatorluğu ise sona ermiştir. (Kaynak: osmanli-padisahlari.md)",
+    "cevap": "Fatih Sultan Mehmed, 29 Mayıs 1453'te İstanbul'u fethettiğinde yirmi bir yaşındaydı. Bu yeniliğle Osmanlı Devleti imparatorluğuna dönüştürülmüş, Doğu Roma İmparatorluğu ise sona ermiştir. (Kaynak: osmanli-padisahlari.md)",
+    "ilk_token_sn": 0.95,
+    "uretim_sn": 1.29,
+    "parca": 80,
+    "tok_sn": 62.0,
+    "toplam_sn": 2.24,
+    "soru": "fatih kimdir"
+   },
+   {
+    "ham": "Böri, eski Türkçede kurtun gerçek adıydı. Bu ad, kurtçuk ve böcek larvasının anısına geldi. (Kaynak: turk-kulturunde-kurt.md)",
+    "cevap": "Böri, eski Türkçede kurtun gerçek adıydı. Bu ad, kurtçuk ve böcek larvasının anısına geldi. (Kaynak: turk-kulturunde-kurt.md)",
+    "ilk_token_sn": 0.54,
+    "uretim_sn": 0.88,
+    "parca": 49,
+    "tok_sn": 55.7,
+    "toplam_sn": 1.42,
+    "soru": "böri nedir"
+   },
+   {
+    "ham": "Osman Gazi, Osmanlı Devleti'nin kurucusudur. (Kaynak: osmanli-padisahlari.md)",
+    "cevap": "Osman Gazi, Osmanlı Devleti'nin kurucusudur. (Kaynak: osmanli-padisahlari.md)",
+    "ilk_token_sn": 0.52,
+    "uretim_sn": 0.51,
+    "parca": 29,
+    "tok_sn": 57.3,
+    "toplam_sn": 1.03,
+    "soru": "Osman Gazi kimdir"
+   },
+   {
+    "ham": "Orhan Gazi, Osmanlı Devleti'nin kurucusu Osman Gazi'in oğultur. Kuruluş döneminin belirleyici hükümdarı olarak anılmaktadır ve Bursa'nın alınması ve Rumeli'ye geçiş yapımı sırasında önemli rol oynamıştır. (Kaynak: osmanli-padisahlari.md)",
+    "cevap": "Orhan Gazi, Osmanlı Devleti'nin kurucusu Osman Gazi'in oğultur. Kuruluş döneminin belirleyici hükümdarı olarak anılmaktadır ve Bursa'nın alınması ve Rumeli'ye geçiş yapımı sırasında önemli rol oynamıştır. (Kaynak: osmanli-padisahlari.md)",
+    "ilk_token_sn": 0.52,
+    "uretim_sn": 1.28,
+    "parca": 79,
+    "tok_sn": 61.6,
+    "toplam_sn": 1.81,
+    "soru": "Orhan Gazi kimdir"
+   },
+   {
+    "ham": "Orhun Yazıtları'nın alfabesini Danimarkalı dilbilimci Vilhelm Thomsen 1893'te çözmüştür.\n\n(Kaynak: turkcenin-tarihi-ve-alfabeleri.md)",
+    "cevap": "Orhun Yazıtları'nın alfabesini Danimarkalı dilbilimci Vilhelm Thomsen 1893'te çözmüştür.\n\n(Kaynak: turkcenin-tarihi-ve-alfabeleri.md)",
+    "ilk_token_sn": 0.52,
+    "uretim_sn": 0.97,
+    "parca": 59,
+    "tok_sn": 60.6,
+    "toplam_sn": 1.5,
+    "soru": "Orhun Yazıtları'nın alfabesini kim ve hangi yılda çözmüştür?"
+   },
+   {
+    "ham": "Turan taktiği, merkez birlikler sahte bir geri çekilme yapar, düşman takibe geçince kanatlar hilal biçiminde kapanarak kuşatma tamamlanacak şekilde uygulanır. Bu taktik, Türk ordularının bozkır coğrafyasında daha etkili bir şekilde hareket etmelerine olanak sağlar. Malazgirt Savaşı'nda da bu taktik uygulanmış ve başarılı sonuçlar vermiştir. (Kaynak: turk-kulturunde-at.md)",
+    "cevap": "Turan taktiği, merkez birlikler sahte bir geri çekilme yapar, düşman takibe geçince kanatlar hilal biçiminde kapanarak kuşatma tamamlanacak şekilde uygulanır. Bu taktik, Türk ordularının bozkır coğrafyasında daha etkili bir şekilde hareket etmelerine olanak sağlar. Malazgirt Savaşı'nda da bu taktik uygulanmış ve başarılı sonuçlar vermiştir. (Kaynak: turk-kulturunde-at.md)",
+    "ilk_token_sn": 0.52,
+    "uretim_sn": 2.04,
+    "parca": 123,
+    "tok_sn": 60.4,
+    "toplam_sn": 2.56,
+    "soru": "Turan taktiği nasıl uygulanır?"
+   },
+   {
+    "ham": "Eski Türkçede kurdun adı \"böri\" idi. Bu sözcük Orhun Yazıtları'nda ve on birinci yüzyılda Kaşgarlı Mahmud'un yazdığı Dîvânu Lugâti't-Türk'te geçer. (Kaynak: turk-kulturunde-kurt.md)",
+    "cevap": "Eski Türkçede kurdun adı \"böri\" idi. Bu sözcük Orhun Yazıtları'nda ve on birinci yüzyılda Kaşgarlı Mahmud'un yazdığı Dîvânu Lugâti't-Türk'te geçer. (Kaynak: turk-kulturunde-kurt.md)",
+    "ilk_token_sn": 0.53,
+    "uretim_sn": 1.21,
+    "parca": 75,
+    "tok_sn": 61.9,
+    "toplam_sn": 1.74,
+    "soru": "Eski Türkçede kurdun adı neydi?"
+   },
+   {
+    "ham": "Anadolu Selçuklu Devleti 1243'teki Kösedağ Savaşı'nda Moğollara yenilmiştir. (Kaynak: selcuklular-ve-malazgirt.md / parca 2)",
+    "cevap": "Anadolu Selçuklu Devleti 1243'teki Kösedağ Savaşı'nda Moğollara yenilmiştir. (Kaynak: selcuklular-ve-malazgirt.md / parca 2)",
+    "ilk_token_sn": 0.48,
+    "uretim_sn": 0.93,
+    "parca": 57,
+    "tok_sn": 61.0,
+    "toplam_sn": 1.42,
+    "soru": "Anadolu Selçuklu Devleti hangi savaşta Moğollara yenilmiştir?"
+   },
+   {
+    "ham": "Yavuz Sultan Selim, Mısır'ı Osmanlı topraklarına katmak için 1517'de Ridaniye Savaşı'nda Memlükler'e yenilgiye uğrattı. Bu savaşla Mısır ve Hicaz Osmanlı topraklarına katılmıştır. (Kaynak: osmanli-padisahlari.md)",
+    "cevap": "Yavuz Sultan Selim, Mısır'ı Osmanlı topraklarına katmak için 1517'de Ridaniye Savaşı'nda Memlükler'e yenilgiye uğrattı. Bu savaşla Mısır ve Hicaz Osmanlı topraklarına katılmıştır. (Kaynak: osmanli-padisahlari.md)",
+    "ilk_token_sn": 0.51,
+    "uretim_sn": 1.3,
+    "parca": 80,
+    "tok_sn": 61.6,
+    "toplam_sn": 1.81,
+    "soru": "Yavuz Sultan Selim hangi savaşlarla Mısır'ı Osmanlı topraklarına katmıştır?"
+   },
+   {
+    "ham": "Sakarya Meydan Muharebesi 23 Ağustos - 13 Eylül 1921 tarihleri arasında yirmi iki gün süren bir muharebe olmuştur.\n\n(Kaynak: canakkale-ve-kurtulus-savasi.md)",
+    "cevap": "Sakarya Meydan Muharebesi 23 Ağustos - 13 Eylül 1921 tarihleri arasında yirmi iki gün süren bir muharebe olmuştur.\n\n(Kaynak: canakkale-ve-kurtulus-savasi.md)",
+    "ilk_token_sn": 0.48,
+    "uretim_sn": 0.97,
+    "parca": 59,
+    "tok_sn": 61.0,
+    "toplam_sn": 1.45,
+    "soru": "Sakarya Meydan Muharebesi kaç gün sürmüştür?"
+   },
+   {
+    "ham": "Üç Tarz-ı Siyaset yazısı 1904 yılında Kahire'de Yusuf Akçura tarafından yayımlanmıştır. (Kaynak: turk-milliyetciliginin-dogusu.md)",
+    "cevap": "Üç Tarz-ı Siyaset yazısı 1904 yılında Kahire'de Yusuf Akçura tarafından yayımlanmıştır. (Kaynak: turk-milliyetciliginin-dogusu.md)",
+    "ilk_token_sn": 0.49,
+    "uretim_sn": 0.82,
+    "parca": 49,
+    "tok_sn": 60.1,
+    "toplam_sn": 1.3,
+    "soru": "Üç Tarz-ı Siyaset yazısı nerede ve hangi yıl yayımlanmıştır?"
+   },
+   {
+    "ham": "Milliyetçi Hareket Partisi adı 8-9 Şubat 1969'daki Adana kongresinde kabul edilmiştir. (Kaynak: milliyetci-hareketin-isimleri.md / parca 5)",
+    "cevap": "Milliyetçi Hareket Partisi adı 8-9 Şubat 1969'daki Adana kongresinde kabul edilmiştir. (Kaynak: milliyetci-hareketin-isimleri.md / parca 5)",
+    "ilk_token_sn": 0.57,
+    "uretim_sn": 0.95,
+    "parca": 57,
+    "tok_sn": 60.0,
+    "toplam_sn": 1.52,
+    "soru": "Milliyetçi Hareket Partisi adı hangi kongrede kabul edilmiştir?"
+   },
+   {
+    "ham": "Ülkü Ocakları 12 Mart 1971'den sonra Ülkü Ocakları Derneği adıyla yeniden kurulmuştur. (Kaynak: ulku-ocaklari.md)",
+    "cevap": "Ülkü Ocakları 12 Mart 1971'den sonra Ülkü Ocakları Derneği adıyla yeniden kurulmuştur. (Kaynak: ulku-ocaklari.md)",
+    "ilk_token_sn": 0.48,
+    "uretim_sn": 0.76,
+    "parca": 46,
+    "tok_sn": 60.3,
+    "toplam_sn": 1.24,
+    "soru": "Ülkü Ocakları 12 Mart 1971'den sonra hangi adla yeniden kurulmuştur?"
+   },
+   {
+    "ham": "Bu bilgi elimdeki dokümanlarda yok.",
+    "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+    "ilk_token_sn": 0.54,
+    "uretim_sn": 0.25,
+    "parca": 13,
+    "tok_sn": 51.4,
+    "toplam_sn": 0.79,
+    "soru": "Fatih Sultan Mehmed'in annesinin adı nedir?"
+   }
+  ]
+ },
+ "qwen3-4b": {
+  "model": "qwen3-4b-cuda-gpu",
+  "bellek": {
+   "dedicated_usage": "6576",
+   "shared_usage": "7"
+  },
+  "sonuclar": [
+   {
+    "ham": "<think>\n\n</think>\n\nFatih Sultan Mehmed, Osmanlı İmparatorluğu'nun kurucu ve ilk hanedanıdır. 1451'de Rumeli'de başlayarak, 1453'te İstanbul'u fethettiği için \"Fatih\" adı verilmiştir.",
+    "cevap": "Fatih Sultan Mehmed, Osmanlı İmparatorluğu'nun kurucu ve ilk hanedanıdır. 1451'de Rumeli'de başlayarak, 1453'te İstanbul'u fethettiği için \"Fatih\" adı verilmiştir.",
+    "ilk_token_sn": 0.39,
+    "uretim_sn": 0.95,
+    "parca": 67,
+    "tok_sn": 70.8,
+    "toplam_sn": 1.34,
+    "soru": "fatih kimdir"
+   },
+   {
+    "ham": "<think>\n\n</think>\n\nBöri, eski Türkçede kurtun adıydı. Bugün birçok Türk lehçesinde \"böri\" sözcüğü hâlâ kullanılmaktadır. Örneğin Kazakçada \"börı\", Kırgızcada \"börü\", Özbekçede \"bo'ri\" gibi kullanımlar vardır.",
+    "cevap": "Böri, eski Türkçede kurtun adıydı. Bugün birçok Türk lehçesinde \"böri\" sözcüğü hâlâ kullanılmaktadır. Örneğin Kazakçada \"börı\", Kırgızcada \"börü\", Özbekçede \"bo'ri\" gibi kullanımlar vardır.",
+    "ilk_token_sn": 0.37,
+    "uretim_sn": 1.17,
+    "parca": 83,
+    "tok_sn": 70.9,
+    "toplam_sn": 1.54,
+    "soru": "böri nedir"
+   },
+   {
+    "ham": "<think>\n\n</think>\n\nOsman Gazi, Osmanlı Devleti'nin kurucusu olarak bilinir. 1299 yılında Bursa'da kurulmuş olan Osmanlı Devleti, Osman Gazi'nin liderliği altında kurulmuştur.",
+    "cevap": "Osman Gazi, Osmanlı Devleti'nin kurucusu olarak bilinir. 1299 yılında Bursa'da kurulmuş olan Osmanlı Devleti, Osman Gazi'nin liderliği altında kurulmuştur.",
+    "ilk_token_sn": 0.34,
+    "uretim_sn": 0.81,
+    "parca": 55,
+    "tok_sn": 68.0,
+    "toplam_sn": 1.14,
+    "soru": "Osman Gazi kimdir"
+   },
+   {
+    "ham": "<think>\n\n</think>\n\nOrhan Gazi, Osmanlı Devleti'nin kurucusu Osman Gazi'nin oğlu ve Osmanlı Devleti'nin ikinci kurucusudur. Orhan Gazi, 1323 yılında Bursa'yı ele geçirdiğinde Osmanlı Devleti'nin kuruluşunun ilk adımlarını attı. Orhan Gazi, 1326 yılında Rumeli'ye geçtiğinde Osmanlı Devleti'nin kuruluşunun ikinci adımlarını attı. Orhan Gazi, 1331 yılında Konya'da birinci padişah olarak hüküm sürmeye başlayarak Osmanlı Devleti'nin kuruluşunun üçüncü adımlarını attı. Orhan Gazi, 1335 yılında Konya'da birinci padişah olarak hüküm sürmeye başlayarak Osmanlı Devleti'nin kuruluşunun üçüncü adımlarını attı. Orhan Gazi, 1339 yılında Konya'da birinci padişah olarak hüküm sürmeye başlayarak Osmanlı Devleti'nin kuruluşunun üçüncü adımlarını attı. Orhan Gazi, 1341 yılında Konya'da birinci padişah olarak hüküm sürmeye başlayarak Osmanlı Devleti'nin kuruluşunun üçüncü adımlarını attı. Orhan Gazi, 1345 yılında Konya'da birinci padişah olarak hüküm sürmeye başlayarak Osmanlı Devleti'nin kuruluşunun üçüncü",
+    "cevap": "Orhan Gazi, Osmanlı Devleti'nin kurucusu Osman Gazi'nin oğlu ve Osmanlı Devleti'nin ikinci kurucusudur. Orhan Gazi, 1323 yılında Bursa'yı ele geçirdiğinde Osmanlı Devleti'nin kuruluşunun ilk adımlarını attı. Orhan Gazi, 1326 yılında Rumeli'ye geçtiğinde Osmanlı Devleti'nin kuruluşunun ikinci adımlarını attı. Orhan Gazi, 1331 yılında Konya'da birinci padişah olarak hüküm sürmeye başlayarak Osmanlı Devleti'nin kuruluşunun üçüncü adımlarını attı. Orhan Gazi, 1335 yılında Konya'da birinci padişah olarak hüküm sürmeye başlayarak Osmanlı Devleti'nin kuruluşunun üçüncü adımlarını attı. Orhan Gazi, 1339 yılında Konya'da birinci padişah olarak hüküm sürmeye başlayarak Osmanlı Devleti'nin kuruluşunun üçüncü adımlarını attı. Orhan Gazi, 1341 yılında Konya'da birinci padişah olarak hüküm sürmeye başlayarak Osmanlı Devleti'nin kuruluşunun üçüncü adımlarını attı. Orhan Gazi, 1345 yılında Konya'da birinci padişah olarak hüküm sürmeye başlayarak Osmanlı Devleti'nin kuruluşunun üçüncü",
+    "ilk_token_sn": 0.34,
+    "uretim_sn": 4.9,
+    "parca": 350,
+    "tok_sn": 71.5,
+    "toplam_sn": 5.23,
+    "soru": "Orhan Gazi kimdir"
+   },
+   {
+    "ham": "<think>\n\n</think>\n\nOrhun Yazıtları'nın alfabesini Vilhelm Thomsen, 1893 yılında çözmüştür.",
+    "cevap": "Orhun Yazıtları'nın alfabesini Vilhelm Thomsen, 1893 yılında çözmüştür.",
+    "ilk_token_sn": 0.36,
+    "uretim_sn": 0.53,
+    "parca": 35,
+    "tok_sn": 65.5,
+    "toplam_sn": 0.89,
+    "soru": "Orhun Yazıtları'nın alfabesini kim ve hangi yılda çözmüştür?"
+   },
+   {
+    "ham": "<think>\n\n</think>\n\nAtlı savaş, Türk topluluğu içinde önemli bir rol oynar. Turan taktiği, atlı savaşın en önemli taktiklerinden biridir. Bu taktik, atlı savaşın en etkili şekilde yapılmasını sağlar.\n\nTuran taktiği, atlı savaşın en önemli taktiklerinden biridir. Bu taktik, atlı savaşın en etkili şekilde yapılmasını sağlar.\n\nTuran taktiği, atlı savaşın en önemli taktiklerinden biridir. Bu taktik, atlı savaşın en etkili şekilde yapılmasını sağlar.",
+    "cevap": "Atlı savaş, Türk topluluğu içinde önemli bir rol oynar. Turan taktiği, atlı savaşın en önemli taktiklerinden biridir. Bu taktik, atlı savaşın en etkili şekilde yapılmasını sağlar.\n\nTuran taktiği, atlı savaşın en önemli taktiklerinden biridir. Bu taktik, atlı savaşın en etkili şekilde yapılmasını sağlar.\n\nTuran taktiği, atlı savaşın en önemli taktiklerinden biridir. Bu taktik, atlı savaşın en etkili şekilde yapılmasını sağlar.",
+    "ilk_token_sn": 0.33,
+    "uretim_sn": 1.97,
+    "parca": 141,
+    "tok_sn": 71.5,
+    "toplam_sn": 2.31,
+    "soru": "Turan taktiği nasıl uygulanır?"
+   },
+   {
+    "ham": "<think>\n\n</think>\n\nEski Türkçede kurdun adı \"böri\" idi.",
+    "cevap": "Eski Türkçede kurdun adı \"böri\" idi.",
+    "ilk_token_sn": 0.34,
+    "uretim_sn": 0.33,
+    "parca": 20,
+    "tok_sn": 61.5,
+    "toplam_sn": 0.66,
+    "soru": "Eski Türkçede kurdun adı neydi?"
+   },
+   {
+    "ham": "<think>\n\n</think>\n\nAnadolu Selçuklu Devleti, 1243'teki Kösedağ Savaşı'nda Moğollara yenilmiştir.",
+    "cevap": "Anadolu Selçuklu Devleti, 1243'teki Kösedağ Savaşı'nda Moğollara yenilmiştir.",
+    "ilk_token_sn": 0.32,
+    "uretim_sn": 0.58,
+    "parca": 39,
+    "tok_sn": 66.8,
+    "toplam_sn": 0.91,
+    "soru": "Anadolu Selçuklu Devleti hangi savaşta Moğollara yenilmiştir?"
+   },
+   {
+    "ham": "<think>\n\n</think>\n\nYavuz Sultan Selim, 1514'te Çaldıran'da Safevîler, 1516'da Mercidabık ve 1517'de Ridaniye'de Memlükler ile fought after. Bu savaşlarla Mısır'ı Osmanlı topraklarına katmıştır.",
+    "cevap": "Yavuz Sultan Selim, 1514'te Çaldıran'da Safevîler, 1516'da Mercidabık ve 1517'de Ridaniye'de Memlükler ile fought after. Bu savaşlarla Mısır'ı Osmanlı topraklarına katmıştır.",
+    "ilk_token_sn": 0.35,
+    "uretim_sn": 1.1,
+    "parca": 77,
+    "tok_sn": 70.0,
+    "toplam_sn": 1.45,
+    "soru": "Yavuz Sultan Selim hangi savaşlarla Mısır'ı Osmanlı topraklarına katmıştır?"
+   },
+   {
+    "ham": "<think>\n\n</think>\n\nSakarya Meydan Muharebesi 23 Ağustos - 13 Eylül 1921 tarihleri arasında yirmi iki gün süren bir muharebe olmuştur.",
+    "cevap": "Sakarya Meydan Muharebesi 23 Ağustos - 13 Eylül 1921 tarihleri arasında yirmi iki gün süren bir muharebe olmuştur.",
+    "ilk_token_sn": 0.35,
+    "uretim_sn": 0.68,
+    "parca": 46,
+    "tok_sn": 67.9,
+    "toplam_sn": 1.03,
+    "soru": "Sakarya Meydan Muharebesi kaç gün sürmüştür?"
+   },
+   {
+    "ham": "<think>\n\n</think>\n\nÜç Tarz-ı Siyaset yazısı, 1904 yılında Kahire'de yayımlanmıştır.",
+    "cevap": "Üç Tarz-ı Siyaset yazısı, 1904 yılında Kahire'de yayımlanmıştır.",
+    "ilk_token_sn": 0.34,
+    "uretim_sn": 0.46,
+    "parca": 30,
+    "tok_sn": 64.5,
+    "toplam_sn": 0.81,
+    "soru": "Üç Tarz-ı Siyaset yazısı nerede ve hangi yıl yayımlanmıştır?"
+   },
+   {
+    "ham": "<think>\nOkay, let's tackle this question. The user is asking about the Milliyetçi Hareket Partisi and which congress approved its name.\n\nFirst, I need to recall the information provided in the context. The user provided several paragraphs from different sections of the document.\n\nLooking at the first part of the context, it mentions that the Milliyetçi Hareket Partisi was established after the 22 September 1960 event, when the committee was removed. Then it talks about the 1965 when the person joined the Cumhuriyetçi Köylü Millet Partisi.\n\nThen, in the next part, it mentions that in the 1969 Adana congress, the party's name was changed to Milliyetçi Hareket Partisi, along with the emblem and symbols.\n\nSo, the key point here is that the name of the party was changed at the Adana congress in 1969.\n\nTherefore, the answer to the question is that the name of the Milliyetçi Hareket Partisi was approved at the Adana congress in 1969.\n</think>\n\nMilliyetçi Hareket Partisi adı, 1969 yılında Adana'da düzenlenen kongrede kabul edilmiştir. Bu kongrede partinin adı, amblem ve semboller belirlenmiştir.",
+    "cevap": "Milliyetçi Hareket Partisi adı, 1969 yılında Adana'da düzenlenen kongrede kabul edilmiştir. Bu kongrede partinin adı, amblem ve semboller belirlenmiştir.",
+    "ilk_token_sn": 0.38,
+    "uretim_sn": 4.07,
+    "parca": 290,
+    "tok_sn": 71.2,
+    "toplam_sn": 4.45,
+    "soru": "Milliyetçi Hareket Partisi adı hangi kongrede kabul edilmiştir?"
+   },
+   {
+    "ham": "<think>\n\n</think>\n\nÜlkü Ocakları 12 Mart 1971'den sonra **Ülkücü Gençlik Derneği** adı altında yeniden kurulmuştur.  \n(Kaynak: ulku-ocaklari.md / parca 2)",
+    "cevap": "Ülkü Ocakları 12 Mart 1971'den sonra **Ülkücü Gençlik Derneği** adı altında yeniden kurulmuştur.  \n(Kaynak: ulku-ocaklari.md / parca 2)",
+    "ilk_token_sn": 0.34,
+    "uretim_sn": 0.84,
+    "parca": 58,
+    "tok_sn": 69.4,
+    "toplam_sn": 1.18,
+    "soru": "Ülkü Ocakları 12 Mart 1971'den sonra hangi adla yeniden kurulmuştur?"
+   },
+   {
+    "ham": "<think>\n\n</think>\n\nBu bilgi elimdeki dokümanlarda yok.",
+    "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+    "ilk_token_sn": 0.35,
+    "uretim_sn": 0.29,
+    "parca": 17,
+    "tok_sn": 59.2,
+    "toplam_sn": 0.64,
+    "soru": "Fatih Sultan Mehmed'in annesinin adı nedir?"
+   }
+  ]
+ },
+ "qwen3-4b-dusunme": {
+  "model": "qwen3-4b-cuda-gpu",
+  "bellek": {
+   "dedicated_usage": "6584",
+   "shared_usage": "7"
+  },
+  "sonuclar": [
+   {
+    "ham": "<think>\nOkay, the user is asking \"Fatih kimdir?\" which translates to \"Who is Fatih?\" \n\nFirst, I need to recall the information provided in the context. The context mentions several historical figures and events.\n\nLooking at the first part of the context, it talks about the Ottoman Empire, the Battle of Ankara, the reign of II. Mehmed, and the rise of Mustafa Kemal Atatürk.\n\nThen, the second part of the context discusses Mustafa Kemal Atatürk, his birth in Selanik, his education, his role in the Ottoman Empire's decline, and his subsequent leadership in the Republic of Turkey.\n\nThe third part of the context is about the Milliyetçi Hareketi, its origins, the role of Süleyman Demirel, and the subsequent political developments.\n\nNow, the user is asking \"Fatih kimdir?\" which is asking about the person named Fatih. However, in the context provided, there is no mention of a person named Fatih. The context discusses historical figures such as II. Mehmed, Mustafa Kemal Atatürk, and Süleyman Demirel.\n\nTherefore, the answer to the question \"Fatih kimdir?\" is that there is no information provided in the context about a person named Fatih. The context discusses other historical figures and events, but not Fatih.\n</think>\n\nBu soruya ilişkin BAĞLAM'da \"Fatih\" adlı bir kişi hakkında bilgi verilmemiştir. BAĞLAM'da yer alan bilgiler, Osmanlı Devleti'nin tarihine, Mustafa Kemal Atatürk'e ve Milliyetçi Hareketi'ne dairdir. Bu bağlam",
+    "cevap": "Bu soruya ilişkin BAĞLAM'da \"Fatih\" adlı bir kişi hakkında bilgi verilmemiştir. BAĞLAM'da yer alan bilgiler, Osmanlı Devleti'nin tarihine, Mustafa Kemal Atatürk'e ve Milliyetçi Hareketi'ne dairdir. Bu bağlam",
+    "ilk_token_sn": 0.33,
+    "uretim_sn": 4.83,
+    "parca": 350,
+    "tok_sn": 72.5,
+    "toplam_sn": 5.16,
+    "soru": "fatih kimdir"
+   },
+   {
+    "ham": "<think>\nOkay, the user is asking \"böri nedir\" which translates to \"what is böri?\" \n\nFirst, I need to recall the information provided in the context. The context mentions that in old Turkish, the word for \"kurt\" was \"böri.\" This term is used in various Turkic languages, such as Kazakh (börı), Kyrgyz (börü), Uzbek (bo'ri), etc.\n\nAdditionally, the context explains that in modern Turkish, the word \"bozkurt\" is used, and it's associated with the epic \"Börteçine.\" However, the original term \"böri\" is still used in some Turkic languages.\n\nSo, the answer should explain that \"böri\" is the old Turkish word for \"kurt,\" which is a symbol in Turkish culture. It's also used in various Turkic languages.\n\nI need to make sure the answer is concise, in Turkish, and directly addresses the question about \"böri.\"\n</think>\n\nBöri, eski Türkçede \"kurt\" anlamına gelen sözcüktür. Bu sözcük Orhun Yazıtları'nda ve on birinci yüzyılda Kaşgarlı Mahmud'un yazdığı Dîvânu Lugâti't-Türk'te geçer. Böri biçimi bugün de birçok Türk lehçesinde yaşamaktadır: Kazakçada börı, Kırgızcada börü, Özbekçede bo'ri. Türkiye Türkçesinde ise sözcük yalnızca \"bozkurt\" ve destan kahramanı \"Börteçine\" gibi kal",
+    "cevap": "Böri, eski Türkçede \"kurt\" anlamına gelen sözcüktür. Bu sözcük Orhun Yazıtları'nda ve on birinci yüzyılda Kaşgarlı Mahmud'un yazdığı Dîvânu Lugâti't-Türk'te geçer. Böri biçimi bugün de birçok Türk lehçesinde yaşamaktadır: Kazakçada börı, Kırgızcada börü, Özbekçede bo'ri. Türkiye Türkçesinde ise sözcük yalnızca \"bozkurt\" ve destan kahramanı \"Börteçine\" gibi kal",
+    "ilk_token_sn": 0.36,
+    "uretim_sn": 4.87,
+    "parca": 350,
+    "tok_sn": 71.8,
+    "toplam_sn": 5.23,
+    "soru": "böri nedir"
+   }
+  ]
+ }
+}

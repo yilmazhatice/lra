@@ -1,3 +1,4 @@
 .venv/
 knowledge.db
 __pycache__/
+knowledge_*.db

@@ -2,28 +2,71 @@
 
 import difflib
 import math
+import os
 import re
 import sys
 import time
 
-from foundry_client import client, find_model
-from search import search, kokler
+from foundry_client import client, set_primary, with_model
+from search import kokler, load_chunks, search_details
 
-TOP_K = 8             # aramada getirilen aday parca sayisi
-# Bu esigin altinda en iyi parca varsa modele hic sorulmaz. Olcum (18 soru):
-# belgelerden cevaplanabilen sorular 0.479-0.791, cevaplanamayanlar
-# 0.179-0.577 araliginda skor aliyor. Iki kume ust uste biniyor, yani hicbir
-# esik ikisini temiz ayirmiyor: esigi yukseltmek cevaplanabilir sorulari
-# reddettirmeye basliyor. Ustteki bindirmeyi (ornegin "Fatih Sultan
-# Mehmed'in annesi", 0.577) modelin kendi reddetmesi karsiliyor.
-MIN_SCORE = 0.42
+TOP_K = int(os.environ.get("LRA_TOP_K", 8))   # ortam degiskeni yalnizca deneyler icin
+# Guvenlik tabani: en iyi parca bu skorun altindaysa modele hic sorulmaz.
+#
+# masaustu_gui dalinda 0.42 idi; o deger karakter tabanli parcalama ve
+# ingilizce sorgu onekiyle olculmustu (18 soru). Bu dalda ingest.py paragraf
+# parcalama yapiyor ve search.py Turkce sorgu talimati kullaniyor; ikisi de
+# skor dagilimini kaydirdi. 105 soruluk sette olculen hal (esik_takip_analiz.py,
+# rag_iyilestirme_plani.md Bolum 2.9): konuya yakin ama belgede olmayan sorular
+# 0.52-0.69, yani cevaplanabilirlerin cogundan yuksek; tek bir esik iki grubu
+# ayiramiyor, onlari model reddediyor. Esik yalnizca acikca konu disi sorulari
+# (0.32-0.37) ayikliyor. En dusuk cevaplanabilir soru 0.346 ("Kımız nedir?"),
+# yani 0.42 bu parcalamada dogru cevaplari da reddettiriyordu.
+MIN_SCORE = float(os.environ.get("LRA_MIN_SCORE", 0.33))   # ortam degiskeni yalnizca deneyler icin
 RED_IFADESI = "elimdeki dokümanlarda yok"   # reddetme yanitinin sabit ifadesi
-CHAT_KEYWORD = "qwen2.5-7b"
+REFUSAL = "Bu bilgi elimdeki dokümanlarda yok."
+CHAT_KEYWORD = os.environ.get("LRA_CHAT_MODEL", "qwen2.5-7b")   # ortam degiskeni yalnizca deneyler icin
 MAX_TOKENS = 600      # liste soran sorularda 350 token cevabi ortadan kesiyordu
 GECMIS_TUR = 2        # modele tasinan onceki soru-cevap sayisi
 GECMIS_CEVAP_SINIRI = 180   # gecmisteki cevaplar bu uzunluga kirpilir
+FOLLOW_UP_MAX_WORDS = 8     # bu uzunluga kadar olan sorular takip olabilir
+# Isaret sozcugu tasimayan kisa sorularda birlesik arama, tek basina aramadan
+# en az bu kadar yuksek skor verirse kullanilir. Olcum (esik_takip_analiz.py):
+# gercek takip sorularinda fark +0.23..+0.35, konu degisimlerinde medyan
+# -0.015. masaustu_gui'de karsilastirma paysizdi (alternatif > mevcut); konu
+# degisimlerinde fark gurultu seviyesinde oldugu icin pay olmadan arama yaklasik
+# yari yariya onceki sorunun konusuna kayiyor.
+FOLLOW_UP_MARGIN = 0.20
+# Takip sorusunda onceki soruyu modele de gostermek. masaustu_gui dalinda
+# acikti ve istem "onu yeniden cevaplama" diye uyariyordu; bu uyari yetmiyor.
+# 105 soruluk sette olculdu (degerlendirmeler/2026-09-18_0408_birlesik.json
+# acik, 2026-09-18_0426_birlesik-takip-kapali.json kapali):
+#
+#                                 acik     kapali
+#   tam basari                    %93.3    %95.6
+#   cevaplanamaz soruyu reddetme  %68.8    %93.8
+#   cevaplanabilir soruda basari  %98.6    %95.9
+#
+# Acikken model, onceki soruya dayanmayan bir soruda onceki soruyu
+# cevapliyor: "asdf qwerty zxcv" sorusuna "Eski Türkçede kurdun adı böri
+# idi", "Futbolda ofsayt kuralı nedir?" sorusuna once Malazgirt'i anlatiyor.
+# Kapaliyken cevaplanabilir tarafta iki soru kaybediliyor; cevaplanamaz
+# sorularda uydurmanin bedeli daha agir oldugu icin varsayilan kapali.
+FOLLOW_UP_CONTEXT_TO_MODEL = os.environ.get("LRA_FOLLOW_UP_TO_MODEL", "0") == "1"
 
 YAKIN_ESIK = 0.30     # esigi gecemeyen ama "az kalsin" eslesen sorular
+
+# Turkce olmayan yazi korumasi (H12): model bazen cevabin ortasinda Cince'ye
+# geciyor (kontrol seti "Toy nedir?"; kayitli 1586 cevabin 2'sinde goruldu).
+# Bu karakterlerden once gelen son tam cumlede kesilir; geriye bu kadardan
+# kisa bir sey kalirsa reddedilir.
+FOREIGN_SCRIPT = re.compile(r"[぀-ヿ㐀-䶿一-鿿가-힯＀-￯]")
+MIN_ANSWER_CHARS = 20
+# Cevap dogrulama adimi (H13) reddedildi: iki sette de butun kotu cevaplari
+# yakaladi ama 11 dogru cevabi da reddetti (Bolum 2.14). evaluate.py raporda
+# bu ayari yazdigi icin sabit duruyor.
+ANSWER_VERIFICATION = False
+VERIFY_PROMPT_NAME = None
 
 # Modele verilecek parcalar getirilenlerin tamami degil: yanit suresinin
 # neredeyse tamami baglami okumakla geciyor (~7.7 sn / 1000 karakter). En iyi
@@ -53,6 +96,11 @@ Bu bilgi elimdeki dokümanlarda yok.
 - Köşeli parantezli etiketleri cevaba yazma.
 - Son satır: (Kaynak: dosya.md)"""
 
+if CHAT_KEYWORD.startswith("qwen3"):
+    # Qwen3 varsayilan olarak cevaptan once dusunme metni uretiyor; bu hem
+    # yavas hem MAX_TOKENS'i dolduruyor (rag_iyilestirme_plani.md Bolum 2.3).
+    SYSTEM_PROMPT += "\n/no_think"
+
 
 def strip_thinking(text):
     """Bazi modeller <think>...</think> blogu uretebilir; guvenlik agi.
@@ -63,6 +111,18 @@ def strip_thinking(text):
     text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL)
     text = re.sub(r"<think>.*$", "", text, flags=re.DOTALL)
     return text.strip()
+
+
+def cut_foreign_script(text):
+    """(metin, kesildi_mi). Cince/Japonca/Korece karakterden once biten son
+    tam cumleyi birakir."""
+    match = FOREIGN_SCRIPT.search(text)
+    if not match:
+        return text, False
+    head = text[:match.start()]
+    # Sira sayilari ("19. Tümen", "II. Mehmed") cumle sonu sayilmaz
+    ends = [m.end() for m in re.finditer(r"(?<=[a-zçğıöşüâîû)\"'’”])[.!?][\"'’”]?(?=\s|$)", head)]
+    return (head[:ends[-1]] if ends else "").strip(), True
 
 
 def baglam_parcalari(hits):
@@ -344,53 +404,155 @@ def _isaret_ediyor(question):
     return any(k in metin for k in ISARET_KALIPLARI)
 
 
+def warmup_messages():
+    """Uygulamanin gonderebilecegi en uzun istem (foundry_client.set_primary).
+
+    Sohbet modeli baglam okuma icin gereken calisma bellegini istemin boyutuna
+    gore ayiriyor; bunun gomme modelinden once olmasi gerekiyor. 8 GB'lik
+    kartta sira tersine donerse ayni soru ~2.5 sn yerine ~50 sn suruyor
+    (foundry_client.set_primary'deki aciklama). Gomme modeli henuz yuklu
+    olmadigindan arama yapilmaz, veritabanindaki en uzun parcalar kullanilir
+    ve pencereleme uygulanmaz: amac en kotu durumu ayirtmak.
+    """
+    meta, _matrix, _kokler = load_chunks()
+    longest = sorted(meta, key=lambda m: len(m[3]), reverse=True)[:BAGLAM_EN_COK]
+    hits = [(0.0, *m) for m in longest]
+    return [
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {
+            "role": "user",
+            "content": (
+                f"BAĞLAM:\n{build_context(hits)}\n\n"
+                "SORU: Bu bölümlerde anlatılan olayların sebepleri ve "
+                "sonuçları nelerdir?\n\nTürkçe cevap ver."
+            ),
+        },
+    ]
+
+
+set_primary(CHAT_KEYWORD, warmup_messages)
+
+
+def follow_up_query(question, previous_question=None):
+    """Kisa takip sorulari icin aramaya gonderilebilecek birlesik metin.
+
+    Gercek secim retrieve_details icinde skorlara bakarak yapiliyor; bu
+    fonksiyon dis cagrilar ve raporlama icin duruyor.
+    """
+    if previous_question and len(question.split()) <= FOLLOW_UP_MAX_WORDS:
+        return f"{previous_question} {question}"
+    return question
+
+
+def retrieve_details(question, top_k=TOP_K, search_query=None,
+                     previous_question=None):
+    """(parcalar, arama_metni, takip_mu, en_iyi_skor) dondur.
+
+    Takip sorusu tek basina aranamaz: "bu hayvan destanlarda hangi rollerde
+    gecer?" tek basina arandiginda at belgesini getiriyor. Isaret sozcugu
+    tasiyan soruda dogrudan onceki soruyla birlestiriliyor. Isaret sozcugu
+    tasimayan kisa sorular da onceki tura dayanabiliyor ("neden
+    degistirdiler", "hangi yil"); orada iki sorgu da denenip belirgin bicimde
+    daha iyi eslesen kazaniyor.
+
+    Karar hep en iyi skorla veriliyor; hibrit arama acikken ilk parcanin skoru
+    bundan dusuk olabilir (search.search_details).
+    """
+    if search_query is not None:
+        hits, best = search_details(search_query, top_k=top_k)
+        return hits, search_query, search_query != question, best
+
+    hits, best = search_details(question, top_k=top_k)
+    if not previous_question:
+        return hits, question, False, best
+
+    birlesik = f"{previous_question} {question}"
+    if _isaret_ediyor(question):
+        alt_hits, alt_best = search_details(birlesik, top_k=top_k)
+        return alt_hits, birlesik, True, alt_best
+
+    # Pay olmadan karsilastirmak (masaustu_gui'deki hali) yeni bir konuya
+    # gecildiginde aramayi yaklasik yari yariya onceki sorunun konusuna
+    # kaydiriyor: konu degisiminde iki skor arasindaki fark gurultu
+    # seviyesinde (medyan -0.015), gercek takip sorularinda +0.23..+0.35.
+    if len(question.split()) <= FOLLOW_UP_MAX_WORDS:
+        alt_hits, alt_best = search_details(birlesik, top_k=top_k)
+        if alt_hits and alt_best - best >= FOLLOW_UP_MARGIN:
+            return alt_hits, birlesik, True, alt_best
+
+    return hits, question, False, best
+
+
+def retrieve(question, top_k=TOP_K, search_query=None, previous_question=None):
+    """retrieve_details'in yalnizca parcalari donduren hali."""
+    return retrieve_details(question, top_k=top_k, search_query=search_query,
+                            previous_question=previous_question)[0]
+
+
 def answer(question, top_k=TOP_K, search_query=None, history=None,
-           stream_cb=None):
+           stream_cb=None, previous_question=None):
     """(cevap, getirilen_parcalar, gecen_sure) dondur.
 
     history: [{"soru": ..., "cevap": ...}] seklinde onceki turlar. Hem takip
     sorularinin aranmasinda hem de modele baglam olarak kullanilir.
+    previous_question yalnizca onceki soruyu bilen cagrilar icin (evaluate.py).
     search_query verilirse arama dogrudan onunla yapilir.
     stream_cb verilirse, model uretirken metnin o ana kadarki hali bu
     fonksiyona tekrar tekrar gonderilir (arayuzde canli yazim icin).
     """
+    result = answer_details(question, top_k=top_k, search_query=search_query,
+                            history=history, stream_cb=stream_cb,
+                            previous_question=previous_question)
+    return result["text"], result["hits"], result["total_sec"]
+
+
+def answer_details(question, top_k=TOP_K, search_query=None, history=None,
+                   stream_cb=None, previous_question=None):
+    """answer() ile ayni isi yapip olcum bilgilerini de dondur.
+
+    Anahtarlar: text, hits (modele giden secilmis parcalar), best_score (esik
+    bununla karsilastirilir), search_text (aramada kullanilan metin), source
+    (cevabin dayandigi belge; redde None), used_follow_up (birlesik arama
+    secildi mi), used_llm (esikte reddedildiyse False), foreign_script_cut,
+    verified, retrieval_sec, first_token_sec, total_sec.
+    """
     started = time.perf_counter()
 
-    # Takip sorusu tek basina aranamaz: "bu hayvan destanlarda hangi
-    # rollerde gecer?" tek basina arandiginda at belgesini getiriyor.
-    # Isaret eden soruda dogrudan onceki soruyla birlestiriyoruz; kisa ama
-    # isaretsiz sorularda ise iki sorgu da denenip iyi eslesen kazaniyor.
+    # evaluate.py yalnizca onceki soruyu tasiyor. Cevabi bos olan tur aramada
+    # kullanilir, modele mesaj olarak gonderilmez (asagida ozet bosken atlanir).
+    if previous_question and not history:
+        history = [{"soru": previous_question, "cevap": ""}]
     onceki = history[-1]["soru"] if history else None
-    aranan = search_query or question
-    takip = False          # soru onceki tura mi dayaniyor
-    if search_query is None and onceki and _isaret_ediyor(question):
-        aranan = onceki + " " + question
-        takip = True
 
-    hits = search(aranan, top_k=top_k)
+    hits, aranan, takip, best = retrieve_details(
+        question, top_k=top_k, search_query=search_query,
+        previous_question=onceki,
+    )
 
-    # Isaret sozcugu tasimayan kisa sorular da onceki tura dayanabiliyor:
-    # "neden degistirdiler", "hangi yil", "amaci neydi". Bunlarda birlesik
-    # sorgu da deneniyor ve daha iyi eslesen kazaniyor. Onceki surumde
-    # birlesik sorgu yalnizca kendi basina arama esigin ALTINDA kalirsa
-    # deneniyordu; esigi geciyor ama yanlis belgeye giden takip sorulari
-    # (0.42-0.60 bandi) boylece elden kaciyordu. Gercekten yeni bir soruda
-    # birlesik sorgu seyreldigi icin kendi basina arama zaten one cikiyor.
-    if (search_query is None and onceki and not takip
-            and len(question.split()) <= 8):
-        birlesik = onceki + " " + question
-        alternatif = search(birlesik, top_k=top_k)
-        if alternatif and (not hits or alternatif[0][0] > hits[0][0]):
-            hits, aranan, takip = alternatif, birlesik, True
+    result = {
+        "hits": hits,
+        "best_score": best,
+        "search_text": aranan,
+        "used_follow_up": takip,
+        "used_llm": False,
+        "verified": None,
+        "foreign_script_cut": False,
+        "source": None,
+        "retrieval_sec": time.perf_counter() - started,
+        "first_token_sec": None,
+    }
 
     # Esik korumasi: alakali hicbir sey bulunamadiysa modele hic sormuyoruz.
     # Boylece model alakasiz baglamdan cevap uydurma firsati bulamiyor.
-    if not hits or hits[0][0] < MIN_SCORE:
-        return _reddet(hits), hits, time.perf_counter() - started
+    if not hits or best < MIN_SCORE:
+        result["text"] = _reddet(hits)
+        result["total_sec"] = time.perf_counter() - started
+        return result
 
     # Yalnizca secilen parcalar hem modele gider hem de arayuzde "yanitin
     # dayandigi bolumler" olarak gosterilir; ikisi ayrismasin.
     hits = baglam_parcalari(hits)
+    result["hits"] = hits
 
     messages = [{"role": "system", "content": SYSTEM_PROMPT}]
     for tur in (history or [])[-GECMIS_TUR:]:
@@ -398,6 +560,8 @@ def answer(question, top_k=TOP_K, search_query=None, history=None,
         # tasinirsa model yeni soruyu o listenin icinden cevaplamaya calisiyor
         # ve ozel adlari karistiriyordu; ozeti yetiyor.
         ozet = re.sub(r"\n?\(Kaynak:[^)]*\)", "", tur["cevap"]).strip()
+        if not ozet:
+            continue          # cevabi bilinmeyen tur (evaluate.py) mesaja girmez
         if len(ozet) > GECMIS_CEVAP_SINIRI:
             ozet = ozet[:GECMIS_CEVAP_SINIRI].rsplit(" ", 1)[0] + "…"
         messages.append({"role": "user", "content": tur["soru"]})
@@ -407,10 +571,11 @@ def answer(question, top_k=TOP_K, search_query=None, history=None,
     # diyordu; gecmis turlarin mesaj olarak tasinmasi tek basina yetmedi.
     # Onceki soru BAGLAM/SORU gibi etiketli bir alan olarak veriliyor:
     # cumle icine gomulu yonergeyi model cevabina kopyaliyordu.
-    onceki_alan = (f"ÖNCEKİ SORU: {onceki}\n" if takip and onceki else "")
+    goster_onceki = FOLLOW_UP_CONTEXT_TO_MODEL and takip and onceki
+    onceki_alan = (f"ÖNCEKİ SORU: {onceki}\n" if goster_onceki else "")
     kapsam = ("Yalnızca SORU'da sorulanı yanıtla; ÖNCEKİ SORU, SORU'nun "
               "neyi kastettiğini anlaman için var, onu yeniden cevaplama.\n"
-              if takip and onceki else "")
+              if goster_onceki else "")
 
     messages.append({
         "role": "user",
@@ -426,35 +591,40 @@ def answer(question, top_k=TOP_K, search_query=None, history=None,
         ),
     })
 
-    istek = dict(
-        model=find_model(CHAT_KEYWORD),
-        messages=messages,
-        temperature=0.0,
-        max_tokens=MAX_TOKENS,
-    )
+    def uret(model_id):
+        """Bir cevap uretir; (metin, ilk_token_suresi) dondur.
 
-    def uret(mesajlar):
-        """Bir cevap uretir; stream_cb verilmisse akisli."""
-        if stream_cb is None:
-            resp = client().chat.completions.create(**{**istek, "messages": mesajlar})
-            return strip_thinking(resp.choices[0].message.content or "")
-
-        # Akisli uretim: yanit 20-30 saniye surebiliyor, kullanicinin ilk
-        # kelimeleri birkac saniyede gormesi bekleyisi katlanilir kiliyor.
+        Her zaman akisla aliniyor: stream_cb verilmisse arayuze canli yazim
+        icin, verilmemisse ilk token suresi olculebilsin diye. Metin ayni.
+        """
+        istek_basladi = time.perf_counter()
+        ilk_token = None
         parcalar = []
         akis = client().chat.completions.create(
-            stream=True, **{**istek, "messages": mesajlar}
+            model=model_id, messages=messages, temperature=0.0,
+            max_tokens=MAX_TOKENS, stream=True,
         )
+        # Akisli uretim: yanit 20-30 saniye surebiliyor, kullanicinin ilk
+        # kelimeleri birkac saniyede gormesi bekleyisi katlanilir kiliyor.
         for olay in akis:
             if not olay.choices:
                 continue
             yeni_parca = olay.choices[0].delta.content or ""
             if yeni_parca:
+                if ilk_token is None:
+                    ilk_token = time.perf_counter() - istek_basladi
                 parcalar.append(yeni_parca)
-                stream_cb(strip_thinking("".join(parcalar)))
-        return strip_thinking("".join(parcalar))
+                if stream_cb is not None:
+                    stream_cb(strip_thinking("".join(parcalar)))
+        return strip_thinking("".join(parcalar)), ilk_token
 
-    text = uret(messages)
+    # with_model: model bellekte degilse yuklenir, "not loaded" hatasinda
+    # istek bir kez tekrarlanir. masaustu_gui dalinda bu yoktu ve bilgisayar
+    # yeniden baslatildiginda her soru 400 hatasiyla dusuyordu.
+    text, result["first_token_sec"] = with_model(CHAT_KEYWORD, uret)
+    result["used_llm"] = True
+
+    text, result["foreign_script_cut"] = cut_foreign_script(text)
 
     # Ozel ad denetimi ve onarimi: model adlari Turkce ekle cekimlerken
     # bozabiliyor ("Türkeş'in" -> "Türkş'in"). Modele yeniden urettirmek bu
@@ -462,13 +632,26 @@ def answer(question, top_k=TOP_K, search_query=None, history=None,
     # dogrudan degistiriyoruz.
     text = adlari_onar(text, hits)
 
+    if result["foreign_script_cut"] and len(text.strip()) < MIN_ANSWER_CHARS:
+        # Yabanci yazi cevabin basinda basladiysa geriye anlamli bir sey
+        # kalmiyor; uydurma birakmaktansa reddetmek daha dogru.
+        text = REFUSAL
+
     if not text:
         text = (
             "Model bu soru için bir yanıt üretemedi. "
             "Soruyu biraz daha açık yazmayı deneyin."
         )
 
-    return kaynagi_duzelt(text, hits), hits, time.perf_counter() - started
+    # Dayanak belgesi kaynak satiri eklenmeden once hesaplaniyor; satirdaki
+    # dosya adi sozcuk ortusmesine karismasin.
+    if RED_IFADESI not in text.replace("İ", "i").lower():
+        dayanak = _dayanak_belgesi(text, hits)
+        result["source"] = dayanak[0] if dayanak else None
+
+    result["text"] = kaynagi_duzelt(text, hits)
+    result["total_sec"] = time.perf_counter() - started
+    return result
 
 
 def show(question, debug=False):

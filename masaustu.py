@@ -5,6 +5,7 @@ dalgalanan bayrak zemini, koyu icerik paneli, kirmizi vurgular,
 sohbet akisi ve acilir kaynak kartlari.
 """
 
+import sys
 import threading
 import time
 import tkinter as tk
@@ -34,12 +35,19 @@ METIN = "#e7dcde"
 SOLUK = "#b3a5a8"
 COK_SOLUK = "#9c8f92"
 
-BASLIK_FONT = ("Helvetica Neue", 26, "bold")
-ROL_FONT = ("Helvetica Neue", 10, "bold")
-ALT_FONT = ("Helvetica Neue", 12)
-METIN_FONT = ("Helvetica Neue", 13)
-KUCUK_FONT = ("Helvetica Neue", 11)
-MINI_FONT = ("Helvetica Neue", 10)
+# Arayuz macOS'ta yazildi; iki isim orada var, Windows/Linux Tk'sinde yok.
+# "pointinghand" bilinmeyen bir imlec adi ve Tk pencereyi kurarken
+# TclError("bad cursor spec") firlatiyor, yani uygulama hic acilmiyor.
+# "Helvetica Neue" ise sessizce Tk'nin varsayilan yazi tipine dusuyor.
+EL_IMLECI = "pointinghand" if sys.platform == "darwin" else "hand2"
+YAZI_AILESI = "Helvetica Neue" if sys.platform == "darwin" else "Segoe UI"
+
+BASLIK_FONT = (YAZI_AILESI, 26, "bold")
+ROL_FONT = (YAZI_AILESI, 10, "bold")
+ALT_FONT = (YAZI_AILESI, 12)
+METIN_FONT = (YAZI_AILESI, 13)
+KUCUK_FONT = (YAZI_AILESI, 11)
+MINI_FONT = (YAZI_AILESI, 10)
 
 KART_EN = 820              # icerik panelinin ust siniri (app.py ile ayni)
 YAN_EN = 268
@@ -138,7 +146,7 @@ def dugme(ana, metin, islev, birincil=False, font=KUCUK_FONT, dolgu=(14, 7)):
     cerceve = tk.Frame(ana, bg=KIRMIZI if birincil else KIRMIZI_KOYU)
     et = tk.Label(
         cerceve, text=metin, font=font, bg=durgun_zemin, fg=durgun_yazi,
-        padx=dolgu[0], pady=dolgu[1], cursor="pointinghand",
+        padx=dolgu[0], pady=dolgu[1], cursor=EL_IMLECI,
         disabledforeground="#c9a7ab",
     )
     et.pack(fill=tk.BOTH, expand=True, padx=1, pady=1)
@@ -259,7 +267,7 @@ def olcumleri_ciz(ana, sure, en_iyi, sayi):
                      fg="#6d5f62", padx=8).pack(side=tk.LEFT)
         tk.Label(satir, text=etiket, font=MINI_FONT, bg=BALON,
                  fg=COK_SOLUK).pack(side=tk.LEFT)
-        tk.Label(satir, text=deger, font=("Helvetica Neue", 10, "bold"),
+        tk.Label(satir, text=deger, font=(YAZI_AILESI, 10, "bold"),
                  bg=BALON, fg=KIRMIZI_SOLUK, padx=4).pack(side=tk.LEFT)
 
 
@@ -269,7 +277,7 @@ def kaynaklari_ciz(ana, hits):
 
     baslik = tk.Label(
         ana, text="▸  " + baslik_metni, font=KUCUK_FONT, bg=BALON,
-        fg=KIRMIZI_SOLUK, anchor="w", cursor="pointinghand", pady=6,
+        fg=KIRMIZI_SOLUK, anchor="w", cursor=EL_IMLECI, pady=6,
     )
     baslik.pack(fill=tk.X, pady=(12, 0))
 
@@ -287,7 +295,7 @@ def kaynaklari_ciz(ana, hits):
 
         ust = tk.Frame(yazi, bg=BALON)
         ust.pack(fill=tk.X)
-        tk.Label(ust, text=dosya, font=("Helvetica Neue", 11, "bold"),
+        tk.Label(ust, text=dosya, font=(YAZI_AILESI, 11, "bold"),
                  bg=BALON, fg="#e7dcde").pack(side=tk.LEFT)
         tk.Label(ust, text=f"· bölüm {sira} · eşleşme {skor:.3f}",
                  font=MINI_FONT, bg=BALON, fg=COK_SOLUK,
@@ -544,7 +552,7 @@ yan_ic = tk.Frame(yan, bg=YAN_PANEL, padx=22, pady=26)
 yan_ic.pack(fill=tk.BOTH, expand=True)
 
 tk.Label(
-    yan_ic, text="Sistem yapılandırması", font=("Helvetica Neue", 14, "bold"),
+    yan_ic, text="Sistem yapılandırması", font=(YAZI_AILESI, 14, "bold"),
     bg=YAN_PANEL, fg=BASLIK_RENK, anchor="w",
 ).pack(fill=tk.X, pady=(0, 12))
 
@@ -559,7 +567,7 @@ for _etiket, _deger in [
     _satir.pack(fill=tk.X)
     tk.Label(_satir, text=_etiket, font=KUCUK_FONT, bg=YAN_PANEL,
              fg="#c9bbbe", anchor="w").pack(side=tk.LEFT, pady=6)
-    tk.Label(_satir, text=_deger, font=("Helvetica Neue", 11, "bold"),
+    tk.Label(_satir, text=_deger, font=(YAZI_AILESI, 11, "bold"),
              bg=YAN_PANEL, fg=KIRMIZI_SOLUK, anchor="e").pack(side=tk.RIGHT,
                                                               pady=6)
     tk.Frame(yan_ic, bg="#33161b", height=1).pack(fill=tk.X)
@@ -613,7 +621,7 @@ giris.pack(side=tk.LEFT, fill=tk.X, expand=True, ipady=9, padx=(0, 10))
 giris.bind("<Return>", lambda _e: sor())
 
 gonder = dugme(satir, "Sor", sor, birincil=True,
-               font=("Helvetica Neue", 12, "bold"), dolgu=(22, 8))
+               font=(YAZI_AILESI, 12, "bold"), dolgu=(22, 8))
 gonder.pack(side=tk.LEFT)
 
 # --------------------------------------------------------------- sohbet akisi
@@ -642,7 +650,7 @@ ornek_cerceve.pack(fill=tk.X, pady=(0, 12))
 
 tk.Label(
     ornek_cerceve, text="Başlamak için bir örnek seçin",
-    font=("Helvetica Neue", 12, "bold"), bg=PANEL, fg=METIN, anchor="w",
+    font=(YAZI_AILESI, 12, "bold"), bg=PANEL, fg=METIN, anchor="w",
 ).pack(fill=tk.X, pady=(0, 10))
 
 ornek_satir = tk.Frame(ornek_cerceve, bg=PANEL)

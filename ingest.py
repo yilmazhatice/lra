@@ -1,11 +1,47 @@
 import sqlite3
 import pathlib
 import re
+import sys
 
 DOCS_DIR = pathlib.Path("docs")
 DB_PATH = "knowledge.db"
-CHUNK_SIZE = 900  # hedef parca uzunlugu (karakter)
-OVERLAP = 200   # parcalar arasi ortusme (karakter)
+CHUNK_SIZE = 1000  # bir parcanin govdesi icin ust sinir (karakter); asan paragraf cumlelere bolunur
+CHUNKING = "paragraf + baslik yolu, ortusme yok"
+
+# Cumle sonu: kucuk harf, rakam olmayan bir karakterden sonra gelen nokta,
+# soru ya da unlem isareti (varsa kapanis tirnagiyla). "II. Mehmed",
+# "19. Tumen" gibi sira sayilarinda bolmemek icin nokta once buyuk harf ya da
+# rakamdan sonra geliyorsa cumle sonu sayilmaz.
+SENTENCE_END = re.compile(r"(?<=[a-zçğıöşüâîû)][.!?])[\"”’']?\s+")
+
+
+def fold(text):
+    """Anahtar kelime aramasi icin Turkce kucuk harf.
+
+    str.lower() "İ"yi "i" + birlestirici nokta yapiyor ve "I"yi "i"ye
+    ceviriyor; ikisi de Turkce kelimelerde eslesmeyi bozar.
+    """
+    return text.replace("İ", "i").replace("I", "ı").lower().replace("̇", "")
+
+
+def build_fts(conn):
+    """chunks tablosundan anahtar kelime indeksi (FTS5) kur.
+
+    rowid parca id'siyle ayni; search.py vektor ve kelime siralarini bununla
+    eslestirir. Vektorlere dokunmaz, embed.py'yi yeniden calistirmak gerekmez.
+    """
+    conn.execute("DROP TABLE IF EXISTS chunks_fts")
+    conn.execute(
+        "CREATE VIRTUAL TABLE chunks_fts USING fts5("
+        "body, tokenize='unicode61 remove_diacritics 0')"
+    )
+    rows = conn.execute("SELECT id, text FROM chunks").fetchall()
+    conn.executemany(
+        "INSERT INTO chunks_fts (rowid, body) VALUES (?, ?)",
+        [(chunk_id, fold(text)) for chunk_id, text in rows],
+    )
+    conn.commit()
+    return len(rows)
 
 
 def read_documents():
@@ -15,23 +51,51 @@ def read_documents():
             yield path.name, path.read_text(encoding="utf-8")
 
 
-def chunk_text(text):
-    """Metni paragraf sinirlarindan ~CHUNK_SIZE karakterlik parcalara bol."""
-    paragraphs = [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
+def split_long(paragraph, limit=CHUNK_SIZE):
+    """Siniri asan paragrafi cumle sinirlarindan limit'i asmayan parcalara bol."""
+    if len(paragraph) <= limit:
+        return [paragraph]
+    sentences, start = [], 0
+    for match in SENTENCE_END.finditer(paragraph):
+        sentences.append(paragraph[start:match.end()].strip())
+        start = match.end()
+    sentences.append(paragraph[start:].strip())
 
-    chunks = []
-    current = ""
-    for p in paragraphs:
-        # Bu paragraf eklenince hedefi asiyorsa mevcut parcayi kapat
-        if current and len(current) + len(p) + 1 > CHUNK_SIZE:
-            chunks.append(current)
-            # Ortusme: yeni parca, oncekinin son OVERLAP karakteriyle baslasin
-            current = current[-OVERLAP:] + " " + p
+    pieces, current = [], ""
+    for sentence in filter(None, sentences):
+        if current and len(current) + 1 + len(sentence) > limit:
+            pieces.append(current)
+            current = sentence
         else:
-            current = (current + "\n" + p).strip()
-
+            current = f"{current} {sentence}".strip()
     if current:
-        chunks.append(current)
+        pieces.append(current)
+    return pieces
+
+
+def chunk_text(text, fallback_title=""):
+    """Her paragrafi ayri bir parca yap, basina bulundugu baslik yolunu ekle.
+
+    Paragraflar tek bir alt konuyu anlatiyor; birlestirilince farkli konular
+    ayni vektore karisiyordu. Baslik yolu ("Belge — Alt baslik") paragrafin
+    kime/neye ait oldugunu tasir: "Tahliye olduktan sonra..." diye baslayan
+    paragraf, "Muhsin Yazicioglu" alt basligi olmadan kimi anlattigini
+    soylemez.
+    """
+    headings = {}   # seviye -> baslik
+    chunks = []
+    for block in (b.strip() for b in re.split(r"\n\s*\n", text)):
+        if not block:
+            continue
+        heading = re.match(r"^(#+)\s+(.*)$", block)
+        if heading and "\n" not in block:
+            level = len(heading.group(1))
+            headings = {k: v for k, v in headings.items() if k < level}
+            headings[level] = heading.group(2).strip()
+            continue
+        path = " — ".join(headings[k] for k in sorted(headings)) or fallback_title
+        for piece in split_long(block):
+            chunks.append(f"{path}\n{piece}" if path else piece)
     return chunks
 
 
@@ -50,7 +114,7 @@ def build_database():
 
     total = 0
     for doc_name, text in read_documents():
-        pieces = chunk_text(text)
+        pieces = chunk_text(text, fallback_title=pathlib.Path(doc_name).stem)
         for i, piece in enumerate(pieces):
             conn.execute(
                 "INSERT INTO chunks (doc_name, chunk_idx, text) VALUES (?, ?, ?)",
@@ -60,9 +124,16 @@ def build_database():
         total += len(pieces)
 
     conn.commit()
+    build_fts(conn)
     conn.close()
-    print(f"\nToplam {total} parca {DB_PATH} dosyasina yazildi.")
+    print(f"\nToplam {total} parca {DB_PATH} dosyasina yazildi (anahtar kelime indeksi dahil).")
 
 
 if __name__ == "__main__":
-    build_database()
+    if "--fts" in sys.argv:
+        # Yalnizca anahtar kelime indeksini mevcut parcalardan yeniden kur
+        conn = sqlite3.connect(DB_PATH)
+        print(f"Anahtar kelime indeksi kuruldu: {build_fts(conn)} parca.")
+        conn.close()
+    else:
+        build_database()

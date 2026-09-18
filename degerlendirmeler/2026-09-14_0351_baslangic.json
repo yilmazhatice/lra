@@ -1,0 +1,3520 @@
+{
+ "meta": {
+  "tarih": "2026-09-14 03:51",
+  "etiket": "baslangic",
+  "sohbet_modeli": "qwen2.5-7b-instruct-cuda-gpu",
+  "gomme_modeli": "qwen3-embedding-0.6b-cuda-gpu",
+  "top_k": 3,
+  "min_score": 0.42,
+  "max_tokens": 350,
+  "parca_sayisi": 53,
+  "chunk_size": 900,
+  "overlap": 200,
+  "git": "64e3342 (kaydedilmemis degisiklik var)",
+  "set_parmak_izi": "dcda3164d3"
+ },
+ "ozet": {
+  "soru_sayisi": 90,
+  "cevaplanabilir": 74,
+  "cevaplanamaz": 16,
+  "basari": 67.8,
+  "arama_hit1": 68.9,
+  "arama_hit3": 87.8,
+  "arama_mrr": 0.796,
+  "cevap_basari": 66.2,
+  "yanlis_red": 20.3,
+  "yanlis_red_esikte": 17.6,
+  "anahtar_tam": 91.5,
+  "yasak_ifade_sayisi": 3,
+  "kaynak_var": 96.6,
+  "kaynak_dogru": 91.5,
+  "cevapsiz_red": 93.8,
+  "cevapsiz_esikte_red": 37.5,
+  "red_kaynakli": 4,
+  "sure_ortalama": 1.77,
+  "sure_medyan": 1.93,
+  "sure_en_uzun": 3.57,
+  "ilk_token_ortalama": 1.0,
+  "arama_ortalama": 0.291
+ },
+ "sonuclar": [
+  {
+   "soru": "Çanakkale Deniz Zaferi hangi tarihte kazanılmıştır?",
+   "onceki_soru": null,
+   "arama_metni": "Çanakkale Deniz Zaferi hangi tarihte kazanılmıştır?",
+   "cevap": "Çanakkale Deniz Zaferi, 18 Mart 1915'te kazanılmıştır. (Kaynak: canakkale-ve-kurtulus-savasi.md)",
+   "getirilen": [
+    "canakkale-ve-kurtulus-savasi.md#0 0.562",
+    "canakkale-ve-kurtulus-savasi.md#1 0.459",
+    "selcuklular-ve-malazgirt.md#2 0.441"
+   ],
+   "en_iyi_skor": 0.562,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "canakkale-ve-kurtulus-savasi.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.289,
+   "sure_ilk_token": 0.956,
+   "sure_toplam": 1.997,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "canakkale-1",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Gelibolu Yarımadası'na kara çıkarmaları ne zaman yapılmıştır?",
+   "onceki_soru": null,
+   "arama_metni": "Gelibolu Yarımadası'na kara çıkarmaları ne zaman yapılmıştır?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "canakkale-ve-kurtulus-savasi.md#2 0.377",
+    "mustafa-kemal-ataturk.md#1 0.371",
+    "canakkale-ve-kurtulus-savasi.md#1 0.356"
+   ],
+   "en_iyi_skor": 0.377,
+   "esikte_red": true,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.286,
+   "sure_ilk_token": null,
+   "sure_toplam": 0.286,
+   "cevaplanabilir": true,
+   "sira": 5,
+   "hit1": false,
+   "hit3": false,
+   "eksik_anahtar": [
+    "25 Nisan 1915"
+   ],
+   "yasak_bulunan": [],
+   "kaynak_dogru": false,
+   "basarili": false,
+   "neden": [
+    "yanlış red (eşikte)",
+    "doğru parça ilk 3'te değil (sıra 5)"
+   ],
+   "id": "canakkale-2",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Sakarya Meydan Muharebesi kaç gün sürmüştür?",
+   "onceki_soru": null,
+   "arama_metni": "Sakarya Meydan Muharebesi kaç gün sürmüştür?",
+   "cevap": "Sakarya Meydan Muharebesi 23 Ağustos - 13 Eylül 1921 tarihleri arasında yirmi iki gün süren bir muharebe olmuştur.\n\n(Kaynak: canakkale-ve-kurtulus-savasi.md)",
+   "getirilen": [
+    "canakkale-ve-kurtulus-savasi.md#2 0.511",
+    "osmanli-padisahlari.md#2 0.403",
+    "canakkale-ve-kurtulus-savasi.md#1 0.378"
+   ],
+   "en_iyi_skor": 0.511,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "canakkale-ve-kurtulus-savasi.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.27,
+   "sure_ilk_token": 0.917,
+   "sure_toplam": 2.229,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "canakkale-3",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": true
+  },
+  {
+   "soru": "Büyük Taarruz'da kesin sonuç nerede alınmıştır?",
+   "onceki_soru": null,
+   "arama_metni": "Büyük Taarruz'da kesin sonuç nerede alınmıştır?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "canakkale-ve-kurtulus-savasi.md#2 0.384",
+    "selcuklular-ve-malazgirt.md#0 0.342",
+    "milliyetci-hareketin-isimleri.md#9 0.329"
+   ],
+   "en_iyi_skor": 0.384,
+   "esikte_red": true,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.254,
+   "sure_ilk_token": null,
+   "sure_toplam": 0.254,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [
+    "Dumlupınar"
+   ],
+   "yasak_bulunan": [],
+   "kaynak_dogru": false,
+   "basarili": false,
+   "neden": [
+    "yanlış red (eşikte)"
+   ],
+   "id": "canakkale-4",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Lozan Antlaşması ne zaman imzalanmıştır?",
+   "onceki_soru": null,
+   "arama_metni": "Lozan Antlaşması ne zaman imzalanmıştır?",
+   "cevap": "Lozan Antlaşması 24 Temmuz 1923'te imzalanmıştır. (Kaynak: canakkale-ve-kurtulus-savasi.md / parca 2)",
+   "getirilen": [
+    "canakkale-ve-kurtulus-savasi.md#2 0.425",
+    "canakkale-ve-kurtulus-savasi.md#1 0.388",
+    "osmanli-padisahlari.md#0 0.372"
+   ],
+   "en_iyi_skor": 0.425,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "canakkale-ve-kurtulus-savasi.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.265,
+   "sure_ilk_token": 1.069,
+   "sure_toplam": 2.086,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "canakkale-5",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Orhun Yazıtları'nın alfabesini kim ve hangi yılda çözmüştür?",
+   "onceki_soru": null,
+   "arama_metni": "Orhun Yazıtları'nın alfabesini kim ve hangi yılda çözmüştür?",
+   "cevap": "Orhun Yazıtları'nın alfabesini Danimarkalı dilbilimci Vilhelm Thomsen 1893'te çözmüştür.\n\n(Kaynak: turkcenin-tarihi-ve-alfabeleri.md)",
+   "getirilen": [
+    "turkcenin-tarihi-ve-alfabeleri.md#0 0.636",
+    "ilk-turk-devletleri.md#1 0.567",
+    "turkcenin-tarihi-ve-alfabeleri.md#1 0.544"
+   ],
+   "en_iyi_skor": 0.636,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turkcenin-tarihi-ve-alfabeleri.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.287,
+   "sure_ilk_token": 1.072,
+   "sure_toplam": 2.357,
+   "cevaplanabilir": true,
+   "sira": 2,
+   "hit1": false,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": false,
+   "basarili": false,
+   "neden": [
+    "yanlış kaynak: turkcenin-tarihi-ve-alfabeleri.md"
+   ],
+   "id": "ilkturk-1",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": true
+  },
+  {
+   "soru": "Mete Han orduyu hangi sisteme göre düzenlemiştir?",
+   "onceki_soru": null,
+   "arama_metni": "Mete Han orduyu hangi sisteme göre düzenlemiştir?",
+   "cevap": "Mete Han orduyu onluk sisteme göre düzenlemiştir.\n\n(Kaynak: ilk-turk-devletleri.md)",
+   "getirilen": [
+    "ilk-turk-devletleri.md#0 0.488",
+    "turk-devlet-gelenegi.md#1 0.399",
+    "turk-devlet-gelenegi.md#0 0.393"
+   ],
+   "en_iyi_skor": 0.488,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "ilk-turk-devletleri.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.253,
+   "sure_ilk_token": 1.058,
+   "sure_toplam": 1.846,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "ilkturk-2",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Göktürk Devleti ne zaman ve kimin önderliğinde kurulmuştur?",
+   "onceki_soru": null,
+   "arama_metni": "Göktürk Devleti ne zaman ve kimin önderliğinde kurulmuştur?",
+   "cevap": "Göktürk Devleti 552 yılında Bumin Kağan önderliğinde kurulmuştur.\n\n(Kaynak: ilk-turk-devletleri.md)",
+   "getirilen": [
+    "ilk-turk-devletleri.md#0 0.574",
+    "ilk-turk-devletleri.md#2 0.491",
+    "turk-devlet-gelenegi.md#0 0.482"
+   ],
+   "en_iyi_skor": 0.574,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "ilk-turk-devletleri.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.263,
+   "sure_ilk_token": 0.965,
+   "sure_toplam": 1.872,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "ilkturk-3",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Orhun Yazıtları kimler adına dikilmiştir?",
+   "onceki_soru": null,
+   "arama_metni": "Orhun Yazıtları kimler adına dikilmiştir?",
+   "cevap": "Orhun Yazıtları, Vezir Tonyukuk (yaklaşık 720-725), Kül Tigin (732) ve Bilge Kağan (735) adına dikilmiştir.\n\n(Kaynak: ilk-turk-devletleri.md)",
+   "getirilen": [
+    "ilk-turk-devletleri.md#1 0.506",
+    "turkcenin-tarihi-ve-alfabeleri.md#0 0.504",
+    "milliyetci-hareketin-isimleri.md#2 0.438"
+   ],
+   "en_iyi_skor": 0.506,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "ilk-turk-devletleri.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.275,
+   "sure_ilk_token": 0.961,
+   "sure_toplam": 2.306,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "ilkturk-4",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Uygur Kağanlığı hangi yıl kurulmuştur?",
+   "onceki_soru": null,
+   "arama_metni": "Uygur Kağanlığı hangi yıl kurulmuştur?",
+   "cevap": "Uygur Kağanlığı 744'te kurulmuştur.\n\n(Kaynak: ilk-turk-devletleri.md)",
+   "getirilen": [
+    "ilk-turk-devletleri.md#2 0.604",
+    "ulku-ocaklari.md#0 0.546",
+    "turk-milliyetciliginin-dogusu.md#2 0.466"
+   ],
+   "en_iyi_skor": 0.604,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "ilk-turk-devletleri.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.267,
+   "sure_ilk_token": 0.807,
+   "sure_toplam": 1.588,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "ilkturk-5",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Milliyetçi Hareket Partisi adı hangi kongrede kabul edilmiştir?",
+   "onceki_soru": null,
+   "arama_metni": "Milliyetçi Hareket Partisi adı hangi kongrede kabul edilmiştir?",
+   "cevap": "Milliyetçi Hareket Partisi adı 8-9 Şubat 1969'daki Adana kongresinde kabul edilmiştir. (Kaynak: milliyetci-hareketin-isimleri.md / parca 5)",
+   "getirilen": [
+    "milliyetci-hareketin-isimleri.md#5 0.580",
+    "milliyetci-hareketin-isimleri.md#0 0.386",
+    "milliyetci-hareketin-isimleri.md#8 0.374"
+   ],
+   "en_iyi_skor": 0.58,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "milliyetci-hareketin-isimleri.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.268,
+   "sure_ilk_token": 1.105,
+   "sure_toplam": 2.331,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "isimler-1",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": true
+  },
+  {
+   "soru": "Dokuz Işık ilkeleri nelerdir?",
+   "onceki_soru": null,
+   "arama_metni": "Dokuz Işık ilkeleri nelerdir?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "turk-destanlari.md#0 0.331",
+    "ilk-turk-devletleri.md#2 0.297",
+    "ilk-turk-devletleri.md#1 0.270"
+   ],
+   "en_iyi_skor": 0.331,
+   "esikte_red": true,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.257,
+   "sure_ilk_token": null,
+   "sure_toplam": 0.257,
+   "cevaplanabilir": true,
+   "sira": 7,
+   "hit1": false,
+   "hit3": false,
+   "eksik_anahtar": [
+    "milliyetçilik",
+    "ülkücülük"
+   ],
+   "yasak_bulunan": [],
+   "kaynak_dogru": false,
+   "basarili": false,
+   "neden": [
+    "yanlış red (eşikte)",
+    "doğru parça ilk 3'te değil (sıra 7)"
+   ],
+   "id": "isimler-2",
+   "grup": "tekil",
+   "kategori": "ozel_ad",
+   "eski12": false
+  },
+  {
+   "soru": "Alparslan Türkeş nerede doğmuştur?",
+   "onceki_soru": null,
+   "arama_metni": "Alparslan Türkeş nerede doğmuştur?",
+   "cevap": "Alparslan Türkeş, Kıbrıs'ın Lefkoşa şehrinde doğmuştur. (Kaynak: milliyetci-hareketin-isimleri.md)",
+   "getirilen": [
+    "milliyetci-hareketin-isimleri.md#4 0.717",
+    "milliyetci-hareketin-isimleri.md#8 0.498",
+    "mustafa-kemal-ataturk.md#0 0.469"
+   ],
+   "en_iyi_skor": 0.717,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "milliyetci-hareketin-isimleri.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.254,
+   "sure_ilk_token": 1.052,
+   "sure_toplam": 1.985,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "isimler-3",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Nihal Atsız'ın Göktürk dönemini anlatan romanları hangileridir?",
+   "onceki_soru": null,
+   "arama_metni": "Nihal Atsız'ın Göktürk dönemini anlatan romanları hangileridir?",
+   "cevap": "Nihal Atsız'ın Göktürk dönemini anlatan romanları \"Bozkurtların Ölümü\" ve \"Bozkurtlar Diriliyor\"'dur. (Kaynak: milliyetci-hareketin-isimleri.md)",
+   "getirilen": [
+    "milliyetci-hareketin-isimleri.md#0 0.517",
+    "milliyetci-hareketin-isimleri.md#2 0.422",
+    "turk-destanlari.md#0 0.412"
+   ],
+   "en_iyi_skor": 0.517,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "milliyetci-hareketin-isimleri.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.285,
+   "sure_ilk_token": 0.969,
+   "sure_toplam": 2.21,
+   "cevaplanabilir": true,
+   "sira": 2,
+   "hit1": false,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "isimler-4",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Büyük Birlik Partisi'ni kim kurmuştur?",
+   "onceki_soru": null,
+   "arama_metni": "Büyük Birlik Partisi'ni kim kurmuştur?",
+   "cevap": "Büyük Birlik Partisi'ni Ocak 1993'te kurucu genel başkanı olarak kurmuştur.\n\n(Kaynak: milliyetci-hareketin-isimleri.md)",
+   "getirilen": [
+    "ulku-ocaklari.md#0 0.462",
+    "milliyetci-hareketin-isimleri.md#5 0.444",
+    "milliyetci-hareketin-isimleri.md#8 0.420"
+   ],
+   "en_iyi_skor": 0.462,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "milliyetci-hareketin-isimleri.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.269,
+   "sure_ilk_token": 1.037,
+   "sure_toplam": 2.121,
+   "cevaplanabilir": true,
+   "sira": 3,
+   "hit1": false,
+   "hit3": true,
+   "eksik_anahtar": [
+    "Yazıcıoğlu"
+   ],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": false,
+   "neden": [
+    "eksik: Yazıcıoğlu"
+   ],
+   "id": "isimler-5",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Türkçülük Günü olarak hangi tarih anılmaktadır?",
+   "onceki_soru": null,
+   "arama_metni": "Türkçülük Günü olarak hangi tarih anılmaktadır?",
+   "cevap": "3 Mayıs tarihi Türkçülük Günü olarak anılmaktadır.\n\n(Kaynak: milliyetci-hareketin-isimleri.md)",
+   "getirilen": [
+    "milliyetci-hareketin-isimleri.md#2 0.549",
+    "ulku-ocaklari.md#0 0.451",
+    "milliyetci-hareketin-isimleri.md#1 0.444"
+   ],
+   "en_iyi_skor": 0.549,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "milliyetci-hareketin-isimleri.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.26,
+   "sure_ilk_token": 0.949,
+   "sure_toplam": 1.819,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "isimler-6",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Mustafa Kemal'in annesinin adı nedir?",
+   "onceki_soru": null,
+   "arama_metni": "Mustafa Kemal'in annesinin adı nedir?",
+   "cevap": "Mustafa Kemal'in annesinin adı Zübeyde Hanım'dır.\n\n(Kaynak: mustafa-kemal-ataturk.md)",
+   "getirilen": [
+    "mustafa-kemal-ataturk.md#0 0.601",
+    "canakkale-ve-kurtulus-savasi.md#1 0.434",
+    "mustafa-kemal-ataturk.md#3 0.407"
+   ],
+   "en_iyi_skor": 0.601,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "mustafa-kemal-ataturk.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.256,
+   "sure_ilk_token": 1.052,
+   "sure_toplam": 1.886,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "ataturk-1",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Mustafa Kemal'e Kemal adını kim vermiştir?",
+   "onceki_soru": null,
+   "arama_metni": "Mustafa Kemal'e Kemal adını kim vermiştir?",
+   "cevap": "Mustafa Kemal'e \"Kemal\" adını matematik öğretmeni Mustafa Efendi vermiştir.\n\n(Kaynak: mustafa-kemal-ataturk.md)",
+   "getirilen": [
+    "mustafa-kemal-ataturk.md#0 0.621",
+    "mustafa-kemal-ataturk.md#3 0.446",
+    "canakkale-ve-kurtulus-savasi.md#1 0.435"
+   ],
+   "en_iyi_skor": 0.621,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "mustafa-kemal-ataturk.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.268,
+   "sure_ilk_token": 1.055,
+   "sure_toplam": 1.985,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "ataturk-2",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Nutuk ne zaman okunmuş ve yaklaşık kaç saat sürmüştür?",
+   "onceki_soru": null,
+   "arama_metni": "Nutuk ne zaman okunmuş ve yaklaşık kaç saat sürmüştür?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "osmanli-padisahlari.md#2 0.326",
+    "mustafa-kemal-ataturk.md#3 0.317",
+    "osmanli-padisahlari.md#0 0.298"
+   ],
+   "en_iyi_skor": 0.326,
+   "esikte_red": true,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.238,
+   "sure_ilk_token": null,
+   "sure_toplam": 0.238,
+   "cevaplanabilir": true,
+   "sira": 2,
+   "hit1": false,
+   "hit3": true,
+   "eksik_anahtar": [
+    "1927",
+    "otuz altı|36"
+   ],
+   "yasak_bulunan": [],
+   "kaynak_dogru": false,
+   "basarili": false,
+   "neden": [
+    "yanlış red (eşikte)"
+   ],
+   "id": "ataturk-3",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "\"Yurtta sulh, cihanda sulh\" sözü hangi yıl söylenmiştir?",
+   "onceki_soru": null,
+   "arama_metni": "\"Yurtta sulh, cihanda sulh\" sözü hangi yıl söylenmiştir?",
+   "cevap": "\"Yurtta sulh, cihanda sulh\" sözü 1933 yılında söylenmiştir.\n\n(Kaynak: mustafa-kemal-ataturk.md / parca 4)",
+   "getirilen": [
+    "milliyetci-hareketin-isimleri.md#2 0.429",
+    "mustafa-kemal-ataturk.md#4 0.421",
+    "turk-kulturunde-kurt.md#0 0.417"
+   ],
+   "en_iyi_skor": 0.429,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "mustafa-kemal-ataturk.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.294,
+   "sure_ilk_token": 0.882,
+   "sure_toplam": 1.942,
+   "cevaplanabilir": true,
+   "sira": 12,
+   "hit1": false,
+   "hit3": false,
+   "eksik_anahtar": [
+    "1931"
+   ],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": false,
+   "neden": [
+    "eksik: 1931",
+    "doğru parça ilk 3'te değil (sıra 12)"
+   ],
+   "id": "ataturk-4",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Atatürk'ün naaşı Anıtkabir'e ne zaman nakledilmiştir?",
+   "onceki_soru": null,
+   "arama_metni": "Atatürk'ün naaşı Anıtkabir'e ne zaman nakledilmiştir?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.\n\n(Kaynak: milliyetci-hareketin-isimleri.md, canakkale-ve-kurtulus-savasi.md)",
+   "getirilen": [
+    "milliyetci-hareketin-isimleri.md#13 0.433",
+    "osmanli-padisahlari.md#1 0.432",
+    "canakkale-ve-kurtulus-savasi.md#1 0.425"
+   ],
+   "en_iyi_skor": 0.433,
+   "esikte_red": false,
+   "reddetti": true,
+   "kaynaklar": [
+    "milliyetci-hareketin-isimleri.md",
+    "canakkale-ve-kurtulus-savasi.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.283,
+   "sure_ilk_token": 0.962,
+   "sure_toplam": 1.968,
+   "cevaplanabilir": true,
+   "sira": 5,
+   "hit1": false,
+   "hit3": false,
+   "eksik_anahtar": [
+    "10 Kasım 1953"
+   ],
+   "yasak_bulunan": [],
+   "kaynak_dogru": false,
+   "basarili": false,
+   "neden": [
+    "yanlış red (model)",
+    "doğru parça ilk 3'te değil (sıra 5)"
+   ],
+   "id": "ataturk-5",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Yavuz Sultan Selim hangi savaşlarla Mısır'ı Osmanlı topraklarına katmıştır?",
+   "onceki_soru": null,
+   "arama_metni": "Yavuz Sultan Selim hangi savaşlarla Mısır'ı Osmanlı topraklarına katmıştır?",
+   "cevap": "Yavuz Sultan Selim, Mısır'ı Osmanlı topraklarına katmak için 1517'de Ridaniye Savaşı'nda Memlükler'e yenilgiye uğrattı. Bu savaşla Mısır ve Hicaz Osmanlı topraklarına katılmıştır. (Kaynak: osmanli-padisahlari.md)",
+   "getirilen": [
+    "osmanli-padisahlari.md#1 0.477",
+    "selcuklular-ve-malazgirt.md#0 0.469",
+    "selcuklular-ve-malazgirt.md#1 0.463"
+   ],
+   "en_iyi_skor": 0.477,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "osmanli-padisahlari.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.291,
+   "sure_ilk_token": 1.069,
+   "sure_toplam": 2.66,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [
+    "Mercidabık"
+   ],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": false,
+   "neden": [
+    "eksik: Mercidabık"
+   ],
+   "id": "osmanli-1",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": true
+  },
+  {
+   "soru": "fatih kimdir",
+   "onceki_soru": null,
+   "arama_metni": "fatih kimdir",
+   "cevap": "Fatih Sultan Mehmed, 29 Mayıs 1453'te İstanbul'u fethettiğinde yirmi bir yaşındaydı. Bu yeniliğle Osmanlı Devleti imparatorluğuna dönüştürülmüş, Doğu Roma İmparatorluğu ise sona ermiştir. (Kaynak: osmanli-padisahlari.md)",
+   "getirilen": [
+    "osmanli-padisahlari.md#1 0.455",
+    "mustafa-kemal-ataturk.md#0 0.442",
+    "milliyetci-hareketin-isimleri.md#6 0.439"
+   ],
+   "en_iyi_skor": 0.455,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "osmanli-padisahlari.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.184,
+   "sure_ilk_token": 0.961,
+   "sure_toplam": 2.391,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "osmanli-2",
+   "grup": "tekil",
+   "kategori": "ozel_ad",
+   "eski12": false
+  },
+  {
+   "soru": "Osman Gazi kimdir",
+   "onceki_soru": null,
+   "arama_metni": "Osman Gazi kimdir",
+   "cevap": "Osman Gazi, Osmanlı Devleti'nin kurucusudur. (Kaynak: osmanli-padisahlari.md)",
+   "getirilen": [
+    "osmanli-padisahlari.md#0 0.614",
+    "osmanli-padisahlari.md#2 0.458",
+    "selcuklular-ve-malazgirt.md#0 0.452"
+   ],
+   "en_iyi_skor": 0.614,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "osmanli-padisahlari.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.205,
+   "sure_ilk_token": 0.949,
+   "sure_toplam": 1.666,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "osmanli-3",
+   "grup": "tekil",
+   "kategori": "ozel_ad",
+   "eski12": false
+  },
+  {
+   "soru": "Orhan Gazi kimdir",
+   "onceki_soru": null,
+   "arama_metni": "Orhan Gazi kimdir",
+   "cevap": "Orhan Gazi, Osmanlı Devleti'nin kurucusu Osman Gazi'in oğultur. Kuruluş döneminin belirleyici hükümdarı olarak anılmaktadır ve Bursa'nın alınması ve Rumeli'ye geçiş yapımı sırasında önemli rol oynamıştır. (Kaynak: osmanli-padisahlari.md)",
+   "getirilen": [
+    "osmanli-padisahlari.md#0 0.527",
+    "turk-milliyetciliginin-dogusu.md#1 0.458",
+    "milliyetci-hareketin-isimleri.md#13 0.456"
+   ],
+   "en_iyi_skor": 0.527,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "osmanli-padisahlari.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.206,
+   "sure_ilk_token": 1.05,
+   "sure_toplam": 2.5,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "osmanli-4",
+   "grup": "tekil",
+   "kategori": "ozel_ad",
+   "eski12": false
+  },
+  {
+   "soru": "Yıldırım Bayezid Ankara Savaşı'nda kime yenilmiştir?",
+   "onceki_soru": null,
+   "arama_metni": "Yıldırım Bayezid Ankara Savaşı'nda kime yenilmiştir?",
+   "cevap": "Yıldırım Bayezid Ankara Savaşı'nda Timur'a yenilmiştir.\n\n(Kaynak: osmanli-padisahlari.md)",
+   "getirilen": [
+    "osmanli-padisahlari.md#1 0.563",
+    "selcuklular-ve-malazgirt.md#2 0.547",
+    "canakkale-ve-kurtulus-savasi.md#1 0.520"
+   ],
+   "en_iyi_skor": 0.563,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "osmanli-padisahlari.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.265,
+   "sure_ilk_token": 0.955,
+   "sure_toplam": 1.782,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "osmanli-5",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Kanuni Sultan Süleyman kaç yıl hüküm sürmüştür?",
+   "onceki_soru": null,
+   "arama_metni": "Kanuni Sultan Süleyman kaç yıl hüküm sürmüştür?",
+   "cevap": "Kanuni Sultan Süleyman, 1520-1566 yılları arasında kırk altı yıl hüküm sürmüştür.\n\n(Kaynak: osmanli-padisahlari.md)",
+   "getirilen": [
+    "osmanli-padisahlari.md#2 0.501",
+    "osmanli-padisahlari.md#0 0.401",
+    "osmanli-padisahlari.md#1 0.353"
+   ],
+   "en_iyi_skor": 0.501,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "osmanli-padisahlari.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.293,
+   "sure_ilk_token": 1.088,
+   "sure_toplam": 2.144,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "osmanli-6",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Anadolu Selçuklu Devleti hangi savaşta Moğollara yenilmiştir?",
+   "onceki_soru": null,
+   "arama_metni": "Anadolu Selçuklu Devleti hangi savaşta Moğollara yenilmiştir?",
+   "cevap": "Anadolu Selçuklu Devleti 1243'teki Kösedağ Savaşı'nda Moğollara yenilmiştir. (Kaynak: selcuklular-ve-malazgirt.md / parca 2)",
+   "getirilen": [
+    "selcuklular-ve-malazgirt.md#2 0.640",
+    "selcuklular-ve-malazgirt.md#1 0.574",
+    "selcuklular-ve-malazgirt.md#0 0.534"
+   ],
+   "en_iyi_skor": 0.64,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "selcuklular-ve-malazgirt.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.278,
+   "sure_ilk_token": 0.9,
+   "sure_toplam": 2.135,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "selcuklu-1",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": true
+  },
+  {
+   "soru": "Malazgirt Savaşı ne zaman yapılmıştır?",
+   "onceki_soru": null,
+   "arama_metni": "Malazgirt Savaşı ne zaman yapılmıştır?",
+   "cevap": "Malazgirt Savaşı 26 Ağustos 1071'de yapılmıştır.\n\n(Kaynak: selcuklular-ve-malazgirt.md)",
+   "getirilen": [
+    "selcuklular-ve-malazgirt.md#0 0.560",
+    "osmanli-padisahlari.md#2 0.398",
+    "canakkale-ve-kurtulus-savasi.md#2 0.387"
+   ],
+   "en_iyi_skor": 0.56,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "selcuklular-ve-malazgirt.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.263,
+   "sure_ilk_token": 0.921,
+   "sure_toplam": 1.874,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "selcuklu-2",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Büyük Selçuklu Devleti'nin kuruluşunu kesinleştiren savaş hangisidir?",
+   "onceki_soru": null,
+   "arama_metni": "Büyük Selçuklu Devleti'nin kuruluşunu kesinleştiren savaş hangisidir?",
+   "cevap": "Büyük Selçuklu Devleti'nin kuruluşunu kesinleştiren savaş Dandanakan Savaşı'dır.\n\n(Kaynak: selcuklular-ve-malazgirt.md)",
+   "getirilen": [
+    "selcuklular-ve-malazgirt.md#0 0.617",
+    "osmanli-padisahlari.md#0 0.520",
+    "selcuklular-ve-malazgirt.md#1 0.490"
+   ],
+   "en_iyi_skor": 0.617,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "selcuklular-ve-malazgirt.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.275,
+   "sure_ilk_token": 1.045,
+   "sure_toplam": 2.105,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "selcuklu-3",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Anadolu Selçuklu Devleti'ni kim kurmuştur?",
+   "onceki_soru": null,
+   "arama_metni": "Anadolu Selçuklu Devleti'ni kim kurmuştur?",
+   "cevap": "Süleyman Şah, İznik merkezli Anadolu Selçuklu Devleti'ni kurmuştur.\n\n(Kaynak: selcuklular-ve-malazgirt.md)",
+   "getirilen": [
+    "selcuklular-ve-malazgirt.md#1 0.612",
+    "selcuklular-ve-malazgirt.md#2 0.575",
+    "osmanli-padisahlari.md#0 0.559"
+   ],
+   "en_iyi_skor": 0.612,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "selcuklular-ve-malazgirt.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.242,
+   "sure_ilk_token": 0.954,
+   "sure_toplam": 1.97,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "selcuklu-4",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Miryokefalon Savaşı'nın sonucu ne olmuştur?",
+   "onceki_soru": null,
+   "arama_metni": "Miryokefalon Savaşı'nın sonucu ne olmuştur?",
+   "cevap": "Miryokefalon Savaşı'nın sonucu, Bizans'ın Anadolu'yua geri alma girişiminin başarısız olması ve Anadolu'nun Türk yurdu olduğu kesinleşmesi olmuştur. Bu savaş, Anadolu'nun Türklerin eline geçtiğinin ve Türk yerleşimlerinin arttığına dair önemli bir kanıt oldu. (Kaynak: selcuklular-ve-malazgirt.md)",
+   "getirilen": [
+    "selcuklular-ve-malazgirt.md#2 0.449",
+    "osmanli-padisahlari.md#2 0.405",
+    "selcuklular-ve-malazgirt.md#1 0.394"
+   ],
+   "en_iyi_skor": 0.449,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "selcuklular-ve-malazgirt.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.24,
+   "sure_ilk_token": 0.904,
+   "sure_toplam": 2.76,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "selcuklu-5",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Manas Destanı hangi topluma aittir?",
+   "onceki_soru": null,
+   "arama_metni": "Manas Destanı hangi topluma aittir?",
+   "cevap": "Manas Destanı, Kırgızlara ait bir destandır.\n\n(Kaynak: turk-destanlari.md)",
+   "getirilen": [
+    "turk-destanlari.md#1 0.605",
+    "turk-destanlari.md#0 0.443",
+    "turk-destanlari.md#2 0.407"
+   ],
+   "en_iyi_skor": 0.605,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-destanlari.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.287,
+   "sure_ilk_token": 0.954,
+   "sure_toplam": 1.772,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "destan-1",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Dede Korkut Kitabı kaç hikâyeden oluşur?",
+   "onceki_soru": null,
+   "arama_metni": "Dede Korkut Kitabı kaç hikâyeden oluşur?",
+   "cevap": "Dede Korkut Kitabı, Oğuzların İslam sonrası dönemine ait on iki hikâyeden oluşur.\n\n(Kaynak: turk-destanlari.md / parca 2)",
+   "getirilen": [
+    "turk-destanlari.md#2 0.607",
+    "turk-destanlari.md#0 0.426",
+    "turk-kulturunde-kurt.md#0 0.395"
+   ],
+   "en_iyi_skor": 0.607,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-destanlari.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.262,
+   "sure_ilk_token": 0.896,
+   "sure_toplam": 1.909,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "destan-2",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Oğuz Kağan Destanı'na göre Oğuz Kağan'ın kaç oğlu vardır?",
+   "onceki_soru": null,
+   "arama_metni": "Oğuz Kağan Destanı'na göre Oğuz Kağan'ın kaç oğlu vardır?",
+   "cevap": "Oğuz Kağan Destanı'na göre Oğuz Kağan altı oğlu vardır.\n\n(Kaynak: turk-destanlari.md)",
+   "getirilen": [
+    "turk-destanlari.md#0 0.626",
+    "turk-destanlari.md#1 0.547",
+    "milliyetci-hareketin-isimleri.md#12 0.413"
+   ],
+   "en_iyi_skor": 0.626,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-destanlari.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.307,
+   "sure_ilk_token": 1.049,
+   "sure_toplam": 2.031,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "destan-3",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Ergenekon'dan çıkış günü nasıl kutlanmıştır?",
+   "onceki_soru": null,
+   "arama_metni": "Ergenekon'dan çıkış günü nasıl kutlanmıştır?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "milliyetci-hareketin-isimleri.md#9 0.372",
+    "ulku-ocaklari.md#1 0.360",
+    "canakkale-ve-kurtulus-savasi.md#1 0.347"
+   ],
+   "en_iyi_skor": 0.372,
+   "esikte_red": true,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.271,
+   "sure_ilk_token": null,
+   "sure_toplam": 0.271,
+   "cevaplanabilir": true,
+   "sira": 11,
+   "hit1": false,
+   "hit3": false,
+   "eksik_anahtar": [
+    "bahar bayramı"
+   ],
+   "yasak_bulunan": [],
+   "kaynak_dogru": false,
+   "basarili": false,
+   "neden": [
+    "yanlış red (eşikte)",
+    "doğru parça ilk 3'te değil (sıra 11)"
+   ],
+   "id": "destan-4",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Dede Korkut kültürü UNESCO listesine hangi yıl alınmıştır?",
+   "onceki_soru": null,
+   "arama_metni": "Dede Korkut kültürü UNESCO listesine hangi yıl alınmıştır?",
+   "cevap": "Dede Korkut kültürü 2018'de UNESCO İnsanlığın Somut Olmayan Kültürel Mirası listesine alınmıştır.\n\n(Kaynak: turk-kulturunde-kurt.md)",
+   "getirilen": [
+    "turk-destanlari.md#2 0.619",
+    "ulku-ocaklari.md#0 0.419",
+    "turk-kulturunde-kurt.md#0 0.403"
+   ],
+   "en_iyi_skor": 0.619,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-kulturunde-kurt.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.272,
+   "sure_ilk_token": 0.915,
+   "sure_toplam": 2.068,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": false,
+   "basarili": false,
+   "neden": [
+    "yanlış kaynak: turk-kulturunde-kurt.md"
+   ],
+   "id": "destan-5",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Kut nedir?",
+   "onceki_soru": null,
+   "arama_metni": "Kut nedir?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "turk-kulturunde-kurt.md#3 0.361",
+    "turk-kulturunde-kurt.md#0 0.346",
+    "turk-kulturunde-kurt.md#2 0.318"
+   ],
+   "en_iyi_skor": 0.361,
+   "esikte_red": true,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.189,
+   "sure_ilk_token": null,
+   "sure_toplam": 0.189,
+   "cevaplanabilir": true,
+   "sira": 4,
+   "hit1": false,
+   "hit3": false,
+   "eksik_anahtar": [
+    "Tanrı"
+   ],
+   "yasak_bulunan": [],
+   "kaynak_dogru": false,
+   "basarili": false,
+   "neden": [
+    "yanlış red (eşikte)",
+    "doğru parça ilk 3'te değil (sıra 4)"
+   ],
+   "id": "gelenek-1",
+   "grup": "tekil",
+   "kategori": "ozel_ad",
+   "eski12": false
+  },
+  {
+   "soru": "Töre nedir?",
+   "onceki_soru": null,
+   "arama_metni": "Töre nedir?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "turk-devlet-gelenegi.md#0 0.416",
+    "turk-kulturunde-kurt.md#3 0.353",
+    "turk-kulturunde-at.md#0 0.327"
+   ],
+   "en_iyi_skor": 0.416,
+   "esikte_red": true,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.206,
+   "sure_ilk_token": null,
+   "sure_toplam": 0.206,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [
+    "yazılı olmayan"
+   ],
+   "yasak_bulunan": [],
+   "kaynak_dogru": false,
+   "basarili": false,
+   "neden": [
+    "yanlış red (eşikte)"
+   ],
+   "id": "gelenek-2",
+   "grup": "tekil",
+   "kategori": "ozel_ad",
+   "eski12": false
+  },
+  {
+   "soru": "Kurultayda hangi konular görüşülürdü?",
+   "onceki_soru": null,
+   "arama_metni": "Kurultayda hangi konular görüşülürdü?",
+   "cevap": "Kurultayda savaş, barış ve hükümdar seçimi gibi konular görüşülürdü. (Kaynak: turk-devlet-gelenegi.md)",
+   "getirilen": [
+    "turk-kulturunde-kurt.md#0 0.427",
+    "turk-devlet-gelenegi.md#0 0.420",
+    "turk-kulturunde-kurt.md#1 0.406"
+   ],
+   "en_iyi_skor": 0.427,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-devlet-gelenegi.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.279,
+   "sure_ilk_token": 1.082,
+   "sure_toplam": 2.003,
+   "cevaplanabilir": true,
+   "sira": 2,
+   "hit1": false,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "gelenek-3",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "İkili teşkilat nedir?",
+   "onceki_soru": null,
+   "arama_metni": "İkili teşkilat nedir?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "turk-devlet-gelenegi.md#1 0.339",
+    "turk-kulturunde-at.md#0 0.282",
+    "ulku-ocaklari.md#0 0.279"
+   ],
+   "en_iyi_skor": 0.339,
+   "esikte_red": true,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.246,
+   "sure_ilk_token": null,
+   "sure_toplam": 0.246,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [
+    "doğu",
+    "batı"
+   ],
+   "yasak_bulunan": [],
+   "kaynak_dogru": false,
+   "basarili": false,
+   "neden": [
+    "yanlış red (eşikte)"
+   ],
+   "id": "gelenek-4",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Tuğ nedir?",
+   "onceki_soru": null,
+   "arama_metni": "Tuğ nedir?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "ilk-turk-devletleri.md#2 0.392",
+    "turk-devlet-gelenegi.md#1 0.376",
+    "turk-devlet-gelenegi.md#0 0.374"
+   ],
+   "en_iyi_skor": 0.392,
+   "esikte_red": true,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.209,
+   "sure_ilk_token": null,
+   "sure_toplam": 0.209,
+   "cevaplanabilir": true,
+   "sira": 2,
+   "hit1": false,
+   "hit3": true,
+   "eksik_anahtar": [
+    "at kılı"
+   ],
+   "yasak_bulunan": [],
+   "kaynak_dogru": false,
+   "basarili": false,
+   "neden": [
+    "yanlış red (eşikte)"
+   ],
+   "id": "gelenek-5",
+   "grup": "tekil",
+   "kategori": "ozel_ad",
+   "eski12": false
+  },
+  {
+   "soru": "Turan taktiği nasıl uygulanır?",
+   "onceki_soru": null,
+   "arama_metni": "Turan taktiği nasıl uygulanır?",
+   "cevap": "Turan taktiği, merkez birlikler sahte bir geri çekilme yapar, düşman takibe geçince kanatlar hilal biçiminde kapanarak kuşatma tamamlanacak şekilde uygulanır. Bu taktik, Türk ordularının bozkır coğrafyasında daha etkili bir şekilde hareket etmelerine olanak sağlar. Malazgirt Savaşı'nda da bu taktik uygulanmış ve başarılı sonuçlar vermiştir. (Kaynak: turk-kulturunde-at.md)",
+   "getirilen": [
+    "turk-kulturunde-at.md#0 0.554",
+    "turk-kulturunde-at.md#1 0.441",
+    "turk-devlet-gelenegi.md#0 0.399"
+   ],
+   "en_iyi_skor": 0.554,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-kulturunde-at.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.247,
+   "sure_ilk_token": 1.096,
+   "sure_toplam": 3.319,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "at-1",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": true
+  },
+  {
+   "soru": "Kımız nedir?",
+   "onceki_soru": null,
+   "arama_metni": "Kımız nedir?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "ilk-turk-devletleri.md#2 0.278",
+    "ulku-ocaklari.md#0 0.272",
+    "turk-kulturunde-kurt.md#0 0.267"
+   ],
+   "en_iyi_skor": 0.278,
+   "esikte_red": true,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.209,
+   "sure_ilk_token": null,
+   "sure_toplam": 0.209,
+   "cevaplanabilir": true,
+   "sira": 17,
+   "hit1": false,
+   "hit3": false,
+   "eksik_anahtar": [
+    "kısrak"
+   ],
+   "yasak_bulunan": [],
+   "kaynak_dogru": false,
+   "basarili": false,
+   "neden": [
+    "yanlış red (eşikte)",
+    "doğru parça ilk 3'te değil (sıra 17)"
+   ],
+   "id": "at-2",
+   "grup": "tekil",
+   "kategori": "ozel_ad",
+   "eski12": false
+  },
+  {
+   "soru": "Üzengi atlı savaşa ne kazandırmıştır?",
+   "onceki_soru": null,
+   "arama_metni": "Üzengi atlı savaşa ne kazandırmıştır?",
+   "cevap": "Üzengi atlı savaşa atın dengesi ve iki elin kullanılmasının kolaylaşması kazandırmıştır. Bu buluş, binicinin at üstünde daha iyi kontrol sağlaymasına ve mızrak darbelerinde daha fazla vücut ağırlığı verebilmesine olanak vermiştir.",
+   "getirilen": [
+    "turk-kulturunde-at.md#1 0.570",
+    "turk-kulturunde-at.md#0 0.493",
+    "selcuklular-ve-malazgirt.md#0 0.447"
+   ],
+   "en_iyi_skor": 0.57,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.255,
+   "sure_ilk_token": 0.957,
+   "sure_toplam": 2.444,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": false,
+   "basarili": false,
+   "neden": [
+    "kaynak yok"
+   ],
+   "id": "at-3",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Hangi at ırkları dayanıklılıklarıyla bilinir?",
+   "onceki_soru": null,
+   "arama_metni": "Hangi at ırkları dayanıklılıklarıyla bilinir?",
+   "cevap": "Ahal Teke ve Türkmen atı dayanıklılıkları ve uzun mesafe performanslarıyla bilinir. (Kaynak: turk-kulturunde-at.md)",
+   "getirilen": [
+    "turk-kulturunde-at.md#2 0.469",
+    "turk-kulturunde-at.md#0 0.438",
+    "turk-kulturunde-at.md#1 0.388"
+   ],
+   "en_iyi_skor": 0.469,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-kulturunde-at.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.278,
+   "sure_ilk_token": 0.92,
+   "sure_toplam": 1.878,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "at-4",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Eski Türkçede kurdun adı neydi?",
+   "onceki_soru": null,
+   "arama_metni": "Eski Türkçede kurdun adı neydi?",
+   "cevap": "Eski Türkçede kurdun adı \"böri\" idi. Bu sözcük Orhun Yazıtları'nda ve on birinci yüzyılda Kaşgarlı Mahmud'un yazdığı Dîvânu Lugâti't-Türk'te geçer. (Kaynak: turk-kulturunde-kurt.md)",
+   "getirilen": [
+    "turk-kulturunde-kurt.md#2 0.580",
+    "turk-kulturunde-kurt.md#3 0.538",
+    "turk-kulturunde-kurt.md#0 0.494"
+   ],
+   "en_iyi_skor": 0.58,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-kulturunde-kurt.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.274,
+   "sure_ilk_token": 1.121,
+   "sure_toplam": 2.59,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "kurt-1",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": true
+  },
+  {
+   "soru": "böri nedir",
+   "onceki_soru": null,
+   "arama_metni": "böri nedir",
+   "cevap": "Böri, eski Türkçede kurtun gerçek adıydı. Bu ad, kurtçuk ve böcek larvasının anısına geldi. (Kaynak: turk-kulturunde-kurt.md)",
+   "getirilen": [
+    "turk-kulturunde-kurt.md#3 0.477",
+    "turk-kulturunde-kurt.md#2 0.404",
+    "turk-kulturunde-at.md#0 0.384"
+   ],
+   "en_iyi_skor": 0.477,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-kulturunde-kurt.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.188,
+   "sure_ilk_token": 1.053,
+   "sure_toplam": 2.057,
+   "cevaplanabilir": true,
+   "sira": 2,
+   "hit1": false,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [
+    "larva"
+   ],
+   "kaynak_dogru": true,
+   "basarili": false,
+   "neden": [
+    "yasak ifade: larva"
+   ],
+   "id": "kurt-2",
+   "grup": "tekil",
+   "kategori": "ozel_ad",
+   "eski12": false
+  },
+  {
+   "soru": "Aşina hanedanının soyu nereden gelir?",
+   "onceki_soru": null,
+   "arama_metni": "Aşina hanedanının soyu nereden gelir?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "turk-kulturunde-kurt.md#0 0.358",
+    "selcuklular-ve-malazgirt.md#2 0.277",
+    "turk-destanlari.md#1 0.259"
+   ],
+   "en_iyi_skor": 0.358,
+   "esikte_red": true,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.287,
+   "sure_ilk_token": null,
+   "sure_toplam": 0.287,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [
+    "kurt"
+   ],
+   "yasak_bulunan": [],
+   "kaynak_dogru": false,
+   "basarili": false,
+   "neden": [
+    "yanlış red (eşikte)"
+   ],
+   "id": "kurt-3",
+   "grup": "tekil",
+   "kategori": "ozel_ad",
+   "eski12": false
+  },
+  {
+   "soru": "Eski Türkçede kurt kelimesinin anlamı neydi?",
+   "onceki_soru": null,
+   "arama_metni": "Eski Türkçede kurt kelimesinin anlamı neydi?",
+   "cevap": "Eski Türkçede kurt kelimesinin anlamı solucan, kurtçuk, böcek larvasıydı. Bu bilgi, \"turk-kulturunde-kurt.md\" dosyasının üçüncü parçasında verilmiştir. (Kaynak: turk-kulturunde-kurt.md)",
+   "getirilen": [
+    "turk-kulturunde-kurt.md#3 0.693",
+    "turk-kulturunde-kurt.md#2 0.634",
+    "turk-kulturunde-kurt.md#0 0.587"
+   ],
+   "en_iyi_skor": 0.693,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-kulturunde-kurt.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.275,
+   "sure_ilk_token": 1.101,
+   "sure_toplam": 2.454,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "kurt-4",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Azerbaycan Türkçesinde kurda ne denir?",
+   "onceki_soru": null,
+   "arama_metni": "Azerbaycan Türkçesinde kurda ne denir?",
+   "cevap": "Azerbaycan Türkçesinde kurt için \"canavar\" sözcüğü de kullanılmaktadır. (Kaynak: turk-kulturunde-kurt.md)",
+   "getirilen": [
+    "turk-kulturunde-kurt.md#3 0.638",
+    "turk-kulturunde-kurt.md#2 0.613",
+    "turk-kulturunde-kurt.md#0 0.582"
+   ],
+   "en_iyi_skor": 0.638,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-kulturunde-kurt.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.271,
+   "sure_ilk_token": 1.104,
+   "sure_toplam": 2.004,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "kurt-5",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Ergenekon'dan çıkan topluluğa yolu kim göstermiştir?",
+   "onceki_soru": null,
+   "arama_metni": "Ergenekon'dan çıkan topluluğa yolu kim göstermiştir?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "ilk-turk-devletleri.md#2 0.388",
+    "turk-destanlari.md#0 0.367",
+    "turk-destanlari.md#1 0.359"
+   ],
+   "en_iyi_skor": 0.388,
+   "esikte_red": true,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.273,
+   "sure_ilk_token": null,
+   "sure_toplam": 0.273,
+   "cevaplanabilir": true,
+   "sira": 7,
+   "hit1": false,
+   "hit3": false,
+   "eksik_anahtar": [
+    "Börteçine"
+   ],
+   "yasak_bulunan": [],
+   "kaynak_dogru": false,
+   "basarili": false,
+   "neden": [
+    "yanlış red (eşikte)",
+    "doğru parça ilk 3'te değil (sıra 7)"
+   ],
+   "id": "kurt-6",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Üç Tarz-ı Siyaset yazısı nerede ve hangi yıl yayımlanmıştır?",
+   "onceki_soru": null,
+   "arama_metni": "Üç Tarz-ı Siyaset yazısı nerede ve hangi yıl yayımlanmıştır?",
+   "cevap": "Üç Tarz-ı Siyaset yazısı 1904 yılında Kahire'de Yusuf Akçura tarafından yayımlanmıştır. (Kaynak: turk-milliyetciliginin-dogusu.md)",
+   "getirilen": [
+    "turk-milliyetciliginin-dogusu.md#0 0.466",
+    "turk-milliyetciliginin-dogusu.md#1 0.435",
+    "turk-milliyetciliginin-dogusu.md#2 0.381"
+   ],
+   "en_iyi_skor": 0.466,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-milliyetciliginin-dogusu.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.286,
+   "sure_ilk_token": 0.952,
+   "sure_toplam": 2.045,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "dogus-1",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": true
+  },
+  {
+   "soru": "Türkçülüğün Esasları kimin eseridir?",
+   "onceki_soru": null,
+   "arama_metni": "Türkçülüğün Esasları kimin eseridir?",
+   "cevap": "Ziya Gökalp'in 1923'te yayımlanan eseridir. (Kaynak: turk-milliyetciliginin-dogusu.md)",
+   "getirilen": [
+    "turk-milliyetciliginin-dogusu.md#1 0.505",
+    "turk-destanlari.md#0 0.455",
+    "milliyetci-hareketin-isimleri.md#2 0.445"
+   ],
+   "en_iyi_skor": 0.505,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-milliyetciliginin-dogusu.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.247,
+   "sure_ilk_token": 0.959,
+   "sure_toplam": 1.841,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "dogus-2",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "İsmail Gaspıralı hangi ilkeyi savunmuştur?",
+   "onceki_soru": null,
+   "arama_metni": "İsmail Gaspıralı hangi ilkeyi savunmuştur?",
+   "cevap": "İsmail Gaspıralı, \"Dilde, fikirde, işte birlik\" ilkesini savunmuştur. Bu ilke ile Türk toplulukları arasında ortak bir dil ve eğitim anlayışını savunmuştur. (Kaynak: turk-milliyetciliginin-dogusu.md / parca 1)",
+   "getirilen": [
+    "turk-milliyetciliginin-dogusu.md#1 0.510",
+    "turk-milliyetciliginin-dogusu.md#2 0.455",
+    "osmanli-padisahlari.md#0 0.440"
+   ],
+   "en_iyi_skor": 0.51,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-milliyetciliginin-dogusu.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.254,
+   "sure_ilk_token": 1.1,
+   "sure_toplam": 2.652,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "dogus-3",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Türk Ocağı ne zaman kurulmuştur?",
+   "onceki_soru": null,
+   "arama_metni": "Türk Ocağı ne zaman kurulmuştur?",
+   "cevap": "Türk Ocağı 25 Mart 1912'de kurulmuştur. (Kaynak: turk-milliyetciliginin-dogusu.md)",
+   "getirilen": [
+    "ulku-ocaklari.md#0 0.579",
+    "turk-milliyetciliginin-dogusu.md#2 0.551",
+    "ilk-turk-devletleri.md#2 0.512"
+   ],
+   "en_iyi_skor": 0.579,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-milliyetciliginin-dogusu.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.237,
+   "sure_ilk_token": 0.815,
+   "sure_toplam": 1.682,
+   "cevaplanabilir": true,
+   "sira": 2,
+   "hit1": false,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "dogus-4",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Göktürk alfabesi kaç işaretten oluşur?",
+   "onceki_soru": null,
+   "arama_metni": "Göktürk alfabesi kaç işaretten oluşur?",
+   "cevap": "Göktürk alfabesi otuz sekiz işaretten oluşur.\n\n(Kaynak: turkcenin-tarihi-ve-alfabeleri.md)",
+   "getirilen": [
+    "turkcenin-tarihi-ve-alfabeleri.md#0 0.687",
+    "turkcenin-tarihi-ve-alfabeleri.md#2 0.614",
+    "turkcenin-tarihi-ve-alfabeleri.md#1 0.600"
+   ],
+   "en_iyi_skor": 0.687,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turkcenin-tarihi-ve-alfabeleri.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.264,
+   "sure_ilk_token": 0.896,
+   "sure_toplam": 1.84,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "alfabe-1",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Harf Devrimi hangi tarihte kabul edilmiştir?",
+   "onceki_soru": null,
+   "arama_metni": "Harf Devrimi hangi tarihte kabul edilmiştir?",
+   "cevap": "Harf Devrimi 1 Kasım 1928'de kabul edilmiştir. (Kaynak: turkcenin-tarihi-ve-alfabeleri.md)",
+   "getirilen": [
+    "mustafa-kemal-ataturk.md#1 0.490",
+    "turkcenin-tarihi-ve-alfabeleri.md#1 0.463",
+    "osmanli-padisahlari.md#1 0.415"
+   ],
+   "en_iyi_skor": 0.49,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turkcenin-tarihi-ve-alfabeleri.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.24,
+   "sure_ilk_token": 1.057,
+   "sure_toplam": 2.002,
+   "cevaplanabilir": true,
+   "sira": 2,
+   "hit1": false,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "alfabe-2",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Türk Dil Kurumu ne zaman kurulmuştur?",
+   "onceki_soru": null,
+   "arama_metni": "Türk Dil Kurumu ne zaman kurulmuştur?",
+   "cevap": "Türk Dil Kurumu 12 Temmuz 1932'de kurulmuştur. (Kaynak: turkcenin-tarihi-ve-alfabeleri.md)",
+   "getirilen": [
+    "turkcenin-tarihi-ve-alfabeleri.md#2 0.584",
+    "turk-milliyetciliginin-dogusu.md#2 0.583",
+    "ulku-ocaklari.md#0 0.514"
+   ],
+   "en_iyi_skor": 0.584,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turkcenin-tarihi-ve-alfabeleri.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.248,
+   "sure_ilk_token": 0.874,
+   "sure_toplam": 1.836,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "alfabe-3",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Uygur alfabesi hangi yazıdan uyarlanmıştır?",
+   "onceki_soru": null,
+   "arama_metni": "Uygur alfabesi hangi yazıdan uyarlanmıştır?",
+   "cevap": "Uygur alfabesi Soğd yazısından uyarlanmıştır.\n\n(Kaynak: turkcenin-tarihi-ve-alfabeleri.md)",
+   "getirilen": [
+    "turkcenin-tarihi-ve-alfabeleri.md#1 0.693",
+    "turkcenin-tarihi-ve-alfabeleri.md#0 0.687",
+    "turkcenin-tarihi-ve-alfabeleri.md#2 0.568"
+   ],
+   "en_iyi_skor": 0.693,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turkcenin-tarihi-ve-alfabeleri.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.29,
+   "sure_ilk_token": 0.922,
+   "sure_toplam": 1.823,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "alfabe-4",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Kutadgu Bilig hangi yüzyılda yazılmıştır?",
+   "onceki_soru": null,
+   "arama_metni": "Kutadgu Bilig hangi yüzyılda yazılmıştır?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "ilk-turk-devletleri.md#1 0.384",
+    "turkcenin-tarihi-ve-alfabeleri.md#1 0.367",
+    "milliyetci-hareketin-isimleri.md#2 0.332"
+   ],
+   "en_iyi_skor": 0.384,
+   "esikte_red": true,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.257,
+   "sure_ilk_token": null,
+   "sure_toplam": 0.257,
+   "cevaplanabilir": true,
+   "sira": 2,
+   "hit1": false,
+   "hit3": true,
+   "eksik_anahtar": [
+    "on birinci|11"
+   ],
+   "yasak_bulunan": [],
+   "kaynak_dogru": false,
+   "basarili": false,
+   "neden": [
+    "yanlış red (eşikte)"
+   ],
+   "id": "alfabe-5",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Ülkü Ocakları 12 Mart 1971'den sonra hangi adla yeniden kurulmuştur?",
+   "onceki_soru": null,
+   "arama_metni": "Ülkü Ocakları 12 Mart 1971'den sonra hangi adla yeniden kurulmuştur?",
+   "cevap": "Ülkü Ocakları 12 Mart 1971'den sonra Ülkü Ocakları Derneği adıyla yeniden kurulmuştur. (Kaynak: ulku-ocaklari.md)",
+   "getirilen": [
+    "ulku-ocaklari.md#1 0.669",
+    "ulku-ocaklari.md#0 0.654",
+    "ulku-ocaklari.md#2 0.511"
+   ],
+   "en_iyi_skor": 0.669,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "ulku-ocaklari.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.3,
+   "sure_ilk_token": 0.904,
+   "sure_toplam": 1.969,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "ulku-1",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": true
+  },
+  {
+   "soru": "Ülkü Ocakları 1978'de hangi adı almıştır?",
+   "onceki_soru": null,
+   "arama_metni": "Ülkü Ocakları 1978'de hangi adı almıştır?",
+   "cevap": "Ülkü Ocakları 1978'de Ülkücü Gençlik Derneği adını almıştır.\n\n(Kaynak: ulku-ocaklari.md)",
+   "getirilen": [
+    "ulku-ocaklari.md#0 0.628",
+    "ulku-ocaklari.md#1 0.604",
+    "ulku-ocaklari.md#2 0.524"
+   ],
+   "en_iyi_skor": 0.628,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "ulku-ocaklari.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.265,
+   "sure_ilk_token": 0.911,
+   "sure_toplam": 1.893,
+   "cevaplanabilir": true,
+   "sira": 2,
+   "hit1": false,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "ulku-2",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Ülkü Ocakları bugün hangi adla faaliyet göstermektedir?",
+   "onceki_soru": null,
+   "arama_metni": "Ülkü Ocakları bugün hangi adla faaliyet göstermektedir?",
+   "cevap": "Ülkü Ocakları bugün Ülkü Ocakları Eğitim ve Kültür Vakfı adıyla faaliyet göstermektedir. (Kaynak: ulku-ocaklari.md)",
+   "getirilen": [
+    "ulku-ocaklari.md#2 0.604",
+    "ulku-ocaklari.md#0 0.511",
+    "ulku-ocaklari.md#1 0.407"
+   ],
+   "en_iyi_skor": 0.604,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "ulku-ocaklari.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.276,
+   "sure_ilk_token": 0.931,
+   "sure_toplam": 1.932,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "ulku-3",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Ülkü Ocakları Birliği adı altında merkezi örgütlenme hangi dönemde olmuştur?",
+   "onceki_soru": null,
+   "arama_metni": "Ülkü Ocakları Birliği adı altında merkezi örgütlenme hangi dönemde olmuştur?",
+   "cevap": "Ülkü Ocakları Birliği adı altında merkezi örgütlenme 1969-1970 döneminde olmuştur.\n\n(Kaynak: ulku-ocaklari.md)",
+   "getirilen": [
+    "ulku-ocaklari.md#0 0.705",
+    "ulku-ocaklari.md#1 0.626",
+    "ulku-ocaklari.md#2 0.560"
+   ],
+   "en_iyi_skor": 0.705,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "ulku-ocaklari.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.284,
+   "sure_ilk_token": 0.914,
+   "sure_toplam": 1.901,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "ulku-4",
+   "grup": "tekil",
+   "kategori": "normal",
+   "eski12": false
+  },
+  {
+   "soru": "Fatih Sultan Mehmed'in annesinin adı nedir?",
+   "onceki_soru": null,
+   "arama_metni": "Fatih Sultan Mehmed'in annesinin adı nedir?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "osmanli-padisahlari.md#1 0.494",
+    "osmanli-padisahlari.md#2 0.466",
+    "osmanli-padisahlari.md#0 0.432"
+   ],
+   "en_iyi_skor": 0.494,
+   "esikte_red": false,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.286,
+   "sure_ilk_token": 1.075,
+   "sure_toplam": 1.63,
+   "cevaplanabilir": false,
+   "basarili": true,
+   "neden": [],
+   "id": "cevapsiz-1",
+   "grup": "tekil",
+   "kategori": "yakin",
+   "eski12": true
+  },
+  {
+   "soru": "Malazgirt Savaşı'nda Selçuklu ordusu kaç askerden oluşuyordu?",
+   "onceki_soru": null,
+   "arama_metni": "Malazgirt Savaşı'nda Selçuklu ordusu kaç askerden oluşuyordu?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.\n\n(Kaynak: selcuklular-ve-malazgirt.md)",
+   "getirilen": [
+    "selcuklular-ve-malazgirt.md#0 0.645",
+    "selcuklular-ve-malazgirt.md#1 0.474",
+    "turk-kulturunde-at.md#1 0.403"
+   ],
+   "en_iyi_skor": 0.645,
+   "esikte_red": false,
+   "reddetti": true,
+   "kaynaklar": [
+    "selcuklular-ve-malazgirt.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.298,
+   "sure_ilk_token": 1.086,
+   "sure_toplam": 1.913,
+   "cevaplanabilir": false,
+   "basarili": false,
+   "neden": [
+    "red cevabına kaynak eklendi"
+   ],
+   "id": "cevapsiz-2",
+   "grup": "tekil",
+   "kategori": "yakin",
+   "eski12": false
+  },
+  {
+   "soru": "Kanuni Sultan Süleyman'ın eşinin adı nedir?",
+   "onceki_soru": null,
+   "arama_metni": "Kanuni Sultan Süleyman'ın eşinin adı nedir?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "osmanli-padisahlari.md#0 0.359",
+    "osmanli-padisahlari.md#2 0.353",
+    "milliyetci-hareketin-isimleri.md#13 0.322"
+   ],
+   "en_iyi_skor": 0.359,
+   "esikte_red": true,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.241,
+   "sure_ilk_token": null,
+   "sure_toplam": 0.241,
+   "cevaplanabilir": false,
+   "basarili": true,
+   "neden": [],
+   "id": "cevapsiz-3",
+   "grup": "tekil",
+   "kategori": "yakin",
+   "eski12": false
+  },
+  {
+   "soru": "Lozan Antlaşması'nı Türk heyeti adına kim imzalamıştır?",
+   "onceki_soru": null,
+   "arama_metni": "Lozan Antlaşması'nı Türk heyeti adına kim imzalamıştır?",
+   "cevap": "Lozan Antlaşması'nı Türk heyeti adına 24 Temmuz 1923'te imzalanmıştır.\n\n(Kaynak: milliyetci-hareketin-isimleri.md)",
+   "getirilen": [
+    "milliyetci-hareketin-isimleri.md#4 0.426",
+    "osmanli-padisahlari.md#0 0.406",
+    "canakkale-ve-kurtulus-savasi.md#2 0.400"
+   ],
+   "en_iyi_skor": 0.426,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "milliyetci-hareketin-isimleri.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.28,
+   "sure_ilk_token": 1.074,
+   "sure_toplam": 2.396,
+   "cevaplanabilir": false,
+   "basarili": false,
+   "neden": [
+    "cevaplanamaz soruya cevap verdi"
+   ],
+   "id": "cevapsiz-4",
+   "grup": "tekil",
+   "kategori": "yakin",
+   "eski12": false
+  },
+  {
+   "soru": "Orhun Yazıtları bugün hangi müzede sergilenmektedir?",
+   "onceki_soru": null,
+   "arama_metni": "Orhun Yazıtları bugün hangi müzede sergilenmektedir?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.\n\n(Kaynak: turkcenin-tarihi-ve-alfabeleri.md)",
+   "getirilen": [
+    "turkcenin-tarihi-ve-alfabeleri.md#0 0.463",
+    "ilk-turk-devletleri.md#1 0.428",
+    "ulku-ocaklari.md#2 0.393"
+   ],
+   "en_iyi_skor": 0.463,
+   "esikte_red": false,
+   "reddetti": true,
+   "kaynaklar": [
+    "turkcenin-tarihi-ve-alfabeleri.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.289,
+   "sure_ilk_token": 0.9,
+   "sure_toplam": 1.751,
+   "cevaplanabilir": false,
+   "basarili": false,
+   "neden": [
+    "red cevabına kaynak eklendi"
+   ],
+   "id": "cevapsiz-5",
+   "grup": "tekil",
+   "kategori": "yakin",
+   "eski12": false
+  },
+  {
+   "soru": "Mete Han'ın babasının adı nedir?",
+   "onceki_soru": null,
+   "arama_metni": "Mete Han'ın babasının adı nedir?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "ilk-turk-devletleri.md#0 0.399",
+    "mustafa-kemal-ataturk.md#0 0.312",
+    "milliyetci-hareketin-isimleri.md#0 0.273"
+   ],
+   "en_iyi_skor": 0.399,
+   "esikte_red": true,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.278,
+   "sure_ilk_token": null,
+   "sure_toplam": 0.278,
+   "cevaplanabilir": false,
+   "basarili": true,
+   "neden": [],
+   "id": "cevapsiz-6",
+   "grup": "tekil",
+   "kategori": "yakin",
+   "eski12": false
+  },
+  {
+   "soru": "Bugün hava nasıl olacak?",
+   "onceki_soru": null,
+   "arama_metni": "Bugün hava nasıl olacak?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "turk-kulturunde-at.md#0 0.227",
+    "turk-kulturunde-kurt.md#3 0.227",
+    "ulku-ocaklari.md#2 0.220"
+   ],
+   "en_iyi_skor": 0.227,
+   "esikte_red": true,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.238,
+   "sure_ilk_token": null,
+   "sure_toplam": 0.238,
+   "cevaplanabilir": false,
+   "basarili": true,
+   "neden": [],
+   "id": "cevapsiz-7",
+   "grup": "tekil",
+   "kategori": "konu_disi",
+   "eski12": true
+  },
+  {
+   "soru": "Python'da bir liste nasıl sıralanır?",
+   "onceki_soru": null,
+   "arama_metni": "Python'da bir liste nasıl sıralanır?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "turkcenin-tarihi-ve-alfabeleri.md#0 0.321",
+    "turkcenin-tarihi-ve-alfabeleri.md#2 0.277",
+    "turk-kulturunde-at.md#0 0.274"
+   ],
+   "en_iyi_skor": 0.321,
+   "esikte_red": true,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.253,
+   "sure_ilk_token": null,
+   "sure_toplam": 0.253,
+   "cevaplanabilir": false,
+   "basarili": true,
+   "neden": [],
+   "id": "cevapsiz-8",
+   "grup": "tekil",
+   "kategori": "konu_disi",
+   "eski12": false
+  },
+  {
+   "soru": "Futbolda ofsayt kuralı nedir?",
+   "onceki_soru": null,
+   "arama_metni": "Futbolda ofsayt kuralı nedir?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "turk-kulturunde-kurt.md#3 0.276",
+    "turk-kulturunde-kurt.md#2 0.276",
+    "turk-kulturunde-at.md#0 0.276"
+   ],
+   "en_iyi_skor": 0.276,
+   "esikte_red": true,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.256,
+   "sure_ilk_token": null,
+   "sure_toplam": 0.256,
+   "cevaplanabilir": false,
+   "basarili": true,
+   "neden": [],
+   "id": "cevapsiz-9",
+   "grup": "tekil",
+   "kategori": "konu_disi",
+   "eski12": false
+  },
+  {
+   "soru": "asdf qwerty zxcv",
+   "onceki_soru": null,
+   "arama_metni": "asdf qwerty zxcv",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "turkcenin-tarihi-ve-alfabeleri.md#0 0.304",
+    "turkcenin-tarihi-ve-alfabeleri.md#2 0.261",
+    "turk-kulturunde-kurt.md#3 0.258"
+   ],
+   "en_iyi_skor": 0.304,
+   "esikte_red": true,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.204,
+   "sure_ilk_token": null,
+   "sure_toplam": 0.204,
+   "cevaplanabilir": false,
+   "basarili": true,
+   "neden": [],
+   "id": "cevapsiz-10",
+   "grup": "tekil",
+   "kategori": "anlamsiz",
+   "eski12": true
+  },
+  {
+   "soru": "Malazgirt Savaşı ne zaman yapılmıştır?",
+   "onceki_soru": null,
+   "arama_metni": "Malazgirt Savaşı ne zaman yapılmıştır?",
+   "cevap": "Malazgirt Savaşı 26 Ağustos 1071'de yapılmıştır.\n\n(Kaynak: selcuklular-ve-malazgirt.md)",
+   "getirilen": [
+    "selcuklular-ve-malazgirt.md#0 0.560",
+    "osmanli-padisahlari.md#2 0.398",
+    "canakkale-ve-kurtulus-savasi.md#2 0.387"
+   ],
+   "en_iyi_skor": 0.56,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "selcuklular-ve-malazgirt.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.272,
+   "sure_ilk_token": 0.917,
+   "sure_toplam": 1.938,
+   "cevaplanabilir": false,
+   "basarili": false,
+   "neden": [
+    "cevaplanamaz soruya cevap verdi"
+   ],
+   "id": "takip-1#1",
+   "grup": "hazirlik",
+   "kategori": "hazirlik",
+   "eski12": false
+  },
+  {
+   "soru": "sonucu ne oldu?",
+   "onceki_soru": "Malazgirt Savaşı ne zaman yapılmıştır?",
+   "arama_metni": "Malazgirt Savaşı ne zaman yapılmıştır? sonucu ne oldu?",
+   "cevap": "Malazgirt Savaşı'nın sonucu Selçukluların zaferiyle sonuçlanmış ve Bizans İmparatoru IV. Romanos Diogenes'im esir düşmüştür. Bu savaşın ardından Bizans'ın Anadolu'daki savunma düzeni çökmüş ve Türkmen boyları Anadolu içlerine doğru yerleşmeye başlamıştır. Bu nedenle 1071, Anadolu'nun Türkleşme sürecinin başlangıcı olarak kabul edilir. (Kaynak: selcuklular-ve-malazgirt.md)",
+   "getirilen": [
+    "selcuklular-ve-malazgirt.md#0 0.585",
+    "canakkale-ve-kurtulus-savasi.md#2 0.421",
+    "selcuklular-ve-malazgirt.md#1 0.404"
+   ],
+   "en_iyi_skor": 0.585,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "selcuklular-ve-malazgirt.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.488,
+   "sure_ilk_token": 0.902,
+   "sure_toplam": 3.567,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "takip-1#2",
+   "grup": "senaryo",
+   "kategori": "takip",
+   "eski12": false
+  },
+  {
+   "soru": "Orhun Yazıtları'nın alfabesini kim çözmüştür?",
+   "onceki_soru": null,
+   "arama_metni": "Orhun Yazıtları'nın alfabesini kim çözmüştür?",
+   "cevap": "Orhun Yazıtları'nın alfabesini Danimarkalı dilbilimci Vilhelm Thomsen 1893'te çözmüştür.\n\n(Kaynak: turkcenin-tarihi-ve-alfabeleri.md)",
+   "getirilen": [
+    "turkcenin-tarihi-ve-alfabeleri.md#0 0.676",
+    "turkcenin-tarihi-ve-alfabeleri.md#1 0.557",
+    "ilk-turk-devletleri.md#1 0.533"
+   ],
+   "en_iyi_skor": 0.676,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turkcenin-tarihi-ve-alfabeleri.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.276,
+   "sure_ilk_token": 1.095,
+   "sure_toplam": 2.436,
+   "cevaplanabilir": false,
+   "basarili": false,
+   "neden": [
+    "cevaplanamaz soruya cevap verdi"
+   ],
+   "id": "takip-2#1",
+   "grup": "hazirlik",
+   "kategori": "hazirlik",
+   "eski12": false
+  },
+  {
+   "soru": "hangi yılda?",
+   "onceki_soru": "Orhun Yazıtları'nın alfabesini kim çözmüştür?",
+   "arama_metni": "Orhun Yazıtları'nın alfabesini kim çözmüştür? hangi yılda?",
+   "cevap": "1 Kasım 1928'de kabul edilen Harf Devrimi ile Latin alfabesine dayalı yeni Türk alfabesine geçilmiştir. (Kaynak: turkcenin-tarihi-ve-alfabeleri.md)",
+   "getirilen": [
+    "turkcenin-tarihi-ve-alfabeleri.md#0 0.669",
+    "turkcenin-tarihi-ve-alfabeleri.md#1 0.576",
+    "ilk-turk-devletleri.md#1 0.565"
+   ],
+   "en_iyi_skor": 0.669,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turkcenin-tarihi-ve-alfabeleri.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.564,
+   "sure_ilk_token": 1.206,
+   "sure_toplam": 2.699,
+   "cevaplanabilir": true,
+   "sira": 3,
+   "hit1": false,
+   "hit3": true,
+   "eksik_anahtar": [
+    "1893"
+   ],
+   "yasak_bulunan": [
+    "1928"
+   ],
+   "kaynak_dogru": false,
+   "basarili": false,
+   "neden": [
+    "eksik: 1893",
+    "yasak ifade: 1928",
+    "yanlış kaynak: turkcenin-tarihi-ve-alfabeleri.md"
+   ],
+   "id": "takip-2#2",
+   "grup": "senaryo",
+   "kategori": "takip",
+   "eski12": false
+  },
+  {
+   "soru": "Manas Destanı hangi topluma aittir?",
+   "onceki_soru": null,
+   "arama_metni": "Manas Destanı hangi topluma aittir?",
+   "cevap": "Manas Destanı, Kırgızlara ait bir destandır.\n\n(Kaynak: turk-destanlari.md)",
+   "getirilen": [
+    "turk-destanlari.md#1 0.605",
+    "turk-destanlari.md#0 0.443",
+    "turk-destanlari.md#2 0.407"
+   ],
+   "en_iyi_skor": 0.605,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-destanlari.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.27,
+   "sure_ilk_token": 0.972,
+   "sure_toplam": 1.835,
+   "cevaplanabilir": false,
+   "basarili": false,
+   "neden": [
+    "cevaplanamaz soruya cevap verdi"
+   ],
+   "id": "takip-3#1",
+   "grup": "hazirlik",
+   "kategori": "hazirlik",
+   "eski12": false
+  },
+  {
+   "soru": "kaç dizeden oluşur?",
+   "onceki_soru": "Manas Destanı hangi topluma aittir?",
+   "arama_metni": "Manas Destanı hangi topluma aittir? kaç dizeden oluşur?",
+   "cevap": "Dede Korkut Kitabı, Oğuzların İslamiyet sonrası dönemine ait on iki hikâyeden oluşur.\n\nKaynak: turk-destanlari.md",
+   "getirilen": [
+    "turk-destanlari.md#1 0.673",
+    "turk-destanlari.md#0 0.491",
+    "turk-destanlari.md#2 0.467"
+   ],
+   "en_iyi_skor": 0.673,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.518,
+   "sure_ilk_token": 1.035,
+   "sure_toplam": 2.355,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [
+    "yarım milyon"
+   ],
+   "yasak_bulunan": [],
+   "kaynak_dogru": false,
+   "basarili": false,
+   "neden": [
+    "eksik: yarım milyon",
+    "kaynak yok"
+   ],
+   "id": "takip-3#2",
+   "grup": "senaryo",
+   "kategori": "takip",
+   "eski12": false
+  },
+  {
+   "soru": "Kanuni Sultan Süleyman kaç yıl hüküm sürmüştür?",
+   "onceki_soru": null,
+   "arama_metni": "Kanuni Sultan Süleyman kaç yıl hüküm sürmüştür?",
+   "cevap": "Kanuni Sultan Süleyman, 1520-1566 yılları arasında kırk altı yıl hüküm sürmüştür.\n\n(Kaynak: osmanli-padisahlari.md)",
+   "getirilen": [
+    "osmanli-padisahlari.md#2 0.501",
+    "osmanli-padisahlari.md#0 0.401",
+    "osmanli-padisahlari.md#1 0.353"
+   ],
+   "en_iyi_skor": 0.501,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "osmanli-padisahlari.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.273,
+   "sure_ilk_token": 1.032,
+   "sure_toplam": 2.059,
+   "cevaplanabilir": false,
+   "basarili": false,
+   "neden": [
+    "cevaplanamaz soruya cevap verdi"
+   ],
+   "id": "takip-4#1",
+   "grup": "hazirlik",
+   "kategori": "hazirlik",
+   "eski12": false
+  },
+  {
+   "soru": "onun döneminde hangi şehir kuşatıldı?",
+   "onceki_soru": "Kanuni Sultan Süleyman kaç yıl hüküm sürmüştür?",
+   "arama_metni": "Kanuni Sultan Süleyman kaç yıl hüküm sürmüştür? onun döneminde hangi şehir kuşatıldı?",
+   "cevap": "Viyanan şehir kuşatıldı.\n\n(Kaynak: osmanli-padisahlari.md)",
+   "getirilen": [
+    "osmanli-padisahlari.md#2 0.532",
+    "selcuklular-ve-malazgirt.md#2 0.446",
+    "osmanli-padisahlari.md#0 0.432"
+   ],
+   "en_iyi_skor": 0.532,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "osmanli-padisahlari.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.579,
+   "sure_ilk_token": 0.913,
+   "sure_toplam": 1.926,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "takip-4#2",
+   "grup": "senaryo",
+   "kategori": "takip",
+   "eski12": false
+  },
+  {
+   "soru": "İsmail Gaspıralı hangi gazeteyi çıkarmıştır?",
+   "onceki_soru": null,
+   "arama_metni": "İsmail Gaspıralı hangi gazeteyi çıkarmıştır?",
+   "cevap": "İsmail Gaspıralı, 1883'te Kırım'da Tercüman gazetesini çıkarmıştır. (Kaynak: turk-milliyetciliginin-dogusu.md / parca 1)",
+   "getirilen": [
+    "turk-milliyetciliginin-dogusu.md#1 0.514",
+    "turk-milliyetciliginin-dogusu.md#2 0.503",
+    "osmanli-padisahlari.md#0 0.350"
+   ],
+   "en_iyi_skor": 0.514,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-milliyetciliginin-dogusu.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.265,
+   "sure_ilk_token": 1.068,
+   "sure_toplam": 2.2,
+   "cevaplanabilir": false,
+   "basarili": false,
+   "neden": [
+    "cevaplanamaz soruya cevap verdi"
+   ],
+   "id": "takip-5#1",
+   "grup": "hazirlik",
+   "kategori": "hazirlik",
+   "eski12": false
+  },
+  {
+   "soru": "bu gazete nerede çıkarıldı?",
+   "onceki_soru": "İsmail Gaspıralı hangi gazeteyi çıkarmıştır?",
+   "arama_metni": "İsmail Gaspıralı hangi gazeteyi çıkarmıştır? bu gazete nerede çıkarıldı?",
+   "cevap": "Tercüman gazete 1883'te Kırım'da çıkarılmıştır. (Kaynak: turk-milliyetciliginin-dogusu.md)",
+   "getirilen": [
+    "turk-milliyetciliginin-dogusu.md#2 0.494",
+    "turk-milliyetciliginin-dogusu.md#1 0.482",
+    "milliyetci-hareketin-isimleri.md#4 0.347"
+   ],
+   "en_iyi_skor": 0.494,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-milliyetciliginin-dogusu.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.55,
+   "sure_ilk_token": 0.98,
+   "sure_toplam": 2.183,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "takip-5#2",
+   "grup": "senaryo",
+   "kategori": "takip",
+   "eski12": false
+  },
+  {
+   "soru": "Sakarya Meydan Muharebesi kaç gün sürmüştür?",
+   "onceki_soru": null,
+   "arama_metni": "Sakarya Meydan Muharebesi kaç gün sürmüştür?",
+   "cevap": "Sakarya Meydan Muharebesi 23 Ağustos - 13 Eylül 1921 tarihleri arasında yirmi iki gün süren bir muharebe olmuştur.\n\n(Kaynak: canakkale-ve-kurtulus-savasi.md)",
+   "getirilen": [
+    "canakkale-ve-kurtulus-savasi.md#2 0.511",
+    "osmanli-padisahlari.md#2 0.403",
+    "canakkale-ve-kurtulus-savasi.md#1 0.378"
+   ],
+   "en_iyi_skor": 0.511,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "canakkale-ve-kurtulus-savasi.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.256,
+   "sure_ilk_token": 0.934,
+   "sure_toplam": 2.175,
+   "cevaplanabilir": false,
+   "basarili": false,
+   "neden": [
+    "cevaplanamaz soruya cevap verdi"
+   ],
+   "id": "takip-cevapsiz-1#1",
+   "grup": "hazirlik",
+   "kategori": "hazirlik",
+   "eski12": false
+  },
+  {
+   "soru": "bunun sebebi ne?",
+   "onceki_soru": "Sakarya Meydan Muharebesi kaç gün sürmüştür?",
+   "arama_metni": "Sakarya Meydan Muharebesi kaç gün sürmüştür? bunun sebebi ne?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "canakkale-ve-kurtulus-savasi.md#2 0.527",
+    "canakkale-ve-kurtulus-savasi.md#1 0.405",
+    "osmanli-padisahlari.md#2 0.388"
+   ],
+   "en_iyi_skor": 0.527,
+   "esikte_red": false,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.55,
+   "sure_ilk_token": 0.91,
+   "sure_toplam": 1.719,
+   "cevaplanabilir": false,
+   "basarili": true,
+   "neden": [],
+   "id": "takip-cevapsiz-1#2",
+   "grup": "senaryo",
+   "kategori": "takip_cevapsiz",
+   "eski12": false
+  },
+  {
+   "soru": "Türk Ocağı ne zaman kurulmuştur?",
+   "onceki_soru": null,
+   "arama_metni": "Türk Ocağı ne zaman kurulmuştur?",
+   "cevap": "Türk Ocağı 25 Mart 1912'de kurulmuştur. (Kaynak: turk-milliyetciliginin-dogusu.md)",
+   "getirilen": [
+    "ulku-ocaklari.md#0 0.579",
+    "turk-milliyetciliginin-dogusu.md#2 0.551",
+    "ilk-turk-devletleri.md#2 0.512"
+   ],
+   "en_iyi_skor": 0.579,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-milliyetciliginin-dogusu.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.243,
+   "sure_ilk_token": 0.822,
+   "sure_toplam": 1.702,
+   "cevaplanabilir": false,
+   "basarili": false,
+   "neden": [
+    "cevaplanamaz soruya cevap verdi"
+   ],
+   "id": "takip-cevapsiz-2#1",
+   "grup": "hazirlik",
+   "kategori": "hazirlik",
+   "eski12": false
+  },
+  {
+   "soru": "ilk başkanı kimdi?",
+   "onceki_soru": "Türk Ocağı ne zaman kurulmuştur?",
+   "arama_metni": "Türk Ocağı ne zaman kurulmuştur? ilk başkanı kimdi?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "ilk-turk-devletleri.md#0 0.565",
+    "ulku-ocaklari.md#0 0.541",
+    "ilk-turk-devletleri.md#2 0.538"
+   ],
+   "en_iyi_skor": 0.565,
+   "esikte_red": false,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.502,
+   "sure_ilk_token": 0.932,
+   "sure_toplam": 1.704,
+   "cevaplanabilir": false,
+   "basarili": true,
+   "neden": [],
+   "id": "takip-cevapsiz-2#2",
+   "grup": "senaryo",
+   "kategori": "takip_cevapsiz",
+   "eski12": false
+  },
+  {
+   "soru": "böri nedir",
+   "onceki_soru": null,
+   "arama_metni": "böri nedir",
+   "cevap": "Böri, eski Türkçede kurtun gerçek adıydı. Bu ad, kurtçuk ve böcek larvasının anısına geldi. (Kaynak: turk-kulturunde-kurt.md)",
+   "getirilen": [
+    "turk-kulturunde-kurt.md#3 0.477",
+    "turk-kulturunde-kurt.md#2 0.404",
+    "turk-kulturunde-at.md#0 0.384"
+   ],
+   "en_iyi_skor": 0.477,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-kulturunde-kurt.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.194,
+   "sure_ilk_token": 1.074,
+   "sure_toplam": 2.081,
+   "cevaplanabilir": false,
+   "basarili": false,
+   "neden": [
+    "cevaplanamaz soruya cevap verdi"
+   ],
+   "id": "degisim-1#1",
+   "grup": "hazirlik",
+   "kategori": "hazirlik",
+   "eski12": false
+  },
+  {
+   "soru": "fatih kimdir",
+   "onceki_soru": "böri nedir",
+   "arama_metni": "böri nedir fatih kimdir",
+   "cevap": "Fatih Sultan Mehmed, 29 Mayıs 1453'te İstanbul'u fethettiğinde yirmi bir yaşındaydı. Bu yeniliğle Osmanlı Devleti imparatorluğuna dönüştürülmüş, Doğu Roma İmparatorluğu ise sona ermiştir. (Kaynak: osmanli-padisahlari.md)",
+   "getirilen": [
+    "osmanli-padisahlari.md#1 0.455",
+    "mustafa-kemal-ataturk.md#0 0.442",
+    "milliyetci-hareketin-isimleri.md#6 0.439"
+   ],
+   "en_iyi_skor": 0.455,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "osmanli-padisahlari.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.208,
+   "sure_ilk_token": 0.974,
+   "sure_toplam": 2.443,
+   "cevaplanabilir": true,
+   "sira": 1,
+   "hit1": true,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "degisim-1#2",
+   "grup": "senaryo",
+   "kategori": "konu_degisimi",
+   "eski12": false
+  },
+  {
+   "soru": "Orhan Gazi kimdir",
+   "onceki_soru": null,
+   "arama_metni": "Orhan Gazi kimdir",
+   "cevap": "Orhan Gazi, Osmanlı Devleti'nin kurucusu Osman Gazi'in oğultur. Kuruluş döneminin belirleyici hükümdarı olarak anılmaktadır ve Bursa'nın alınması ve Rumeli'ye geçiş yapımı sırasında önemli rol oynamıştır. (Kaynak: osmanli-padisahlari.md)",
+   "getirilen": [
+    "osmanli-padisahlari.md#0 0.527",
+    "turk-milliyetciliginin-dogusu.md#1 0.458",
+    "milliyetci-hareketin-isimleri.md#13 0.456"
+   ],
+   "en_iyi_skor": 0.527,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "osmanli-padisahlari.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.203,
+   "sure_ilk_token": 1.064,
+   "sure_toplam": 2.528,
+   "cevaplanabilir": false,
+   "basarili": false,
+   "neden": [
+    "cevaplanamaz soruya cevap verdi"
+   ],
+   "id": "degisim-2#1",
+   "grup": "hazirlik",
+   "kategori": "hazirlik",
+   "eski12": false
+  },
+  {
+   "soru": "böri nedir",
+   "onceki_soru": "Orhan Gazi kimdir",
+   "arama_metni": "Orhan Gazi kimdir böri nedir",
+   "cevap": "Böri, eski Türkçede kurtun gerçek adıydı. Bu ad, kurtçuk ve böcek larvasının anısına geldi. (Kaynak: turk-kulturunde-kurt.md)",
+   "getirilen": [
+    "turk-kulturunde-kurt.md#3 0.477",
+    "turk-kulturunde-kurt.md#2 0.404",
+    "turk-kulturunde-at.md#0 0.384"
+   ],
+   "en_iyi_skor": 0.477,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-kulturunde-kurt.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.208,
+   "sure_ilk_token": 1.058,
+   "sure_toplam": 2.074,
+   "cevaplanabilir": true,
+   "sira": 2,
+   "hit1": false,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [
+    "larva"
+   ],
+   "kaynak_dogru": true,
+   "basarili": false,
+   "neden": [
+    "yasak ifade: larva"
+   ],
+   "id": "degisim-2#2",
+   "grup": "senaryo",
+   "kategori": "konu_degisimi",
+   "eski12": false
+  },
+  {
+   "soru": "Turan taktiği nasıl uygulanır?",
+   "onceki_soru": null,
+   "arama_metni": "Turan taktiği nasıl uygulanır?",
+   "cevap": "Turan taktiği, merkez birlikler sahte bir geri çekilme yapar, düşman takibe geçince kanatlar hilal biçiminde kapanarak kuşatma tamamlanacak şekilde uygulanır. Bu taktik, Türk ordularının bozkır coğrafyasında daha etkili bir şekilde hareket etmelerine olanak sağlar. Malazgirt Savaşı'nda da bu taktik uygulanmış ve başarılı sonuçlar vermiştir. (Kaynak: turk-kulturunde-at.md)",
+   "getirilen": [
+    "turk-kulturunde-at.md#0 0.554",
+    "turk-kulturunde-at.md#1 0.441",
+    "turk-devlet-gelenegi.md#0 0.399"
+   ],
+   "en_iyi_skor": 0.554,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-kulturunde-at.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.241,
+   "sure_ilk_token": 1.115,
+   "sure_toplam": 3.264,
+   "cevaplanabilir": false,
+   "basarili": false,
+   "neden": [
+    "cevaplanamaz soruya cevap verdi"
+   ],
+   "id": "degisim-3#1",
+   "grup": "hazirlik",
+   "kategori": "hazirlik",
+   "eski12": false
+  },
+  {
+   "soru": "Kımız nedir?",
+   "onceki_soru": "Turan taktiği nasıl uygulanır?",
+   "arama_metni": "Turan taktiği nasıl uygulanır? Kımız nedir?",
+   "cevap": "Kımız, kısrak sta elde edilen sütün mayalanmasıyla elde edilen üründür. Bu ürün, Orta Asya Türk topluluklarında yaygın bir içecektir ve bugün Kazakistan ve Kırgızistan'da hâlâ tüketilmektedir. (Kaynak: turk-kulturunde-at.md)",
+   "getirilen": [
+    "turk-kulturunde-at.md#0 0.532",
+    "turk-kulturunde-at.md#1 0.427",
+    "turk-devlet-gelenegi.md#0 0.403"
+   ],
+   "en_iyi_skor": 0.532,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-kulturunde-at.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.445,
+   "sure_ilk_token": 1.111,
+   "sure_toplam": 2.785,
+   "cevaplanabilir": true,
+   "sira": 2,
+   "hit1": false,
+   "hit3": true,
+   "eksik_anahtar": [],
+   "yasak_bulunan": [],
+   "kaynak_dogru": true,
+   "basarili": true,
+   "neden": [],
+   "id": "degisim-3#2",
+   "grup": "senaryo",
+   "kategori": "konu_degisimi",
+   "eski12": false
+  },
+  {
+   "soru": "Harf Devrimi hangi tarihte kabul edilmiştir?",
+   "onceki_soru": null,
+   "arama_metni": "Harf Devrimi hangi tarihte kabul edilmiştir?",
+   "cevap": "Harf Devrimi 1 Kasım 1928'de kabul edilmiştir. (Kaynak: turkcenin-tarihi-ve-alfabeleri.md)",
+   "getirilen": [
+    "mustafa-kemal-ataturk.md#1 0.490",
+    "turkcenin-tarihi-ve-alfabeleri.md#1 0.463",
+    "osmanli-padisahlari.md#1 0.415"
+   ],
+   "en_iyi_skor": 0.49,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turkcenin-tarihi-ve-alfabeleri.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.242,
+   "sure_ilk_token": 1.074,
+   "sure_toplam": 2.055,
+   "cevaplanabilir": false,
+   "basarili": false,
+   "neden": [
+    "cevaplanamaz soruya cevap verdi"
+   ],
+   "id": "degisim-4#1",
+   "grup": "hazirlik",
+   "kategori": "hazirlik",
+   "eski12": false
+  },
+  {
+   "soru": "Tuğ nedir?",
+   "onceki_soru": "Harf Devrimi hangi tarihte kabul edilmiştir?",
+   "arama_metni": "Harf Devrimi hangi tarihte kabul edilmiştir? Tuğ nedir?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "turkcenin-tarihi-ve-alfabeleri.md#1 0.518",
+    "mustafa-kemal-ataturk.md#1 0.484",
+    "turk-devlet-gelenegi.md#0 0.441"
+   ],
+   "en_iyi_skor": 0.518,
+   "esikte_red": false,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.505,
+   "sure_ilk_token": 1.064,
+   "sure_toplam": 1.836,
+   "cevaplanabilir": true,
+   "sira": 14,
+   "hit1": false,
+   "hit3": false,
+   "eksik_anahtar": [
+    "at kılı"
+   ],
+   "yasak_bulunan": [],
+   "kaynak_dogru": false,
+   "basarili": false,
+   "neden": [
+    "yanlış red (model)",
+    "doğru parça ilk 3'te değil (sıra 14)"
+   ],
+   "id": "degisim-4#2",
+   "grup": "senaryo",
+   "kategori": "konu_degisimi",
+   "eski12": false
+  },
+  {
+   "soru": "Osman Gazi kimdir",
+   "onceki_soru": null,
+   "arama_metni": "Osman Gazi kimdir",
+   "cevap": "Osman Gazi, Osmanlı Devleti'nin kurucusudur. (Kaynak: osmanli-padisahlari.md)",
+   "getirilen": [
+    "osmanli-padisahlari.md#0 0.614",
+    "osmanli-padisahlari.md#2 0.458",
+    "selcuklular-ve-malazgirt.md#0 0.452"
+   ],
+   "en_iyi_skor": 0.614,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "osmanli-padisahlari.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.206,
+   "sure_ilk_token": 0.987,
+   "sure_toplam": 1.715,
+   "cevaplanabilir": false,
+   "basarili": false,
+   "neden": [
+    "cevaplanamaz soruya cevap verdi"
+   ],
+   "id": "disi-1#1",
+   "grup": "hazirlik",
+   "kategori": "hazirlik",
+   "eski12": false
+  },
+  {
+   "soru": "Bugün hava nasıl olacak?",
+   "onceki_soru": "Osman Gazi kimdir",
+   "arama_metni": "Osman Gazi kimdir Bugün hava nasıl olacak?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "osmanli-padisahlari.md#0 0.434",
+    "milliyetci-hareketin-isimleri.md#13 0.359",
+    "turk-destanlari.md#1 0.332"
+   ],
+   "en_iyi_skor": 0.434,
+   "esikte_red": false,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.527,
+   "sure_ilk_token": 0.975,
+   "sure_toplam": 1.749,
+   "cevaplanabilir": false,
+   "basarili": true,
+   "neden": [],
+   "id": "disi-1#2",
+   "grup": "senaryo",
+   "kategori": "konu_disi_sonra",
+   "eski12": false
+  },
+  {
+   "soru": "Eski Türkçede kurdun adı neydi?",
+   "onceki_soru": null,
+   "arama_metni": "Eski Türkçede kurdun adı neydi?",
+   "cevap": "Eski Türkçede kurdun adı \"böri\" idi. Bu sözcük Orhun Yazıtları'nda ve on birinci yüzyılda Kaşgarlı Mahmud'un yazdığı Dîvânu Lugâti't-Türk'te geçer. (Kaynak: turk-kulturunde-kurt.md)",
+   "getirilen": [
+    "turk-kulturunde-kurt.md#2 0.580",
+    "turk-kulturunde-kurt.md#3 0.538",
+    "turk-kulturunde-kurt.md#0 0.494"
+   ],
+   "en_iyi_skor": 0.58,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "turk-kulturunde-kurt.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.299,
+   "sure_ilk_token": 1.099,
+   "sure_toplam": 2.606,
+   "cevaplanabilir": false,
+   "basarili": false,
+   "neden": [
+    "cevaplanamaz soruya cevap verdi"
+   ],
+   "id": "disi-2#1",
+   "grup": "hazirlik",
+   "kategori": "hazirlik",
+   "eski12": false
+  },
+  {
+   "soru": "asdf qwerty zxcv",
+   "onceki_soru": "Eski Türkçede kurdun adı neydi?",
+   "arama_metni": "Eski Türkçede kurdun adı neydi? asdf qwerty zxcv",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.\n\n(Kaynak: turk-kulturunde-kurt.md)",
+   "getirilen": [
+    "turk-kulturunde-kurt.md#2 0.595",
+    "turk-kulturunde-kurt.md#3 0.550",
+    "turk-kulturunde-kurt.md#0 0.512"
+   ],
+   "en_iyi_skor": 0.595,
+   "esikte_red": false,
+   "reddetti": true,
+   "kaynaklar": [
+    "turk-kulturunde-kurt.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.508,
+   "sure_ilk_token": 1.106,
+   "sure_toplam": 2.054,
+   "cevaplanabilir": false,
+   "basarili": false,
+   "neden": [
+    "red cevabına kaynak eklendi"
+   ],
+   "id": "disi-2#2",
+   "grup": "senaryo",
+   "kategori": "konu_disi_sonra",
+   "eski12": false
+  },
+  {
+   "soru": "Osman Gazi kimdir",
+   "onceki_soru": null,
+   "arama_metni": "Osman Gazi kimdir",
+   "cevap": "Osman Gazi, Osmanlı Devleti'nin kurucusudur. (Kaynak: osmanli-padisahlari.md)",
+   "getirilen": [
+    "osmanli-padisahlari.md#0 0.614",
+    "osmanli-padisahlari.md#2 0.458",
+    "selcuklular-ve-malazgirt.md#0 0.452"
+   ],
+   "en_iyi_skor": 0.614,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "osmanli-padisahlari.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.22,
+   "sure_ilk_token": 0.981,
+   "sure_toplam": 1.678,
+   "cevaplanabilir": false,
+   "basarili": false,
+   "neden": [
+    "cevaplanamaz soruya cevap verdi"
+   ],
+   "id": "disi-3#1",
+   "grup": "hazirlik",
+   "kategori": "hazirlik",
+   "eski12": false
+  },
+  {
+   "soru": "Python listesi nasıl sıralanır?",
+   "onceki_soru": "Osman Gazi kimdir",
+   "arama_metni": "Osman Gazi kimdir Python listesi nasıl sıralanır?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "osmanli-padisahlari.md#0 0.485",
+    "turk-destanlari.md#1 0.410",
+    "turk-milliyetciliginin-dogusu.md#1 0.410"
+   ],
+   "en_iyi_skor": 0.485,
+   "esikte_red": false,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.542,
+   "sure_ilk_token": 1.076,
+   "sure_toplam": 1.883,
+   "cevaplanabilir": false,
+   "basarili": true,
+   "neden": [],
+   "id": "disi-3#2",
+   "grup": "senaryo",
+   "kategori": "konu_disi_sonra",
+   "eski12": false
+  },
+  {
+   "soru": "Malazgirt Savaşı ne zaman yapılmıştır?",
+   "onceki_soru": null,
+   "arama_metni": "Malazgirt Savaşı ne zaman yapılmıştır?",
+   "cevap": "Malazgirt Savaşı 26 Ağustos 1071'de yapılmıştır.\n\n(Kaynak: selcuklular-ve-malazgirt.md)",
+   "getirilen": [
+    "selcuklular-ve-malazgirt.md#0 0.560",
+    "osmanli-padisahlari.md#2 0.398",
+    "canakkale-ve-kurtulus-savasi.md#2 0.387"
+   ],
+   "en_iyi_skor": 0.56,
+   "esikte_red": false,
+   "reddetti": false,
+   "kaynaklar": [
+    "selcuklular-ve-malazgirt.md"
+   ],
+   "kaynak_var": true,
+   "sure_arama": 0.269,
+   "sure_ilk_token": 0.917,
+   "sure_toplam": 1.873,
+   "cevaplanabilir": false,
+   "basarili": false,
+   "neden": [
+    "cevaplanamaz soruya cevap verdi"
+   ],
+   "id": "disi-4#1",
+   "grup": "hazirlik",
+   "kategori": "hazirlik",
+   "eski12": false
+  },
+  {
+   "soru": "Futbolda ofsayt kuralı nedir?",
+   "onceki_soru": "Malazgirt Savaşı ne zaman yapılmıştır?",
+   "arama_metni": "Malazgirt Savaşı ne zaman yapılmıştır? Futbolda ofsayt kuralı nedir?",
+   "cevap": "Bu bilgi elimdeki dokümanlarda yok.",
+   "getirilen": [
+    "selcuklular-ve-malazgirt.md#0 0.508",
+    "turk-kulturunde-at.md#1 0.424",
+    "turk-kulturunde-at.md#0 0.369"
+   ],
+   "en_iyi_skor": 0.508,
+   "esikte_red": false,
+   "reddetti": true,
+   "kaynaklar": [],
+   "kaynak_var": false,
+   "sure_arama": 0.589,
+   "sure_ilk_token": 0.962,
+   "sure_toplam": 1.818,
+   "cevaplanabilir": false,
+   "basarili": true,
+   "neden": [],
+   "id": "disi-4#2",
+   "grup": "senaryo",
+   "kategori": "konu_disi_sonra",
+   "eski12": false
+  }
+ ]
+}
