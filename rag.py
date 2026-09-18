@@ -78,6 +78,19 @@ BAGLAM_EN_AZ = 2
 BAGLAM_EN_COK = 5
 BAGLAM_BUTCE = 2800   # karakter; en kotu durumdaki bekleyisi sinirlar
 BELGE_SINIRI = 2      # ayni belgeden en fazla kac parca alinir
+# Belge siniri yalnizca baska bir belgede gercekten rakip bir parca varsa
+# uygulanir. Sinir kosulsuzken, cevabin tamami tek belgede olan sorularda
+# ayni belgenin 3. ve 4. parcalari atlanip yerlerine alakasiz bir belge
+# giriyordu: "Malazgirt Savasi ne zaman yapilmistir? / sonucu ne oldu?"
+# sorusunda ilk dort sira da Malazgirt belgesindeyken baglama Talas Savasi
+# parcasi giriyor ve model cevabi oradan veriyordu.
+#
+# Deger uc olculmus sorudan secildi (en iyi yabanci parcanin en iyi parcaya
+# orani): Malazgirt takip sorusu 0.71 (rakip yok, sinir uygulanmamali),
+# "Bozkirda yazin cikilan otlaga ne ad verilir?" 0.82 ve "Kut nedir?" 0.87
+# (rakip var, sinir gerekli). 0.85 ilk ikisini ayiramiyordu; 0.80 ucunu de
+# dogru tarafa koyuyor.
+BELGE_SINIRI_RAKIP = 0.80
 
 # Istem uzunlugu dogrudan bekleme suresidir: sunucu prefix onbellegi
 # tutmuyor, her soruda istemin tamami bastan okunuyor ve okuma karakter
@@ -154,17 +167,23 @@ def baglam_parcalari(hits):
     Baskin bir parca varsa az, skorlar birbirine yakinsa daha cok parca
     gonderilir. Ayni belgeden en fazla BELGE_SINIRI parca alinir: "Kut
     nedir?" gibi sorularda ilk dort sira tek bir belgeyle doluyor ve dogru
-    belge baglamin disinda kaliyordu.
+    belge baglamin disinda kaliyordu. Sinir kosullu: baska belgede rakip bir
+    parca yoksa (BELGE_SINIRI_RAKIP) uygulanmaz, yoksa cevabin tamami tek
+    belgede olan sorularda alakasiz bir belge baglama giriyor.
     """
     if not hits:
         return hits
 
     esik = BAGLAM_ORANI * hits[0][0]
+    en_iyi_belge = hits[0][2]
+    en_iyi_yabanci = next((h[0] for h in hits if h[2] != en_iyi_belge), 0.0)
+    sinir_uygula = en_iyi_yabanci >= BELGE_SINIRI_RAKIP * hits[0][0]
+
     secili, sayac, toplam = [], {}, 0
     for h in hits:
         if len(secili) >= BAGLAM_EN_COK:
             break
-        if sayac.get(h[2], 0) >= BELGE_SINIRI:
+        if sinir_uygula and sayac.get(h[2], 0) >= BELGE_SINIRI:
             continue
         if len(secili) >= BAGLAM_EN_AZ:
             if h[0] < esik or toplam + len(h[4]) > BAGLAM_BUTCE:

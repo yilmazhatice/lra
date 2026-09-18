@@ -4,7 +4,7 @@
 
 Deniz harekâtının başarısız olması üzerine 25 Nisan 1915'te Gelibolu Yarımadası'na kara çıkarmaları yapılmıştır. Arıburnu, Conkbayırı ve Anafartalar bölgelerindeki çarpışmalar aylarca sürmüştür. Yarbay Mustafa Kemal, Anafartalar Grubu komutanlığındaki başarısıyla tanınmış, bu dönem sonraki askerî ve siyasi kariyerinin temelini oluşturmuştur. Çarpışmalar 1916 başında İtilaf kuvvetlerinin çekilmesiyle sona ermiştir.
 
-Birinci Dünya Savaşı'nın kaybedilmesinin ardından imzalanan Mondros Ateşkes Antlaşması sonrası Anadolu'nun çeşitli bölgeleri işgal edilmiştir. Mustafa Kemal 19 Mayıs 1919'da Samsun'a çıkmış; Amasya Genelgesi, Erzurum ve Sivas kongreleriyle direniş örgütlenmiştir. 23 Nisan 1920'de Ankara'da Türkiye Büyük Millet Meclisi açılmıştır.
+Birinci Dünya Savaşı'nın kaybedilmesinin ardından imzalanan Mondros Ateşkes Antlaşması sonrası Anadolu'nun çeşitli bölgeleri işgal edilmiştir. Mustafa Kemal 19 Mayıs 1919'da Samsun'a çıkmış ve direnişin örgütlenmesi bu tarihten sonra hız kazanmıştır. İşgallere karşı ilk tepki, bölgesel olarak kurulan ve Kuvâ-yi Milliye adıyla anılan gönüllü birliklerden gelmiştir. Bu dağınık güçler tek bir komuta altında toplanarak düzenli orduya dönüştürülmüş, 23 Nisan 1920'de açılan Türkiye Büyük Millet Meclisi savaşın yönetimini üstlenmiştir.
 
 Batı cephesindeki muharebeler 1921'de yoğunlaşmıştır. I. ve II. İnönü muharebelerinin ardından 23 Ağustos - 13 Eylül 1921 tarihleri arasında yirmi iki gün süren Sakarya Meydan Muharebesi kazanılmıştır. Bu savaşın ardından Mustafa Kemal'e Gazi unvanı ve mareşal rütbesi verilmiştir.
 

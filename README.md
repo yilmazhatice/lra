@@ -217,22 +217,23 @@ python evaluate.py --etiket deneme --karsilastir degerlendirmeler/<onceki>.json
 ```
 
 **Son ölçüm** (qwen2.5-7b, RTX 5070 8 GB, 27 belge / 212 bölüm; raporlar:
-[`2026-09-18_1950_terim-paragraflari-son.md`](degerlendirmeler/2026-09-18_1950_terim-paragraflari-son.md),
-[`2026-09-18_1958_kontrol_terim-paragraflari-son.md`](degerlendirmeler/2026-09-18_1958_kontrol_terim-paragraflari-son.md)):
+[`2026-09-18_2208_belge-siniri-080.md`](degerlendirmeler/2026-09-18_2208_belge-siniri-080.md),
+[`2026-09-18_2220_kontrol_belge-siniri-080.md`](degerlendirmeler/2026-09-18_2220_kontrol_belge-siniri-080.md)):
 
 | Ölçüt | Ana set | Kontrol seti | Önceki (13 belge / 86 bölüm) |
 |---|---|---|---|
-| Tam başarı (otomatik) | **%96.2** | **%82.9** | %95.6 / %86.0 |
+| Tam başarı (otomatik) | **%96.9** | **%82.9** | %95.6 / %86.0 |
 | Doğru bölüm ilk sırada / ilk üçte | %86.1 / %96.5 | %80.0 / %92.0 | %87.8 / %95.9 |
-| Cevaplanabilir sorularda başarı | %98.6 | %84.0 | %95.9 / %92.6 |
+| Cevaplanabilir sorularda başarı | %99.3 | %84.0 | %95.9 / %92.6 |
 | Yanlış red (cevap belgede varken) | **%0.0** | %4.0 | %0.0 / %3.7 |
-| Doğru kaynak | %98.6 | %87.5 | %98.6 / %100 |
+| Doğru kaynak | %99.3 | %87.5 | %98.6 / %100 |
 | Cevaplanamaz soruları reddetme | %75.0 | %81.2 | %93.8 / %75.0 |
 | Ortalama yanıt süresi | 2.3 sn | 2.6 sn | 2.5 sn |
 
 Ana settekilerin 80'i yeni 16 belge için yazılmış sorulardır; bu grupta başarı
-**%100**, eski sorularda %92.5. Süre ölçümü yalnızca Foundry sunucusu yeni
-başlatıldığında geçerlidir.
+**%100**, eski sorularda %93.8. Süre ölçümü yalnızca Foundry sunucusu yeni
+başlatıldığında geçerlidir; tablodaki değer bu koşula uyan bir koşumdan
+alınmıştır.
 
 **Kontrol setindeki fark.** Kontrol seti dondurulmuş olduğu için belge
 koleksiyonu büyürken güncellenmedi. Kalan hataların ikisi ölçüm artefaktıdır:

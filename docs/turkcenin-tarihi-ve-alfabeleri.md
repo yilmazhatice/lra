@@ -1,6 +1,6 @@
 # Türkçenin Tarihi ve Kullanılan Alfabeler
 
-Türkçe, tarih boyunca birden fazla alfabeyle yazılmış bir dildir. Bilinen ilk yazı sistemi Göktürk alfabesidir; Orhun alfabesi adıyla da anılır. Otuz sekiz işaretten oluşur ve genellikle sağdan sola yazılır. Orhun Yazıtları bu alfabeyle yazılmıştır ve Türkçenin bilinen en eski uzun metinleridir.
+Türkçe, tarih boyunca birden fazla alfabeyle yazılmış bir dildir. Bilinen ilk yazı sistemi Göktürk alfabesidir; Orhun alfabesi adıyla da anılır. Otuz sekiz işaretten oluşur ve genellikle sağdan sola yazılır. Harfler taşa kazımaya elverişli köşeli biçimleriyle ayrılır; bu alfabeyle yazılmış en tanınmış belgeler Orhun Yazıtları'dır.
 
 Uygurlar yerleşik hayata geçtikten sonra kendi alfabelerini geliştirmiştir. Uygur alfabesi Soğd yazısından uyarlanmış olup on dört harften oluşur. Bu alfabeyle çok sayıda dinî ve edebî metin yazılmış, Uygurlar ayrıca ağaç baskı tekniğini kullanarak metin çoğaltmıştır.
 
