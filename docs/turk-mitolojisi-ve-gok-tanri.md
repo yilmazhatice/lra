@@ -1,0 +1,21 @@
+# Türk Mitolojisi ve Gök Tanrı İnancı
+
+İslamiyet öncesi Türk topluluklarının inanç dünyasının merkezinde Gök Tanrı bulunur. Tengri adı verilen bu varlık, her şeyi yaratan ve yöneten tek güç olarak kabul edilir; gözle görülmez, herhangi bir biçime sokulmaz ve heykeli ya da putu yapılmaz. Orhun Yazıtları'nda geçen "Üstte mavi gök, altta yağız yer yaratıldığında, ikisinin arasında insanoğlu yaratılmış" ifadesi bu anlayışın en açık örneğidir. Tanrı kağana kut verir, orduya güç verir ve ihmal edildiğinde devleti cezalandırır.
+
+Gök Tanrı inancının yanında yer-su kültü bulunur. Bu anlayışta dağ, ırmak, göl, kaynak, orman ve ağaçların koruyucu ruhları olduğu kabul edilir. Kutsal sayılan mekânlar arasında Ötüken ormanı, Tanrı Dağları ve tek başına duran yaşlı ağaçlar sayılır. Gökle yeri birleştirdiğine inanılan hayat ağacı, Türk anlatılarında ve halı-kilim motiflerinde en sık karşılaşılan imgelerden biridir. Bu kültün izleri bugün de ağaçlara dilek bezi bağlama, su kenarında adak adama gibi uygulamalarda sürmektedir.
+
+Atalar kültü, ölen büyüklerin ruhlarının yaşamayı sürdürdüğü ve yaşayanları koruduğu inancına dayanır. Ölünün ardından yapılan törene yuğ denir; yas töreninde ağıt yakılır, at kurban edilir ve ölü aşı verilirdi. Kurgan adı verilen mezarlara ölünün atı, silahları ve eşyaları birlikte konurdu. Mezarın çevresine dikilen taşlara balbal denir; bunların, ölen kişinin öbür dünyada hizmetinde bulunacağına inanılan öldürdüğü düşmanları temsil ettiği kabul edilir.
+
+Umay, Türk inanç dünyasının en bilinen kadın figürüdür. Doğumu, çocukları ve bereketi koruduğuna inanılır. Orhun Yazıtları'nda Bilge Kağan'ın annesinden "Umay gibi annem" diye söz edilmesi, bu adın sekizinci yüzyılda bilindiğini ve saygıyla anıldığını gösterir. Umay adı bugün de birçok Türk topluluğunda kadın adı olarak kullanılmaktadır.
+
+Altay ve Sibirya Türk topluluklarından derlenen anlatılarda daha ayrıntılı bir varlıklar düzeni görülür. Bu anlatılarda Ülgen ya da Kayra Han gökyüzünün ve iyiliğin, Erlik ise yeraltının ve kötülüğün temsilcisidir. Ancak bu derlemelerin büyük bölümü on dokuzuncu ve yirminci yüzyıllarda yapılmıştır; bu nedenle anlatılan düzenin ne kadarının eski Türk inancına, ne kadarının sonraki yüzyıllardaki yerel gelişmelere ait olduğu tartışmalıdır.
+
+Kam, ruhlarla ilişki kurduğuna inanılan din adamıdır. Hastaları iyileştirmek, ölünün ruhunu uğurlamak ve gelecekten haber vermek başlıca görevleridir. Törenlerde davul kullanır, ezgi ve dansla kendinden geçtiği bir duruma girerdi. Türkçede bu kişi için kam sözcüğü kullanılır; bugün yaygın olan şaman sözcüğü ise Tunguz dillerinden gelir ve sonradan yaygınlaşmıştır. Araştırmacılar, eski Türk inancının bütününü "Şamanizm" diye adlandırmanın yanıltıcı olduğunu, kamlığın bir din değil bu inanç içindeki bir uygulama biçimi olduğunu belirtir.
+
+Sayıların da simgesel bir yeri vardır. Üç, yedi, dokuz ve kırk en sık karşılaşılan kutsal sayılardır. Göğün kat kat olduğu düşüncesi, hükümdarın rütbesini gösteren dokuz tuğ, destanlarda kahramanın yanındaki kırk yiğit ve kırk gün süren düğünler bu sayıların kullanımına örnektir. Yön anlayışında doğu üstün sayılır; otağın kapısı doğuya bakar ve devletin doğu kanadı büyük kağana ayrılırdı.
+
+Öbür dünya anlayışında iyilerin gittiği yere uçmağ, kötülerin gittiği yere tamu denirdi. Bu adlar, Uygurların Maniheizm ve Budizm ile tanışmasının ardından Türkçeye yerleşmiştir. Ruhun ölümden sonra kuş biçiminde uçtuğu düşüncesi, Türkçedeki "uçmak" fiiliyle bu sözcük arasındaki bağın kaynağı sayılır ve ölüm için "şahin oldu, uçtu" gibi ifadelerin kullanılmasını açıklar.
+
+Türk toplulukları tarih boyunca Gök Tanrı inancı dışında başka dinlerle de tanışmıştır. Uygur Kağanlığı 763'te Maniheizm'i resmî din olarak benimsemiş, sonraki dönemde Budizm yaygınlaşmıştır. Hazar Devleti'nin yönetici sınıfı Museviliği kabul etmiş, bazı Türk topluluklarında Nasturi Hristiyanlığı görülmüştür. Onuncu yüzyıldan itibaren ise İslamiyet yaygınlaşmıştır.
+
+İslamiyet'in kabulünden sonra eski inancın birçok unsuru yok olmamış, yeni dinin biçimleri içinde sürmüştür. Kurban geleneği, ağaca bez bağlama, ateşin ve suyun temizleyici sayılması, nazar inancı ve ölünün ardından verilen yemek bu sürekliliğin örnekleridir. Anadolu'daki yatır ziyaretleri ile Orta Asya'daki atalar kültü arasındaki benzerlik, araştırmacıların sıkça işaret ettiği bir noktadır.
