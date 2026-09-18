@@ -157,11 +157,21 @@ Kendi belgelerinizi kullanmak için `docs/` klasörünün içeriğini değiştir
 
 ## Belge koleksiyonu
 
-`docs/` klasöründe Türk tarihi ve kültürü üzerine 13 belge, toplam 86 paragraf
-bölümü bulunuyor: ilk Türk devletleri, Selçuklular ve Malazgirt, Osmanlı
-padişahları, Çanakkale ve Kurtuluş Savaşı, Cumhuriyet dönemi, Türk kültüründe at
-ve kurt, Türk destanları, devlet geleneği, Türkçenin tarihi, milliyetçilik
-akımının doğuşu ve öne çıkan isimler.
+`docs/` klasöründe Türk tarihi ve kültürü üzerine 27 belge, toplam 209 paragraf
+bölümü bulunuyor.
+
+- **Siyasi tarih:** ilk Türk devletleri, Türklerin İslamiyet'i kabulü ve ilk
+  Türk-İslam devletleri, Selçuklular ve Malazgirt, Anadolu beylikleri ve
+  Osmanlı'nın kuruluşu, Osmanlı padişahları, Osmanlı devlet teşkilatı,
+  duraklama-ıslahat-Meşrutiyet dönemi, Çanakkale ve Kurtuluş Savaşı,
+  Mustafa Kemal Atatürk, Cumhuriyet dönemi inkılapları, bugünkü Türk dünyası.
+- **Kültür ve inanç:** Türk devlet geleneği ve töre, Türk mitolojisi ve Gök
+  Tanrı inancı, Oğuz boyları ve boy yapısı, bozkır göçebe yaşamı, Türk
+  kültüründe at, Türk kültüründe kurt, Türk destanları, Nevruz ve bayram
+  gelenekleri, ozan-âşık geleneği.
+- **Dil, bilim ve sanat:** Türkçenin tarihi ve alfabeler, ilk Türk-İslam
+  eserleri, Türk-İslam dünyasında bilim, Selçuklu ve Osmanlı mimarisi,
+  Türk denizciliği, millî semboller, Türk milliyetçiliğinin fikrî doğuşu.
 
 Belgeler yayımlanmış kaynaklardan derlenerek yazılmıştır. Kaynağı
 doğrulanamayan anlatılar, olgu olarak değil, doğrulanmamış oldukları belirtilerek
@@ -171,10 +181,11 @@ aktarılmıştır.
 
 İki soru seti var:
 
-- **Ana set (105 soru):** 13 belgenin hepsinden 65 cevaplanabilir ve 10
-  cevaplanamaz soru, ayrıca 15 çok turlu senaryo (takip sorusu, konu değişimi,
-  önceki sorudan sonra konu dışı soru). Ayarlar bu sete bakılarak yapıldı.
-- **Kontrol seti (58 soru, 43'ü puanlanan):** Sonuçları görülmeden yazılıp
+- **Ana set (175 soru, 160'ı puanlanan):** 27 belgenin hepsinden 135
+  cevaplanabilir ve 10 cevaplanamaz tekil soru, ayrıca 15 çok turlu senaryo
+  (takip sorusu, konu değişimi, önceki sorudan sonra konu dışı soru).
+  Ayarlar bu sete bakılarak yapıldı.
+- **Kontrol seti (56 soru, 41'i puanlanan):** Sonuçları görülmeden yazılıp
   dondurulmuş sorular. Ayar yapmak için kullanılmaz; ayarların bu sete fazla
   uyup uymadığını gösterir.
 
@@ -189,19 +200,36 @@ python evaluate.py --set kontrol --etiket deneme      # kontrol seti
 python evaluate.py --etiket deneme --karsilastir degerlendirmeler/<onceki>.json
 ```
 
-**Son ölçüm** (qwen2.5-7b, RTX 5070 8 GB; raporlar:
-[`2026-09-18_0449_birlesik-nihai.md`](degerlendirmeler/2026-09-18_0449_birlesik-nihai.md),
-[`2026-09-18_0454_kontrol_birlesik-nihai.md`](degerlendirmeler/2026-09-18_0454_kontrol_birlesik-nihai.md)):
+**Son ölçüm** (qwen2.5-7b, RTX 5070 8 GB, 27 belge / 209 bölüm; raporlar:
+[`2026-09-18_0716_kapsam-nihai.md`](degerlendirmeler/2026-09-18_0716_kapsam-nihai.md),
+[`2026-09-18_0855_kontrol_kontrol-209parca.md`](degerlendirmeler/2026-09-18_0855_kontrol_kontrol-209parca.md)):
 
-| Ölçüt | Ana set | Kontrol seti | Önceki (`muhammet_ws`) |
+| Ölçüt | Ana set | Kontrol seti | Önceki (13 belge / 86 bölüm) |
 |---|---|---|---|
-| Tam başarı (otomatik) | **%95.6** | **%86.0** | %95.6 / %88.4 |
-| Doğru bölüm ilk sırada / ilk üçte | %87.8 / %95.9 | %85.2 / %88.9 | değişmedi |
-| Cevaplanabilir sorularda başarı | %95.9 | %92.6 | %95.9 / %88.9 |
-| Yanlış red (cevap belgede varken) | **%0.0** | **%3.7** | %2.7 / %7.4 |
-| Doğru kaynak | %98.6 | %100 | %98.6 / %100 |
-| Cevaplanamaz soruları reddetme | %93.8 | %75.0 | %100 / %87.5 |
-| Ortalama yanıt süresi | 2.5 sn | ölçülemedi | 2.2 sn |
+| Tam başarı (otomatik) | **%94.4** | **%78.0** | %95.6 / %86.0 |
+| Doğru bölüm ilk sırada / ilk üçte | %84.0 / %95.1 | %80.0 / %88.0 | %87.8 / %95.9 |
+| Cevaplanabilir sorularda başarı | %96.5 | %76.0 | %95.9 / %92.6 |
+| Yanlış red (cevap belgede varken) | %0.7 | %4.0 | %0.0 / %3.7 |
+| Doğru kaynak | %98.6 | %79.2 | %98.6 / %100 |
+| Cevaplanamaz soruları reddetme | %75.0 | %81.2 | %93.8 / %75.0 |
+| Ortalama yanıt süresi | 2.3 sn | 2.9 sn | 2.5 sn |
+
+Ana settekilerin 80'i yeni 16 belge için yazılmış sorulardır; bu grupta başarı
+%98.8 (60 "normal" sorunun tamamı doğru), eski sorularda %90.0.
+
+Süre ölçümü yalnızca Foundry sunucusu yeni başlatıldığında geçerlidir; ana
+setin süresi bu koşula uyan
+[`2026-09-18_0707`](degerlendirmeler/2026-09-18_0707_kapsam-16-yeni-belge.md)
+koşumundan alınmıştır.
+
+**Kontrol setindeki düşüş.** Kontrol seti dondurulmuş olduğu için belge
+koleksiyonu büyürken güncellenmedi ve düşüşün bir bölümü ölçüm artefaktıdır:
+"Manasçı kimdir?" ile "Otağ nedir?" sorularında sistem, kavramı asıl tanımlayan
+yeni belgeyi kaynak gösterdiği hâlde set eski belgeyi beklediği için yanlış
+sayıldı. Geri kalan düşüş gerçektir: yeni belgelerdeki yüzeysel değinmeler
+birkaç soruda asıl paragrafı alt sıralara itiyor. Set bilerek değiştirilmemiştir;
+ayar yapılmamış sorular üzerindeki bu ölçüm, ana setin iyimser olduğunu
+gösterdiği için değerlidir.
 
 Otomatik puanlama anahtar ifadelere ve kaynağa bakar; yanıtın geri kalanındaki
 yanlışları kaçırabildiği için yanıtların ayrıca gözle kontrol edilmesi gerekir.
