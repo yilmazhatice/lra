@@ -157,7 +157,7 @@ Kendi belgelerinizi kullanmak için `docs/` klasörünün içeriğini değiştir
 
 ## Belge koleksiyonu
 
-`docs/` klasöründe Türk tarihi ve kültürü üzerine 27 belge, toplam 212 paragraf
+`docs/` klasöründe Türk tarihi ve kültürü üzerine 28 belge, toplam 219 paragraf
 bölümü bulunuyor.
 
 - **Siyasi tarih:** ilk Türk devletleri, Türklerin İslamiyet'i kabulü ve ilk
@@ -172,6 +172,10 @@ bölümü bulunuyor.
 - **Dil, bilim ve sanat:** Türkçenin tarihi ve alfabeler, ilk Türk-İslam
   eserleri, Türk-İslam dünyasında bilim, Selçuklu ve Osmanlı mimarisi,
   Türk denizciliği, millî semboller, Türk milliyetçiliğinin fikrî doğuşu.
+
+Bunlara ek olarak `asistan-hakkinda.md`, asistanın ne olduğunu, hangi
+konularda soru alabileceğini ve neden bazı soruları reddettiğini anlatır;
+"sen kimsin" gibi sorular bu belgeden cevaplanır.
 
 Belgeler yayımlanmış kaynaklardan derlenerek yazılmıştır. Kaynağı
 doğrulanamayan anlatılar, olgu olarak değil, doğrulanmamış oldukları belirtilerek
@@ -193,11 +197,18 @@ paragrafın sonundayken arama sırası 7, kendi paragrafına alınınca 3 oldu;
 anlatan bir cümle girmişti; paragraf baştan sona kımızı anlatır hâle
 getirilince skor 0.346'dan 0.475'e çıktı ve sıra 1 oldu.
 
+Aynı kural belge düzeyinde de geçerli. Koleksiyona olayları tarih sırasına
+göre toplayan bir kronoloji belgesi eklemek denendi ve geri alındı: değeri
+("X'ten önce mi sonra mı") tarihleri listelemesini gerektiriyor, tarihleri
+listelemesi de onları asıl anlatan belgelerle yarışması demek. Ölçümde arama
+sıralaması hiç bozulmadığı hâlde ana set %96.9'dan %94.4'e düştü; kronoloji
+bölümleri bağlama girip modelin yanlış yerden cevaplamasına yol açtı.
+
 ## Değerlendirme
 
 İki soru seti var:
 
-- **Ana set (175 soru, 160'ı puanlanan):** 27 belgenin hepsinden 135
+- **Ana set (175 soru, 160'ı puanlanan):** 27 konu belgesinin hepsinden 135
   cevaplanabilir ve 10 cevaplanamaz tekil soru, ayrıca 15 çok turlu senaryo
   (takip sorusu, konu değişimi, önceki sorudan sonra konu dışı soru).
   Ayarlar bu sete bakılarak yapıldı.
@@ -216,9 +227,9 @@ python evaluate.py --set kontrol --etiket deneme      # kontrol seti
 python evaluate.py --etiket deneme --karsilastir degerlendirmeler/<onceki>.json
 ```
 
-**Son ölçüm** (qwen2.5-7b, RTX 5070 8 GB, 27 belge / 212 bölüm; raporlar:
-[`2026-09-19_0049_hibrit-kapi1.md`](degerlendirmeler/2026-09-19_0049_hibrit-kapi1.md),
-[`2026-09-19_0057_kontrol_hibrit-kapi1.md`](degerlendirmeler/2026-09-19_0057_kontrol_hibrit-kapi1.md)):
+**Son ölçüm** (qwen2.5-7b, RTX 5070 8 GB, 28 belge / 219 bölüm; raporlar:
+[`2026-09-19_0310_d-grubu-son.md`](degerlendirmeler/2026-09-19_0310_d-grubu-son.md),
+[`2026-09-19_0318_kontrol_d-grubu-son.md`](degerlendirmeler/2026-09-19_0318_kontrol_d-grubu-son.md)):
 
 | Ölçüt | Ana set | Kontrol seti | Önceki (13 belge / 86 bölüm) |
 |---|---|---|---|

@@ -6,7 +6,7 @@ Askerî açıdan atlı savaş, Türk ordularının belirleyici özelliğidir. At
 
 Üzengi, atlı savaşın gelişiminde önemli bir teknik ayrıntıdır. Üzengi sayesinde binici at üstünde dengede durabilmiş, iki elini birden kullanabilmiş ve mızrak darbesine vücut ağırlığını verebilmiştir. Bu buluşun bozkır toplulukları aracılığıyla batıya yayıldığı kabul edilir.
 
-Kısrak sütünün mayalanmasıyla elde edilen kımız, Orta Asya Türk topluluklarında yaygın bir içecektir ve bugün Kazakistan ile Kırgızistan'da hâlâ tüketilmektedir. Kımız, sağılan süt deriden yapılmış tulumlara konup düzenli olarak çalkalanarak mayalandırılır; ortaya çıkan içecek hafif ekşi tatlı ve düşük alkollüdür. Kımız yaz aylarında hazırlanır, şölenlerde ve konuk ağırlamada ikram edilir.
+Kımız, kısrak sütünün mayalanmasıyla elde edilen ekşimsi ve hafif alkollü bir içecektir. Orta Asya Türk topluluklarında yaygındır ve bugün Kazakistan ile Kırgızistan'da hâlâ tüketilmektedir. Sağılan kısrak sütü deriden yapılmış tulumlara konup düzenli olarak çalkalanarak mayalandırılır; ortaya çıkan içecek hafif ekşi tatlı ve düşük alkollüdür. Kımız yaz aylarında hazırlanır, şölenlerde ve konuk ağırlamada ikram edilir.
 
 Atın başka ürünleri de değerlendirilmiştir. At derisi, kılı ve kemiği çeşitli araçların yapımında kullanılmış; kıldan ip ve tuğ, deriden kap ve koşum takımı yapılmıştır.
 
