@@ -759,3 +759,197 @@ KONTROL_SENARYOLAR = [
         dict(soru="Yarın İstanbul'da yağmur yağacak mı?"),
     ]),
 ]
+
+# ---------------------------------------------------------------------------
+# Ikinci kontrol seti (28 belgelik koleksiyon icin, 2026-09-19).
+#
+# Birinci kontrol seti (KONTROL_SORULAR) 13 belgelik koleksiyon icin yazilmisti
+# ve bagimsizligini yitirdi: 2026-09-18'de "Ulus nedir?" ile Dede Korkut
+# sorularindaki basarisizliklara bakilip belgeler ona gore duzeltildi. Tarihsel
+# kayit olarak duruyor, ama artik gorulmemis bir olcek degil.
+#
+# Bu set sonuclari gorulmeden yazildi ve donduruldu. Onyargiyi azaltmak icin
+# sorular sistematik uretildi: ana setin hic kullanmadigi paragraflar
+# taranip her birinden bir olgu sorusu yazildi (olcum_betikleri/
+# kontrol2_kapsam.py). Zayif noktalar hedeflenmedi ya da korunmadi.
+#
+# SINIRLAMA: seti yazan, ayni oturumda sistemin butun basarisizlik
+# bicimlerini gormus olan asistandir. Sistemi hic gormemis birinin yazdigi
+# bir set kadar bagimsiz degildir; bu kayit altina alinmistir.
+# Ayar icin KULLANILMAZ. Calistirmak icin: python evaluate.py --set kontrol2
+# ---------------------------------------------------------------------------
+
+KONTROL2_SORULAR = [
+    # ------------------------------------------------------ cevaplanabilir
+    dict(id="k2-beylik-konum", soru="Osmanlı Beyliği'nin büyümesinde coğrafi konumun rolü nedir?",
+         belge="anadolu-beylikleri-ve-osmanlinin-kurulusu.md",
+         kanit="beylik doğrudan Bizans sınırında bulunduğu", anahtar=["Bizans"]),
+    dict(id="k2-asistan-internet", soru="Asistan çalışmak için internet bağlantısına ihtiyaç duyar mı?",
+         belge="asistan-hakkinda.md",
+         kanit="internet bağlantısı olmadan da kullanılabilir", anahtar=["internet"]),
+    dict(id="k2-juanjuan", soru="Göktürkler bağımsızlıklarından önce hangi devlet için demir işlemiştir?",
+         belge="bozkir-gocebe-yasami.md",
+         kanit="Juan-juan Devleti için demir işlediği", anahtar=["Juan-juan"]),
+    dict(id="k2-kirgizistan", soru="Kırgızistan bağımsızlığını ne zaman ilan etmiştir?",
+         belge="bugunku-turk-dunyasi.md",
+         kanit="Kırgızistan 31 Ağustos 1991'de", anahtar=["31 Ağustos 1991|1991"]),
+    dict(id="k2-kuvayi", soru="İşgallere karşı ilk tepki hangi birliklerden gelmiştir?",
+         belge="canakkale-ve-kurtulus-savasi.md",
+         kanit="Kuvâ-yi Milliye adıyla anılan gönüllü birliklerden", anahtar=["Kuvâ-yi Milliye|Kuva-yi Milliye"]),
+    dict(id="k2-ilk-anayasa", soru="İlk anayasa hangi tarihte kabul edilmiştir?",
+         belge="cumhuriyet-inkilaplari.md",
+         kanit="20 Ocak 1921'de kabul edilen Teşkilat-ı Esasiye", anahtar=["20 Ocak 1921|1921"]),
+    dict(id="k2-dlt-harita", soru="Dîvânu Lugâti't-Türk'teki haritanın merkezinde hangi şehir vardır?",
+         belge="ilk-turk-islam-eserleri.md",
+         kanit="merkezine Balasagun yerleştirilmiştir", anahtar=["Balasagun"]),
+    dict(id="k2-akif-meslek", soru="Mehmet Âkif Ersoy hangi mesleği yapmıştır?",
+         belge="milli-semboller.md",
+         kanit="veteriner hekim olmuş", anahtar=["veteriner"]),
+    dict(id="k2-sofya", soru="Mustafa Kemal Sofya'da hangi görevde bulunmuştur?",
+         belge="mustafa-kemal-ataturk.md",
+         kanit="Sofya'da askerî ataşe olarak", anahtar=["ataşe"]),
+    dict(id="k2-nevruz-bm", soru="Birleşmiş Milletler 21 Mart'ı ne ilan etmiştir?",
+         belge="nevruz-ve-turk-bayramlari.md",
+         kanit="Dünya Nevruz Günü ilan etmiştir", anahtar=["Dünya Nevruz Günü"]),
+    dict(id="k2-avar", soru="Avarlar İstanbul'u hangi yılda kuşatmıştır?",
+         belge="oguz-boylari-ve-turk-boy-yapisi.md",
+         kanit="626'da İstanbul'u kuşatmıştır", anahtar=["626"]),
+    dict(id="k2-kadi", soru="Osmanlı taşra yönetiminde kaza düzeyinde kim görev yapardı?", kategori="ozel_ad",
+         belge="osmanli-devlet-teskilati.md",
+         kanit="Kaza düzeyinde ise kadı görev yapar", anahtar=["kadı"]),
+    dict(id="k2-kafes", soru="Şehzadelerin sarayda tutulduğu düzene ne ad verilir?", kategori="ozel_ad",
+         belge="osmanli-islahat-ve-mesrutiyet.md",
+         kanit="kafes adı verilen düzende", anahtar=["kafes"]),
+    dict(id="k2-mehter-calgi", soru="Mehter topluluğunda hangi çalgılar bulunur?",
+         belge="ozan-asik-gelenegi.md",
+         kanit="zurna, boru, kös, nakkare, davul ve zil", anahtar=["zurna"]),
+    dict(id="k2-sinan-dogum", soru="Mimar Sinan nerede doğmuştur?",
+         belge="selcuklu-ve-osmanli-mimarisi.md",
+         kanit="Kayseri'nin Ağırnas köyünde doğmuş", anahtar=["Ağırnas|Kayseri"]),
+    dict(id="k2-barbaros-cezayir", soru="Barbaros Hayreddin Paşa hangi şehrin yönetimini üstlenmiştir?",
+         belge="turk-denizciligi.md",
+         kanit="Cezayir'in yönetimini üstlenmiş", anahtar=["Cezayir"]),
+    dict(id="k2-saka-destan", soru="Sakalara ait destanlar hangileridir?",
+         belge="turk-destanlari.md",
+         kanit="Sakalara ait Alp Er Tunga ve Şu", anahtar=["Alp Er Tunga"]),
+    dict(id="k2-biruni-dil", soru="Bîrûnî hangi dili öğrenmiştir?",
+         belge="turk-islam-dunyasinda-bilim.md",
+         kanit="Sanskritçe öğrenmiştir", anahtar=["Sanskritçe"]),
+    dict(id="k2-kurt-tug", soru="Göktürklerde kurt figürü nerelerde kullanılmıştır?",
+         belge="turk-kulturunde-kurt.md",
+         kanit="kurt başlı tuğların kullanıldığı", anahtar=["tuğ"]),
+    dict(id="k2-kutsal-sayi", soru="Türk inancında hangi sayılar kutsal sayılır?",
+         belge="turk-mitolojisi-ve-gok-tanri.md",
+         kanit="Üç, yedi, dokuz ve kırk", anahtar=["dokuz", "kırk"]),
+    dict(id="k2-karahanli-bolunme", soru="Karahanlı Devleti ne zaman ikiye ayrılmıştır?",
+         belge="turklerin-islamiyeti-kabulu.md",
+         kanit="1042'de Doğu ve Batı Karahanlılar", anahtar=["1042"]),
+    dict(id="k2-uygur-matbaa", soru="Uygurlar metin çoğaltmak için hangi tekniği kullanmıştır?",
+         belge="ilk-turk-devletleri.md",
+         kanit="matbaanın erken biçimlerini kullanmış", anahtar=["matbaa"]),
+    dict(id="k2-miryokefalon", soru="Miryokefalon Savaşı'nın sonucu ne olmuştur?",
+         belge="selcuklular-ve-malazgirt.md",
+         kanit="Bizans'ın Anadolu'yu geri alma girişimi başarısız", anahtar=["başarısız"]),
+    dict(id="k2-kut-soy", soru="Kut kime verilmiş sayılırdı?",
+         belge="turk-devlet-gelenegi.md",
+         kanit="kişiye değil soya verilmiş sayıldığı", anahtar=["soy"]),
+    dict(id="k2-uygur-alfabe", soru="Uygur alfabesi kaç harften oluşur?",
+         belge="turkcenin-tarihi-ve-alfabeleri.md",
+         kanit="on dört harften oluşur", anahtar=["on dört|14"]),
+    dict(id="k2-fetret", soru="Fetret Devri kaç yıl sürmüştür?",
+         belge="osmanli-padisahlari.md",
+         kanit="on bir yıllık taht mücadelesine", anahtar=["on bir|11"]),
+    dict(id="k2-ahal-teke", soru="Ahal Teke atı hangi özellikleriyle bilinir?",
+         belge="turk-kulturunde-at.md",
+         kanit="dayanıklılıkları ve uzun mesafe", anahtar=["dayanıklı"]),
+    dict(id="k2-turk-yurdu", soru="Türk Yurdu dergisi ne zaman kurulmuştur?",
+         belge="turk-milliyetciliginin-dogusu.md",
+         kanit="Türk Yurdu dergisi 1911'de", anahtar=["1911"]),
+    dict(id="k2-sened", soru="Sened-i İttifak hangi yıl imzalanmıştır?",
+         belge="osmanli-islahat-ve-mesrutiyet.md",
+         kanit="1808'de ayanlarla Sened-i İttifak", anahtar=["1808"]),
+
+    # -------------------------------------------------------- cevaplanamaz
+    dict(id="k2-cevapsiz-sinan-sayi", soru="Mimar Sinan tam olarak kaç yapı inşa etmiştir?", kategori="yakin"),
+    dict(id="k2-cevapsiz-barbaros-dogum", soru="Barbaros Hayreddin Paşa hangi yıl doğmuştur?", kategori="yakin"),
+    dict(id="k2-cevapsiz-akif-mezar", soru="Mehmet Âkif Ersoy nereye gömülmüştür?", kategori="yakin"),
+    dict(id="k2-cevapsiz-pecenek-nufus", soru="Peçeneklerin nüfusu ne kadardı?", kategori="yakin"),
+    dict(id="k2-cevapsiz-biruni-ogrenci", soru="Bîrûnî'nin öğrencileri kimlerdi?", kategori="yakin"),
+    dict(id="k2-cevapsiz-kadi-maas", soru="Osmanlı'da kadılar ne kadar maaş alırdı?", kategori="yakin"),
+    dict(id="k2-disi-corba", soru="Mercimek çorbası nasıl yapılır?", kategori="konu_disi"),
+    dict(id="k2-disi-dolar", soru="Bugün dolar kaç lira?", kategori="konu_disi"),
+    dict(id="k2-disi-kod", soru="JavaScript'te bir dizi nasıl ters çevrilir?", kategori="konu_disi"),
+    dict(id="k2-anlamsiz", soru="qwerty asdf 12345", kategori="anlamsiz"),
+]
+
+KONTROL2_SENARYOLAR = [
+    # ------------------------------------------------------- takip sorusu
+    dict(id="k2-takip-sinan", tip="takip", sorular=[
+        dict(soru="Mimar Sinan ustalık eseri olarak hangi yapıyı göstermiştir?"),
+        dict(soru="nerede bulunuyor?",
+             belge="selcuklu-ve-osmanli-mimarisi.md",
+             kanit="Edirne'deki Selimiye", anahtar=["Edirne"]),
+    ]),
+    dict(id="k2-takip-preveze", tip="takip", sorular=[
+        dict(soru="Preveze Deniz Savaşı'nı kim kazanmıştır?"),
+        dict(soru="hangi tarihte oldu?",
+             belge="turk-denizciligi.md",
+             kanit="Preveze Deniz Savaşı 28 Eylül 1538", anahtar=["28 Eylül 1538|1538"]),
+    ]),
+    dict(id="k2-takip-akif", tip="takip", sorular=[
+        dict(soru="İstiklal Marşı'nın şairi kimdir?"),
+        dict(soru="hangi dergide yazardı?",
+             belge="milli-semboller.md",
+             kanit="Sebilürreşad dergisinde", anahtar=["Sebilürreşad|Sırat-ı Müstakim"]),
+    ]),
+    dict(id="k2-takip-karahanli", tip="takip", sorular=[
+        dict(soru="Karahanlı Devleti ne zaman kurulmuştur?"),
+        dict(soru="ne zaman ikiye ayrıldı?",
+             belge="turklerin-islamiyeti-kabulu.md",
+             kanit="1042'de Doğu ve Batı Karahanlılar", anahtar=["1042"]),
+    ]),
+
+    # --------------------------------------- takip sorusu, cevabi belgede yok
+    dict(id="k2-cevapsiz-takip-sinan", tip="takip_cevapsiz", sorular=[
+        dict(soru="Mimar Sinan hangi padişahlar döneminde çalışmıştır?"),
+        dict(soru="kaç yaşında öldü?"),
+    ]),
+    dict(id="k2-cevapsiz-takip-nevruz", tip="takip_cevapsiz", sorular=[
+        dict(soru="Nevruz hangi tarihte kutlanır?"),
+        dict(soru="kaç ülkede resmî tatildir?"),
+    ]),
+    dict(id="k2-cevapsiz-takip-kadi", tip="takip_cevapsiz", sorular=[
+        dict(soru="Osmanlı'da kadı ne iş yapardı?"),
+        dict(soru="kaç yıl görev yapardı?"),
+    ]),
+
+    # ----------------------------------------- konu degisimi, kisa yeni soru
+    dict(id="k2-degisim-mehter", tip="konu_degisimi", sorular=[
+        dict(soru="Bîrûnî hangi dili öğrenmiştir?"),
+        dict(soru="Mehter nedir?",
+             belge="ozan-asik-gelenegi.md",
+             kanit="Osmanlı ordusunun askerî müzik topluluğudur", anahtar=["askerî müzik|bando"]),
+    ]),
+    dict(id="k2-degisim-balbal", tip="konu_degisimi", sorular=[
+        dict(soru="Barbaros Hayreddin Paşa nerede doğmuştur?"),
+        dict(soru="Balbal nedir?",
+             belge="turk-mitolojisi-ve-gok-tanri.md",
+             kanit="dikilen taşlara balbal denir", anahtar=["taş"]),
+    ]),
+    dict(id="k2-degisim-semeni", tip="konu_degisimi", sorular=[
+        dict(soru="Mimar Sinan ne zaman ölmüştür?"),
+        dict(soru="Semeni nedir?",
+             belge="nevruz-ve-turk-bayramlari.md",
+             kanit="semeni ya da sümelek", anahtar=["buğday"]),
+    ]),
+
+    # ------------------------------- onceki sorudan sonra konu disi soru
+    dict(id="k2-disi-sonra-hava", tip="konu_disi_sonra", sorular=[
+        dict(soru="Türk bayrağında hangi renkler vardır?"),
+        dict(soru="Yarın hava nasıl olacak?"),
+    ]),
+    dict(id="k2-disi-sonra-tarif", tip="konu_disi_sonra", sorular=[
+        dict(soru="Osmanlı'da kadı ne iş yapardı?"),
+        dict(soru="Bana pizza tarifi verir misin?"),
+    ]),
+]

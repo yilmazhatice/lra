@@ -81,9 +81,16 @@ def git_state():
 
 
 def question_set(name):
-    """(tekil sorular, senaryolar). ana: ayar yapilan set; kontrol: Faz 5.5."""
+    """(tekil sorular, senaryolar).
+
+    ana      : ayar yapilan set
+    kontrol  : Faz 5.5 kontrol seti (13 belgelik koleksiyon; bagimsizligini yitirdi)
+    kontrol2 : 28 belgelik koleksiyon icin yazilan ikinci kontrol seti
+    """
     if name == "kontrol":
         return eval_set.KONTROL_SORULAR, eval_set.KONTROL_SENARYOLAR
+    if name == "kontrol2":
+        return eval_set.KONTROL2_SORULAR, eval_set.KONTROL2_SENARYOLAR
     return eval_set.SORULAR, eval_set.SENARYOLAR
 
 
@@ -101,8 +108,9 @@ def validate_set():
     chunks = conn.execute("SELECT doc_name, text FROM chunks").fetchall()
     conn.close()
 
-    all_questions = eval_set.SORULAR + eval_set.KONTROL_SORULAR
-    all_scenarios = eval_set.SENARYOLAR + eval_set.KONTROL_SENARYOLAR
+    all_questions = eval_set.SORULAR + eval_set.KONTROL_SORULAR + eval_set.KONTROL2_SORULAR
+    all_scenarios = (eval_set.SENARYOLAR + eval_set.KONTROL_SENARYOLAR
+                     + eval_set.KONTROL2_SENARYOLAR)
     cases = list(all_questions)
     for scenario in all_scenarios:
         cases += [dict(q, id=f"{scenario['id']}#{i}") for i, q in enumerate(scenario["sorular"], 1)]
@@ -461,8 +469,8 @@ def main():
     parser.add_argument("--etiket", default="", help="dosya adina ve rapora eklenecek kisa ad")
     parser.add_argument("--karsilastir", help="onceki bir calismanin .json dosyasi")
     parser.add_argument("--kontrol", action="store_true", help="yalnizca seti dogrula")
-    parser.add_argument("--set", choices=["ana", "kontrol"], default="ana",
-                        help="ana: ayar yapilan set; kontrol: Faz 5.5 kontrol seti (ayar icin kullanilmaz)")
+    parser.add_argument("--set", choices=["ana", "kontrol", "kontrol2"], default="ana",
+                        help="ana: ayar yapilan set; kontrol/kontrol2: kontrol setleri (ayar icin kullanilmaz)")
     parser.add_argument("--rapor", help="model calistirmadan, bir .json sonucundan .md raporunu yeniden yaz")
     args = parser.parse_args()
 
@@ -478,7 +486,7 @@ def main():
         return
 
     errors, chunk_count = validate_set()
-    for name in ("ana", "kontrol"):
+    for name in ("ana", "kontrol", "kontrol2"):
         qs, scs = question_set(name)
         n_cases = len(qs) + sum(len(s["sorular"]) for s in scs)
         print(f"Set {name:7}: {len(qs)} tekil soru, {len(scs)} senaryo ({n_cases} soru), "
@@ -503,7 +511,7 @@ def main():
 
     now = datetime.now()
     slug = re.sub(r"[^\w\-]+", "-", args.etiket).strip("-")
-    stem = (now.strftime("%Y-%m-%d_%H%M") + ("_kontrol" if args.set == "kontrol" else "")
+    stem = (now.strftime("%Y-%m-%d_%H%M") + ("" if args.set == "ana" else f"_{args.set}")
             + (f"_{slug}" if slug else ""))
     meta = {
         "tarih": now.strftime("%Y-%m-%d %H:%M"),
