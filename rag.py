@@ -8,7 +8,7 @@ import sys
 import time
 
 from foundry_client import client, set_primary, with_model
-from search import kokler, load_chunks, search_details
+from search import QUESTION_WORDS, fold, kokler, load_chunks, search_details
 
 TOP_K = int(os.environ.get("LRA_TOP_K", 8))   # ortam degiskeni yalnizca deneyler icin
 # Guvenlik tabani: en iyi parca bu skorun altindaysa modele hic sorulmaz.
@@ -486,6 +486,30 @@ def follow_up_query(question, previous_question=None):
     return question
 
 
+# "<terim> nedir/kimdir" bicimindeki soru oznesini kendisi adlandirir, yani
+# onceki tura dayanmaz; takip sorusu ise oznesinden yoksundur ("sonucu ne
+# oldu?", "hangi dergide yazardi?"). Gecmis zamanli bicimler (neydi, kimdi,
+# neresiydi) takip sorularinda da kullanildigi icin disarida birakildi.
+_TANIM_SORUSU = re.compile(r"(nedir|kimdir|ne demek)\s*\??\s*$")
+
+
+def _kendi_konusunu_adlandirir(question):
+    """Soru kendi konusunu adlandiriyor mu?
+
+    Birlesik arama kararinda kullaniliyor. Skor karsilastirmasi bu sorularda
+    yaniltici: "Balbal nedir?" tek basina 0.345, onceki soruyla birlesik
+    0.698 skor aliyor; birlesik skorun yuksekligi sorunun onceki tura
+    dayandigini degil, onceki sorunun kelimelerinin iyi eslestigini gosterir.
+    Birlesik arama secilince dogru parca 106. siraya dusuyordu.
+    """
+    if not _TANIM_SORUSU.search(fold(question)):
+        return False
+    # Yalnizca isaret sozcugu tasiyan soru ("bu nedir?") kendine yetmez;
+    # uc harften kisa kelimeler ve soru kelimeleri icerik sayilmaz.
+    return any(len(w) >= 3 and w not in QUESTION_WORDS
+               for w in re.findall(r"\w+", fold(question)))
+
+
 def retrieve_details(question, top_k=TOP_K, search_query=None,
                      previous_question=None):
     """(parcalar, arama_metni, takip_mu, en_iyi_skor) dondur.
@@ -517,7 +541,7 @@ def retrieve_details(question, top_k=TOP_K, search_query=None,
     # gecildiginde aramayi yaklasik yari yariya onceki sorunun konusuna
     # kaydiriyor: konu degisiminde iki skor arasindaki fark gurultu
     # seviyesinde (medyan -0.015), gercek takip sorularinda +0.23..+0.35.
-    if len(question.split()) <= FOLLOW_UP_MAX_WORDS:
+    if len(question.split()) <= FOLLOW_UP_MAX_WORDS and not _kendi_konusunu_adlandirir(question):
         alt_hits, alt_best = search_details(birlesik, top_k=top_k)
         if alt_hits and alt_best - best >= FOLLOW_UP_MARGIN:
             return alt_hits, birlesik, True, alt_best

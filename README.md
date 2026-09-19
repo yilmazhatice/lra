@@ -212,9 +212,13 @@ bölümleri bağlama girip modelin yanlış yerden cevaplamasına yol açtı.
   cevaplanabilir ve 10 cevaplanamaz tekil soru, ayrıca 15 çok turlu senaryo
   (takip sorusu, konu değişimi, önceki sorudan sonra konu dışı soru).
   Ayarlar bu sete bakılarak yapıldı.
-- **Kontrol seti (56 soru, 41'i puanlanan):** Sonuçları görülmeden yazılıp
-  dondurulmuş sorular. Ayar yapmak için kullanılmaz; ayarların bu sete fazla
-  uyup uymadığını gösterir.
+- **Kontrol seti (63 soru, 51'i puanlanan):** 28 belgelik koleksiyon için,
+  sonuçları görülmeden yazılıp dondurulmuş sorular (`--set kontrol2`). Ayar
+  yapmak için kullanılmaz; ayarların bu sete fazla uyup uymadığını gösterir.
+  Sorular ana setin hiç kullanmadığı paragraflardan sistematik üretildi.
+- **Eski kontrol seti (56 soru, 41'i puanlanan):** 13 belgelik koleksiyon için
+  yazılmıştı (`--set kontrol`). Bağımsızlığını yitirdi: başarısızlıklarına
+  bakılıp belgeler ona göre düzeltildi. Tarihsel kayıt olarak duruyor.
 
 Her sorunun beklenen paragrafı, parça numarasıyla değil paragraftan alınmış bir
 ifadeyle tanımlı; parçalama değişince set geçerli kalıyor. Ölçümler
@@ -228,18 +232,23 @@ python evaluate.py --etiket deneme --karsilastir degerlendirmeler/<onceki>.json
 ```
 
 **Son ölçüm** (qwen2.5-7b, RTX 5070 8 GB, 28 belge / 219 bölüm; raporlar:
-[`2026-09-19_0310_d-grubu-son.md`](degerlendirmeler/2026-09-19_0310_d-grubu-son.md),
-[`2026-09-19_0318_kontrol_d-grubu-son.md`](degerlendirmeler/2026-09-19_0318_kontrol_d-grubu-son.md)):
+[`2026-09-20_0124_tanim-sorusu.md`](degerlendirmeler/2026-09-20_0124_tanim-sorusu.md),
+[`2026-09-20_0153_kontrol2_tanim-sorusu.md`](degerlendirmeler/2026-09-20_0153_kontrol2_tanim-sorusu.md)):
 
-| Ölçüt | Ana set | Kontrol seti | Önceki (13 belge / 86 bölüm) |
+| Ölçüt | Ana set | Kontrol seti | Eski kontrol seti |
 |---|---|---|---|
-| Tam başarı (otomatik) | **%96.9** | **%82.9** | %95.6 / %86.0 |
-| Doğru bölüm ilk sırada / ilk üçte | %86.8 / %97.2 | %84.0 / %96.0 | %87.8 / %95.9 |
-| Cevaplanabilir sorularda başarı | %99.3 | %84.0 | %95.9 / %92.6 |
-| Yanlış red (cevap belgede varken) | **%0.0** | %4.0 | %0.0 / %3.7 |
-| Doğru kaynak | %99.3 | %87.5 | %98.6 / %100 |
-| Cevaplanamaz soruları reddetme | %75.0 | %81.2 | %93.8 / %75.0 |
-| Ortalama yanıt süresi | 2.3 sn | 2.6 sn | 2.5 sn |
+| Tam başarı (otomatik) | **%96.9** | **%82.4** | %82.9 |
+| Doğru bölüm ilk sırada / ilk üçte | %86.8 / %97.2 | %77.8 / %88.9 | %84.0 / %96.0 |
+| Cevaplanabilir sorularda başarı | %99.3 | %86.1 | %84.0 |
+| Yanlış red (cevap belgede varken) | **%0.0** | %5.6 | %4.0 |
+| Doğru kaynak | %99.3 | %94.1 | %87.5 |
+| Cevaplanamaz soruları reddetme | %75.0 | %73.3 | %81.2 |
+| Ortalama yanıt süresi | 2.3 sn | 2.6 sn | 2.6 sn |
+
+Ana set ile kontrol seti arasındaki yaklaşık yirmi puanlık fark gerçektir ve
+beklenen yöndedir: ana settekilerin bir bölümü ayar yapılırken görüldü, kontrol
+seti ise görülmedi. Sistemin gerçek seviyesi için kontrol seti sütununa
+bakılmalıdır.
 
 Ana settekilerin 80'i yeni 16 belge için yazılmış sorulardır; bu grupta başarı
 **%100**, eski sorularda %93.8. Süre ölçümü yalnızca Foundry sunucusu yeni
