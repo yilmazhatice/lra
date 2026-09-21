@@ -76,10 +76,19 @@ python ingest.py
 python embed.py
 ```
 
-**Model varyantı:** Yalnızca takma adla indirmek (`foundry model download
+**Model varyantı.** Yalnızca takma adla indirmek (`foundry model download
 qwen2.5-7b`) donanıma uymayan bir sürümü (ör. NPU/OpenVINO) seçebiliyor.
 Uygun varyantları `foundry model info qwen2.5-7b` ile görüp tam adla indirin.
-Uygulama modeli adında `qwen2.5-7b` geçen indirilmiş model olarak bulur.
+
+**Kurulum burada bitiyor; sunucuyu ve modelleri elle yönetmeniz gerekmiyor.**
+İndirme dışındaki her şeyi `foundry_client.py` üstleniyor: Foundry sunucusunu
+gerekiyorsa kendisi başlatır, portu her çalıştırmada yeniden bulur, ölü bir
+sunucuyu durdurup yeniden kaldırır, indirilmiş sürümler arasından adında
+`qwen2.5-7b` / `qwen3-embedding-0.6b` geçeni seçer ve modeli belleğe yükler.
+Yani `foundry server start` ya da `foundry model load` çalıştırmanıza gerek
+yok; bilgisayar yeniden başladıktan sonra da modeller ilk soruda kendiliğinden
+yeniden yüklenir. Bir istek buna rağmen "model not loaded" hatası alırsa model
+yeniden yüklenip istek bir kez tekrarlanır.
 
 PowerShell betik çalıştırmayı engellerse:
 `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`
@@ -102,6 +111,10 @@ pip install -r requirements.txt
 python ingest.py
 python embed.py
 ```
+
+**Kurulum burada da bitiyor; sunucuyu ve modelleri elle yönetmeniz gerekmiyor.**
+İndirme dışındaki her şeyi `foundry_client.py` üstleniyor; ayrıntısı için
+Windows bölümündeki nota bakın.
 
 Foundry Local şu an Windows ve macOS destekliyor. Linux'ta, OpenAI uyumlu API
 sunan başka bir çalışma zamanı (örneğin Ollama) `FOUNDRY_ENDPOINT` ortam
