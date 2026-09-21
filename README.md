@@ -389,3 +389,21 @@ katmanının genişletilmesi gerekir.
   model (8 GB'de ikisi birlikte sığmıyor)
 - Soruyu konuşma geçmişiyle yeniden yazan bir adım
 - PDF ve Word desteği
+
+## Kaynaklar
+
+Proje, Microsoft Foundry Local yaz programı planındaki resmi kaynaklar takip
+edilerek geliştirildi:
+
+- [What is Foundry Local?](https://learn.microsoft.com/en-us/azure/foundry-local/what-is-foundry-local)
+  — çalışma zamanının kurulumu ve model kataloğu.
+- [Tutorial: Build a RAG application with Foundry Local](https://learn.microsoft.com/en-us/azure/foundry-local/tutorials/tutorial-build-rag-app)
+  — gömme üretimi ve kosinüs benzerliğiyle getirme adımları bu öğreticiden
+  uyarlandı; `search.py` içindeki arama, öğreticinin `find_relevant()`
+  yaklaşımının SQLite'a taşınmış hâlidir.
+- [Prompt engineering techniques](https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/prompt-engineering)
+  — sistem istemi ve "bilmiyorsan söyle" kuralı.
+- [SQLite for local data access](https://learn.microsoft.com/en-us/windows/apps/develop/data-access/sqlite-data-access)
+  — yerel depolama tercihi.
+- [Building Your First Local RAG Application with Foundry Local](https://techcommunity.microsoft.com/blog/azuredevcommunityblog/building-your-first-local-rag-application-with-foundry-local/4501968)
+  (Microsoft Tech Community, topluluk içeriği) — projenin esinlendiği örnek.
