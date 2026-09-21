@@ -323,7 +323,7 @@ denemesi (geri alındı), qwen3-4b → qwen2.5-7b (11/12 → 12/12), takip sorul
 
 ## Tasarım kararları
 
-**Kaba kuvvet arama.** 86 bölüm için tüm vektörler belleğe okunup tek bir NumPy
+**Kaba kuvvet arama.** 219 bölüm için tüm vektörler belleğe okunup tek bir NumPy
 çarpımıyla karşılaştırılıyor. Bu ölçekte yaklaşık en yakın komşu indeksi kurmak
 gereksiz karmaşıklık olurdu.
 
